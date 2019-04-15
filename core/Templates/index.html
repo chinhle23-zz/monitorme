@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div>
+<h1 class="welcome">Welcome!</h1>
+</div>
+        <div class="welcome"><h4><a href="{% url 'auth_login' %}">Login</a> or
+        <a href="{% url 'registration_register' %}">Register</a></h4></div>
+{% endif %}
+
+
+
+{% endblock content %}
+
