@@ -26,3 +26,9 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/core/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # decide whether or not to have core urls, it might be an extra step you dont need
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+       path('__debug__/', include(debug_toolbar.urls)),
+   ] + urlpatterns
