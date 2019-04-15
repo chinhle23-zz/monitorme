@@ -11,6 +11,7 @@ django = "*"
 prospector = "*"
 psycopg2 = "*"
 django-registration-redux = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
