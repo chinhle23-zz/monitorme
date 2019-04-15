@@ -12,6 +12,8 @@ prospector = "*"
 psycopg2 = "*"
 django-registration-redux = "*"
 pillow = "*"
+django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
