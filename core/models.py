@@ -9,7 +9,7 @@ class User(AbstractUser):
     
     username = models.CharField(max_length=50, unique=True, null=False, blank=False)
     profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
-    email = models.CharField(max_length=20, null=False, blank=False)
+    email = models.CharField(max_length=50, null=False, blank=False)
     name = models.CharField(max_length=100, null=False, blank=False)
     is_family_admin = models.BooleanField(default=False)
     label = models.CharField(max_length=50, null=False, blank=False)
