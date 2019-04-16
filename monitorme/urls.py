@@ -22,10 +22,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.default.urls')),
     path('core/', include('core.urls')),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # decide whether or not to have core urls, it might be an extra step you dont need
+# chinh's comments: let's do it Clinton's way and not have a core.urls file
 
 if settings.DEBUG:
     import debug_toolbar

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration', # Chinh added 4/15/2019
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
