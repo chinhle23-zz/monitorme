@@ -19,7 +19,6 @@ class User(AbstractUser):
     state = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=10, null=True, blank=True)
     active = models.BooleanField(default=True)
-    password = models.CharField(max_length=50, null=False, blank=False)
     phonenumber = models.CharField(max_length=25, null=True, blank=True)
     slug = models.SlugField()
 
