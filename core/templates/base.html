@@ -6,30 +6,31 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MonitorMe</title>
+    <title>{% block title %}MonitorMe{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'static/css/style.css' %}">
-    <script src="{% static 'static/js/script.js' %}"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static '/css/style.css' %}">
+    <script src="{% static '/js/script.js' %}"></script>
+    {% block meta %}{% endblock %}
 </head>
 
 <body>
     <div class="base-body">
         <header class="base-header">
             <div class="base-header-container">
-                <p>MonitorMe</p>
+                <p><a href="/">MonitorMe</a></p>
             </div>
         </header>
         <div class="login-container">
             <div class="loginsection">
                 {% if user.is_authenticated %}
                 <div class="username">
-                    <h4><a href="">{{ user.username|upper }}</a> |
-                        <a href="">Logout</a></h4>
+                    <h4><a href="{% url 'user_profile' user.username %}">{{ user.username|upper }}</a> |
+                        <a href="{% url 'auth_logout' %}">Logout</a></h4>
                 </div>
                 {% else %}
                 <div class="login">
-                    <h4><a href="">Login</a> |
-                        <a href="">Register</a></h4>
+                    <h4><a href="{% url 'auth_login' %}">Login</a> |
+                        <a href="{% url 'registration_register' %}">Register</a></h4>
                 </div>
                 {% endif %}
             </div>

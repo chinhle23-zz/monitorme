@@ -19,11 +19,15 @@ from django.views.generic import RedirectView
 # Use static() to add url mapping to serve static files during development (only)
 from django.conf import settings
 from django.conf.urls.static import static
+from core import views as core_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
     path('core/', include('core.urls')),
-    path('', RedirectView.as_view(url='/core/', permanent=True)),
+    path('', core_views.index, name='index'),
+    # path('', RedirectView.as_view(url='/core/', permanent=True)),
+    path('profile/<username>', core_views.user_profile, name="user_profile"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # decide whether or not to have core urls, it might be an extra step you dont need
 
