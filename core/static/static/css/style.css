@@ -1,0 +1,17 @@
+.base-header {
+    height: 25%;
+    margin: 0px;
+    padding: 2.5rem;
+    background-color: navy;
+    color: white;
+}
+
+.base-body {
+    display: flex;
+    flex-flow: column;
+    height: auto;
+}
+
+.loginsection {
+    text-align: center;
+}

@@ -2,25 +2,43 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>MonitorMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'static/css/style.css' %}">
+    <script src="{% static 'static/js/script.js' %}"></script>
 </head>
-<body>
-{% block content %}
-<h1 class="title">MonitorMe!</h1>
-            {% if user.is_authenticated %}
-                <div class="username"><h4><a href="{% url 'user_profile' user.username %}">{{ user.get_username }}</a> | 
-                <a href="{% url 'auth_logout' %}">Logout</a></h4></div>
 
-            {% else %}
-                <div class="login"><h4><a href="{% url 'auth_login' %}">Login</a> |
-                <a href="{% url 'registration_register' %}">Register</a></h4></div>
-            {% endif %}
-{% endblock %}
+<body>
+    <div class="base-body">
+        <header class="base-header">
+            <div class="base-header-container">
+                <p>MonitorMe</p>
+            </div>
+        </header>
+        <div class="login-container">
+            <div class="loginsection">
+                {% if user.is_authenticated %}
+                <div class="username">
+                    <h4><a href="">{{ user.username|upper }}</a> |
+                        <a href="">Logout</a></h4>
+                </div>
+                {% else %}
+                <div class="login">
+                    <h4><a href="">Login</a> |
+                        <a href="">Register</a></h4>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 </body>
+
 </html>
