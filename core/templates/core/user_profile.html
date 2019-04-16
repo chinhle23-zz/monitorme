@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block content %}
 <div class="welcome">
@@ -9,28 +9,22 @@
     
     <div class="welcome ma3">
         <tr class="ma2">
-            <td class="ma2">UserName: </td>
+            <td class="ma2"><b>UserName: </b></td>
             <td class="ma2">{{ user.username }}</td>
-        </tr>
+        <br></tr>
         <tr class="welcome ma2">
-            <td class="ma2">Email: </td>
+            <td class="ma2"><b>Email: </b></td>
             <td class="ma2">{{ user.email }}</td>
-        </tr>   
-            <td class="ma2">First Name: </td>
-            <td class="ma2">{% if user.first_name %}{{ user.first_name }}{% else %}<span class="light-silver">(nothing entered)</span> {% endif %}</td>
-        </tr>
-        <tr class="ma2">
-            <td class="ma2">Last Name: </td>
-            <td class="ma2">{% if user.last_name %}{{ user.last_name }}{% else %}<span class="light-silver">(nothing entered)</span> {% endif %}</td>
-        </tr>
-        <tr class="ma2">
+        <br></tr>   
+            
+        {% comment %} <tr class="ma2">
             <td class="ma2"> State: </td>
             <td class="ma2">{%  %}
         </tr>
         <tr class="ma2">
             <td class="ma2"> Phone number: </td>
             <td class="ma2">{% %}
-        </tr>
+        </tr> {% endcomment %}
         
     </div>
     {% endif %}
