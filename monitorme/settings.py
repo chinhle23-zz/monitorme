@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'registration', # Chinh added 4/15/2019
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -130,7 +130,12 @@ INTERNAL_IPS = [
    '127.0.0.1',
 ]
 
-
+# Registration
 ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/'
+
 # Custom user config.
 AUTH_USER_MODEL = 'core.User'
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
