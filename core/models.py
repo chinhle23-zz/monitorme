@@ -19,7 +19,6 @@ class User(AbstractUser):
     state = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=10, null=True, blank=True)
     active = models.BooleanField(default=True)
-    password = models.CharField(max_length=50, null=False, blank=False)
     phonenumber = models.CharField(max_length=25, null=True, blank=True)
     slug = models.SlugField()
 
@@ -33,8 +32,8 @@ class User(AbstractUser):
             self.set_slug()
             super().save(*args, **kwargs)
 
-        def get_absolute_url(self): 
-            return reverse('user-profile', kwargs={'slug': self.slug})
+        # def get_absolute_url(self): 
+        #     return reverse('user-profile', kwargs={'slug': self.slug})
 
         def __str__(self):
             return self.username
