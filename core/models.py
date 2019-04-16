@@ -32,8 +32,8 @@ class User(AbstractUser):
             self.set_slug()
             super().save(*args, **kwargs)
 
-        # def get_absolute_url(self): 
-        #     return reverse('user-profile', kwargs={'slug': self.slug})
+        def get_absolute_url(self): 
+            return reverse('user_profile', kwargs={'slug': self.slug})
 
         def __str__(self):
             return self.username
