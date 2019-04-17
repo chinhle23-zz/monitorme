@@ -26,7 +26,11 @@ SECRET_KEY = 'ru*5uzkti$-#(_q-++s86q0$w73k-f+&$hw7uw_tacy_jb!lg='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'nameless-fortress-39675.herokuapp.com',
+    'localhost',
+]
 
 
 # Application definition
