@@ -14,7 +14,7 @@
 
 .header-link {
     background:
-        url("shutterstock_659375407\ copy.jpg") center;
+        url("shutterstock_659375407_copy.jpg") center;
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,9 +40,9 @@
         line-height: 125px;
         margin: 0px;
         background:
-            url("NewLogo2\ copy.png"),
+            url("NewLogo2_copy.png"),
             linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75)),
-            url("shutterstock_659375407\ copy.jpg") center;
+            url("shutterstock_659375407_copy.jpg") center;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top;
@@ -59,9 +59,9 @@
         line-height: 125px;
         margin: 0px;
         background:
-            url("NewLogo2\ copy.png") center,
+            url("NewLogo2_copy.png") center,
             linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75)),
-            url("shutterstock_659375407\ copy.jpg") center;
+            url("shutterstock_659375407_copy.jpg") center;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top;
