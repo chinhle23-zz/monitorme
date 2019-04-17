@@ -15,11 +15,8 @@
 
 <body>
     <div class="base-body">
-        <header class="base-header">
-            <div class="base-header-container">
-                <p><a href="{% url 'index' %}">MonitorMe</a></p>
-            </div>
-        </header>
+        <a class="header-link" href="{% url 'index' %}"><header class="base-header">
+        </header></a>
         <div class="login-container">
             <div class="loginsection">
                 {% if user.is_authenticated %}
