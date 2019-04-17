@@ -1,0 +1,31 @@
+<!-- {% extends "registration/registration_base.html" %} -->
+{% extends "base.html" %}
+
+{% block title %}Register for an account{% endblock %}
+
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {% for field in form %}
+      <!-- TODO add error messages -->    
+      <div class="">
+        <div class="{% if field.field.required %}b{% endif %}">{{ field.label_tag }}</div>
+        <div>{{ field }}</div>
+        {% if field.help_text %}
+          <p class="">{{ field.help_text|safe }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit">Register Now</button>
+</form>
+hello
+{% endblock %}
+
+<!-- {% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="{% trans 'Submit' %}" />
+</form>
+hello
+{% endblock %} -->
