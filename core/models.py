@@ -5,7 +5,7 @@ from django.urls import reverse
 
 
 class User(AbstractUser):
-    """This model represents teh customer user model"""
+    """This model represents the customer user model"""
     
     username = models.CharField(max_length=50, unique=True, null=False, blank=False)
     profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
@@ -50,7 +50,7 @@ class NameGroup(models.Model):
         return self.name
 
 class TrackerGroup(models.Model):
-    """This model handels the group of questions a user creates for the tracker."""
+    """This model handles the group of questions a user creates for the tracker."""
     name = models.CharField(max_length=100, null=False, blank=False)
     available_to = models.ForeignKey('User', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)

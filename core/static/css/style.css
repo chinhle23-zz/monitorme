@@ -66,4 +66,13 @@
         background-repeat: no-repeat;
         background-position: top;
     }
+.welcome {
+    text-align: center;
+    display: flex;
 }
+
+.user_info {
+    text-align: left;
+    padding: 2rem;
+    display: flex;
+}}

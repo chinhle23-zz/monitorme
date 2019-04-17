@@ -4,28 +4,33 @@
 {% block content %}
 <div class="welcome">
     {% if user.is_authenticated %}
-        <h3>{{ user.username.upper }}</h3>
-        <p>Welcome to your profile page!</p>
-    
-    <div class="welcome ma3">
-        <tr class="ma2">
-            <td class="ma2"><b>UserName: </b></td>
-            <td class="ma2">{{ user.username }}</td>
-        <br></tr>
-        <tr class="welcome ma2">
-            <td class="ma2"><b>Email: </b></td>
-            <td class="ma2">{{ user.email }}</td>
-        <br></tr>   
-            
-        {% comment %} <tr class="ma2">
-            <td class="ma2"> State: </td>
-            <td class="ma2">{%  %}
-        </tr>
-        <tr class="ma2">
-            <td class="ma2"> Phone number: </td>
-            <td class="ma2">{% %}
-        </tr> {% endcomment %}
+      <tr class=welcome>  
+        <td><b>Welcome to your profile page </b></td>
+        <td>{{ user.username.upper }}</td>
+        <td><b>!</b></td>
+      </tr>  
         
+</div>    
+    <div class="user_info">
+        <tr>
+            <td><b>UserName: </b></td>
+            <td>{{ user.username }}</td>
+        <br></tr>
+        <br>
+        <tr>
+            <td><b>Name: </b></td>
+            <td>{{ user.name }}
+        <br></tr>
+        <br>
+        <tr>
+            <td><b>Group: </b></td>
+            {% comment %} <td>{% %} {% endcomment %}
+        <br></tr>
+        <br>
+        <tr>
+            <td><b>Email: </b></td>
+            <td>{{ user.email }}</td>
+        <br></tr> 
     </div>
     {% endif %}
 
