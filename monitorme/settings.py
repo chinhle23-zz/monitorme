@@ -139,7 +139,7 @@ INTERNAL_IPS = [
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'index'
 
 # Custom user config.
 AUTH_USER_MODEL = 'core.User'
