@@ -27,6 +27,7 @@ urlpatterns = [
     path('core/', include('core.urls')),
     path('', core_views.index, name='index'),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
+    path('landing_page/<username>', core_views.landing_page, name="landing_page"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # team has agreed to only use one urls.py file
 

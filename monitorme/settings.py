@@ -26,7 +26,11 @@ SECRET_KEY = 'ru*5uzkti$-#(_q-++s86q0$w73k-f+&$hw7uw_tacy_jb!lg='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # '127.0.0.1',
+    # 'nameless-fortress-39675.herokuapp.com',
+    # 'localhost',
+]
 
 
 # Application definition
@@ -125,10 +129,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
 ]
+
 
 INTERNAL_IPS = [
    '127.0.0.1',
