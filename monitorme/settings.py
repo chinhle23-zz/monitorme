@@ -126,6 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
+]
 
 INTERNAL_IPS = [
    '127.0.0.1',
@@ -133,7 +136,8 @@ INTERNAL_IPS = [
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'index'
+REGISTRATION_FORM = 'core.forms.CustomRegistrationForm'
 
 # Custom user config.
 AUTH_USER_MODEL = 'core.User'
