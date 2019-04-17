@@ -45,11 +45,13 @@
 
 .button {
     background-color: #2bf4fe;
-    border: none;
+    border: 2px solid;
+    border-color: #1e81f5;
     color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
+    text-shadow: 2px 2px white;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
