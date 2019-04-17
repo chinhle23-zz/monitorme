@@ -14,3 +14,8 @@ def index(request):
     context = { 
     }
     return render(request, 'index.html', context=context)
+
+def disclosure(request):
+    context ={
+    }
+    return render(request, 'core/disclosure.html', context=context)
