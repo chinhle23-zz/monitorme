@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'core.apps.CoreConfig', 
+        # Chinh: "our app needs to be above registration in order to modify registration templates
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'core.apps.CoreConfig',
     ]
 
 MIDDLEWARE = [
@@ -144,6 +145,7 @@ INTERNAL_IPS = [
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = 'index'
 REGISTRATION_FORM = 'core.forms.CustomRegistrationForm'
+    # https://django-registration-redux.readthedocs.io/en/latest/forms.html#multiple-form-inheritance
 
 # Custom user config.
 AUTH_USER_MODEL = 'core.User'
