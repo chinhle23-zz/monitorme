@@ -6,13 +6,13 @@
     {% if user.is_authenticated %}
       <tr class=welcome>  
         <td><b>Welcome to your profile page </b></td>
-        <td>{{ user.username.upper }}</td>
-        <td><b>!</b></td>
+        <td><b>{{ user.username.upper }}!</b></td>
       </tr>  
         
 </div>    
     <div class="user_info">
         <tr>
+        <br>
             <td><b>UserName: </b></td>
             <td>{{ user.username }}</td>
         <br></tr>

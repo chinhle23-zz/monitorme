@@ -1,4 +1,8 @@
 from django.contrib import admin
-from .models import User
+from core.models import User
 
-admin.
+# admin.site.register(User)
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    name_display = ('name')
+    fields = ['name']
