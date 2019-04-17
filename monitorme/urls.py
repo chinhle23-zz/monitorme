@@ -26,10 +26,9 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),
     path('core/', include('core.urls')),
     path('', core_views.index, name='index'),
-    # path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# decide whether or not to have core urls, it might be an extra step you dont need
+# team has agreed to only use one urls.py file
 
 if settings.DEBUG:
     import debug_toolbar
