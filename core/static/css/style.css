@@ -1,9 +1,23 @@
 .base-header {
-    height: 25%;
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
     margin: 0px;
-    padding: 2.5rem;
-    background-color: navy;
-    color: white;
+    background:
+        url("logo3.png") center,
+        linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75));
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.header-link {
+    background:
+        url("shutterstock_659375407\ copy.jpg") center;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .base-body {
@@ -15,3 +29,41 @@
 .loginsection {
     text-align: center;
 } 
+
+@media screen
+    and (min-width: 10px) 
+    and (max-width: 500px) {
+    .base-header {
+        display: flex;
+        flex-flow: wrap;
+        height: 125px;
+        line-height: 125px;
+        margin: 0px;
+        background:
+            url("NewLogo2\ copy.png"),
+            linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75)),
+            url("shutterstock_659375407\ copy.jpg") center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+}
+
+@media screen
+    and (min-width: 500px) 
+    and (max-width: 600px) {
+    .base-header {
+        display: flex;
+        flex-flow: wrap;
+        height: 125px;
+        line-height: 125px;
+        margin: 0px;
+        background:
+            url("NewLogo2\ copy.png") center,
+            linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75)),
+            url("shutterstock_659375407\ copy.jpg") center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+}
