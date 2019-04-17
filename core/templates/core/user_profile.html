@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+<script src="script.js"></script>
+
+
 
 {% block content %}
 <div class="welcome">
@@ -16,15 +19,9 @@
             <td class="ma2"><b>Email: </b></td>
             <td class="ma2">{{ user.email }}</td>
         <br></tr>   
-            
-        {% comment %} <tr class="ma2">
-            <td class="ma2"> State: </td>
-            <td class="ma2">{%  %}
-        </tr>
-        <tr class="ma2">
-            <td class="ma2"> Phone number: </td>
-            <td class="ma2">{% %}
-        </tr> {% endcomment %}
+
+    <a href="{% url 'edit_profile' %}">Edit profile</a></h4>
+
         
     </div>
     {% endif %}
