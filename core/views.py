@@ -14,3 +14,7 @@ def index(request):
     context = { 
     }
     return render(request, 'index.html', context=context)
+
+def landing_page(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'core/landing_page.html', {"user":user})
