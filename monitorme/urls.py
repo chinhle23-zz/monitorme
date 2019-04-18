@@ -27,7 +27,7 @@ urlpatterns = [
     path('core/', include('core.urls')),
     path('', core_views.index, name='index'),
     path('disclosure/', core_views.disclosure, name='disclosure'),
-    path('edit_profile/', core_views.edit_profile, name='edit_profile'),
+    path('create_group/', core_views.create_group, name='create_group'),
     # path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

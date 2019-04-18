@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<p> chinh is awesome!</p>
+
+ {% comment %} <form class="font" id="edit_profile" method='POST' action="{% url 'edit_profile.html' %}">
+    {% csrf_token %}
+    <table class="mb2">
+      {{ form }}
+    </table>
+    <input id="edit_profile" type="submit" class="snippet-field font dim button-snippet"></input>
+  </form> {% endcomment %}
+
+{% endblock content %}
