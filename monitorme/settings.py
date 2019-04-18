@@ -26,12 +26,18 @@ SECRET_KEY = 'ru*5uzkti$-#(_q-++s86q0$w73k-f+&$hw7uw_tacy_jb!lg='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # '127.0.0.1',
+    # 'nameless-fortress-39675.herokuapp.com',
+    # 'localhost',
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'core.apps.CoreConfig', 
+        # Chinh: "our app needs to be above registration in order to modify registration templates
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'core.apps.CoreConfig',
     ]
 
 MIDDLEWARE = [
@@ -125,8 +130,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
+]
 
 
 INTERNAL_IPS = [
@@ -135,7 +143,9 @@ INTERNAL_IPS = [
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'index'
+REGISTRATION_FORM = 'core.forms.CustomRegistrationForm'
+    # https://django-registration-redux.readthedocs.io/en/latest/forms.html#multiple-form-inheritance
 
 # Custom user config.
 AUTH_USER_MODEL = 'core.User'

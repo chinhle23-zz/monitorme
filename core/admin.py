@@ -1,3 +1,29 @@
 from django.contrib import admin
+from core.models import User, NameGroup, TrackerGroup, Question, Answer, Response
 
-# Register your models here.
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = (
+        'username',
+        'name',
+        'email',
+        'is_family_admin',
+        'label',
+        'created_at',
+        'updated_at',
+        'city',
+        'state',
+        'zipcode',
+        'active',
+        'phonenumber',
+    )
+    exclude= ('slug', 'password',)
+
+admin.site.register(TrackerGroup)
+admin.site.register(NameGroup)
+admin.site.register(Question)
+admin.site.register(Answer)
+admin.site.register(Response)
+
+
+

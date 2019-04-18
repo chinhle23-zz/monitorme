@@ -22,7 +22,33 @@
 
     <a href="{% url 'create_group' %}">Create Group</a></h4>
 
+      <tr class=welcome>  
+        <td><b>Welcome to your profile page </b></td>
+        <td><b>{{ user.username.upper }}!</b></td>
+      </tr>  
         
+</div>    
+    <div class="user_info">
+        <tr>
+        <br>
+            <td><b>UserName: </b></td>
+            <td>{{ user.username }}</td>
+        <br></tr>
+        <br>
+        <tr>
+            <td><b>Name: </b></td>
+            <td>{{ user.name }}
+        <br></tr>
+        <br>
+        <tr>
+            <td><b>Group: </b></td>
+            {% comment %} <td>{% %} {% endcomment %}
+        <br></tr>
+        <br>
+        <tr>
+            <td><b>Email: </b></td>
+            <td>{{ user.email }}</td>
+        <br></tr> 
     </div>
     {% endif %}
 

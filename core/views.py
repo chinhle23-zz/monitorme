@@ -3,6 +3,12 @@ from core.models import User
 from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
+from django.shortcuts import render
+from core.models import User, TrackerGroup
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views import generic
+from django.urls import reverse, reverse_lazy
+
 # Create your views here.
 
 def index(request):
@@ -41,3 +47,19 @@ def create_group(request):
 #             form.save(user=request.user)
 #             return render(request, 'edit_profile.html')
 
+
+def landing_page(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'core/landing_page.html', {"user":user})
+
+class TrackerDetailView(generic.DetailView):
+    model = TrackerGroup
+
+
+class TrackerCreate(CreateView):
+    model = TrackerGroup
+    fields = '__all__'
+    template_name='core/trackergroup_create.html'
+
+
+    
