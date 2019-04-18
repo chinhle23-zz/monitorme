@@ -29,6 +29,8 @@ urlpatterns = [
     # path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
     path('landing_page/<username>', core_views.landing_page, name="landing_page"),
+    path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker-detail"),
+    path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker-create"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # decide whether or not to have core urls, it might be an extra step you dont need
 
