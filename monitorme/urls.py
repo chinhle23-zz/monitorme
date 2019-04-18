@@ -24,7 +24,7 @@ from core import views as core_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('core/', include('core.urls')),
+    # path('core/', include('core.urls')),
     path('', core_views.index, name='index'),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
     path('landing_page/<username>', core_views.landing_page, name="landing_page"),
