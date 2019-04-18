@@ -23,11 +23,12 @@
                 <div class="username">
                     <h4><a href="{% url 'user_profile' user.username %}">{{ user.username|upper }}</a> |
                         <a href="{% url 'auth_logout' %}">Logout</a></h4>
+
                 </div>
                 {% else %}
                 <div class="login">
                     <h4><a href="{% url 'auth_login' %}">Login</a> |
-                        <a href="{% url 'registration_register' %}">Register</a></h4>
+                        <a href="{% url 'disclosure' %}">Register</a>
                 </div>
                 {% endif %}
             </div>

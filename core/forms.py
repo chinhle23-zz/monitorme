@@ -1,4 +1,24 @@
 from django import forms
+from core.models import User
+
+
+
+
+
+
+
+
+
+
+class EditProfileForm(forms.Form):
+    name = forms.CharField(
+        label= 'Name',
+        max_length=100,
+        widget=forms.TextInput(attrs={'required': True})
+    )
+
+   
+    
 from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 
@@ -10,7 +30,7 @@ class CustomRegistrationForm(RegistrationForm):
 
     email = forms.EmailField(
         label='E-mail', 
-        widget=forms.PasswordInput(attrs={'class': ''}),
+        widget=forms.TextInput(attrs={'class': ''}),
     )
 
     password1 = forms.CharField(
