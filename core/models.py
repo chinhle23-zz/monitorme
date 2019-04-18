@@ -60,10 +60,13 @@ class TrackerGroup(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('trackergroup-detail', args=[str(self.id)])
+
 class Question(models.Model):
     """This creates the questionaire"""
     description = models.TextField(max_length=1000, null=False, blank=False) 
-    order = models.CharField(max_length=1000, null=False, blank=False)
+    order = models.IntegerField(max_length=1000, null=False, blank=False)
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
@@ -71,6 +74,9 @@ class Question(models.Model):
 
     def __str__(self):
         return self.description
+
+    class Meta:
+        ordering = ['order']
 
 
 class Answer(models.Model):
