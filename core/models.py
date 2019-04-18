@@ -41,7 +41,7 @@ class User(AbstractUser):
 class NameGroup(models.Model):
     """This creates a group to assign """
     name = models.CharField(max_length=100, null=False, blank=False)
-    users = models.ForeignKey('User', on_delete=models.CASCADE)
+    users = models.ManyToManyField('User')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
@@ -52,7 +52,7 @@ class NameGroup(models.Model):
 class TrackerGroup(models.Model):
     """This model handels the group of questions a user creates for the tracker."""
     name = models.CharField(max_length=100, null=False, blank=False)
-    available_to = models.ForeignKey('User', on_delete=models.CASCADE)
+    available_to = models.ManyToManyField('User')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
@@ -69,6 +69,9 @@ class Question(models.Model):
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.description
+
 
 class Answer(models.Model):
     """This creates the answer model"""
@@ -82,8 +85,9 @@ class Answer(models.Model):
         return self.name
 
 class Response(models.Model):
+    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=True)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    answer = models.ForeignKey('Answer', on_delete=models.CASCADE)
+    answer = models.ManyToManyField('Answer')
     answered_for = models.ForeignKey('User', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
