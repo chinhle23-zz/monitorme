@@ -1,0 +1,21 @@
+{% extends "registration/registration_base.html" %}
+<!-- https://github.com/macropin/django-registration/blob/master/registration/templates/registration/registration_form.html -->
+<!-- {# {% load i18n %} #}  # needed for translations into multiple languages, but we will not be using it here -->
+
+{% block title %}Register for an account{% endblock %}
+
+{% block content %}
+<form method="POST" class="loginsection">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="">
+            <div class="{% if field.field.required %}b{% endif %}">{{ field.label_tag }}</div>
+            <div>{{ field }}</div>
+            {% if field.help_text %}
+                <p class="">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit">Register</button>
+</form>
+{% endblock %}

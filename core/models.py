@@ -66,7 +66,7 @@ class TrackerGroup(models.Model):
 class Question(models.Model):
     """This creates the questionaire"""
     description = models.TextField(max_length=1000, null=False, blank=False) 
-    order = models.IntegerField(max_length=1000, null=False, blank=False)
+    order = models.IntegerField(null=False, blank=False)
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
@@ -97,7 +97,6 @@ class Response(models.Model):
     answered_for = models.ForeignKey('User', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
-
 
 
 

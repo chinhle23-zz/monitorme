@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'core.apps.CoreConfig', 
+        # Chinh: "our app needs to be above registration in order to modify registration templates
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'core.apps.CoreConfig',
     ]
 
 MIDDLEWARE = [
@@ -131,6 +132,9 @@ USE_TZ = True
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
+]
 
 
 INTERNAL_IPS = [
@@ -140,6 +144,8 @@ INTERNAL_IPS = [
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = 'index'
+REGISTRATION_FORM = 'core.forms.CustomRegistrationForm'
+    # https://django-registration-redux.readthedocs.io/en/latest/forms.html#multiple-form-inheritance
 
 # Custom user config.
 AUTH_USER_MODEL = 'core.User'
