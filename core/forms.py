@@ -30,7 +30,7 @@ class CustomRegistrationForm(RegistrationForm):
 
     email = forms.EmailField(
         label='E-mail', 
-        widget=forms.PasswordInput(attrs={'class': ''}),
+        widget=forms.TextInput(attrs={'class': ''}),
     )
 
     password1 = forms.CharField(
