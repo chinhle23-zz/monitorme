@@ -134,7 +134,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
-# ]
+# ] # Clinton removed, it's not needed
 
 
 INTERNAL_IPS = [
