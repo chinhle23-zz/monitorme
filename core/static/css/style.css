@@ -2,6 +2,7 @@ html {
     background:
         linear-gradient(rgba(132, 153, 155, 0.50));
     font-family: 'Raleway';
+    text-align: center;
 }
 
 .base-header {
@@ -38,13 +39,9 @@ a {
     height: auto;
 }
 
-.loginsection, .welcome {
-    text-align: center;
-} 
 
 
 .user_info {
-    text-align: center;
     padding: 2rem;
     color: black;
     font-size: 16px;
@@ -52,8 +49,12 @@ a {
 }
 
 .landing {
-    text-align: center;
     color: #026670;
+}
+
+.hello-message {
+    margin-top: 10px;
+    font-size: 1.5rem;
 }
 
 .login {
@@ -61,7 +62,7 @@ a {
 }
 
 
-.button {
+.button, .loginbutton {
     background-color: #83C7DC;
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
@@ -81,19 +82,27 @@ a {
     outline: 0;
   }
 
-.button2:hover {
+.button2:hover, .loginbutton:hover {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
   }
 
-.logout-message {
+.loginbutton {
+    height: 38px;
+    width: 100px;
     text-align: center;
+    max-height: 38px
+    padding: 1.5px;
+    font-size: 1rem;
 }
 
+
+
+
   @media screen
-  and (min-width: 500px) 
-  and (max-width: 1100px) {
+  and (min-width: 450px) 
+  and (max-width: 750px) {
 
     .base-header {
         display: flex;
@@ -111,7 +120,7 @@ a {
 }
 
 @media screen
-and (min-width: 1101px) 
+and (min-width: 752px) 
 and (max-width: 2880px) {
 
   .base-header {

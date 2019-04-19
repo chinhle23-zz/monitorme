@@ -4,7 +4,7 @@
 {% block content %}
 <div class="landing">
 
-        <div>Hello {% if user.name %}{{user.name}}{% else %}{{user.username}}{% endif %}!</div>
+        <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
         <br>
         <div class="landing-description">
             <p>To find what you need, simply click the button! Your profile page is of course your profile, whereas your dashboard page is a summary of your trackers! Use references for examples and more information about the site.
