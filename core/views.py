@@ -18,11 +18,6 @@ def user_profile(request, username):
     user = User.objects.get(username=request.user)
     return render(request, 'core/user_profile.html', {"user":user})
 
-def index(request):
-    context = { 
-    }
-    return render(request, 'index.html', context=context)
-
 def disclosure(request):
     context = {
     }

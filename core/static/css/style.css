@@ -1,6 +1,6 @@
 html {
     background:
-        linear-gradient(rgba(237, 234, 229, 0.75));
+        linear-gradient(rgba(132, 153, 155, 0.50));
 }
 
 .base-header {
@@ -60,33 +60,35 @@ a {
 }
 
 .landing {
+    font-family: 'Raleway';
     text-align: center;
-    color: blue;
-    text-shadow: 1px 1px #e0e0e0;
+    color: #026670;
 }
 
 .button {
-    background-color: #2bf4fe;
-    border: 2px solid;
-    border-color: #1e81f5;
-    color: black;
-    padding: 15px 32px;
+    background-color: #83C7DC;
+    -moz-box-shadow:    2px 3px 2px #D9D9D9;
+    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
+    box-shadow:         2px 3px 2px #D9D9D9;
+    color: #052e3e;
+    padding: 10px 25px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 2px 2px white;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    height: 48px;
-    width: 146px;
+    text-shadow: .5px .5px .5px rgba(40, 68, 89, 0.474);
+    font-size: 1rem;
+    height: 45px;
+    width: 200px;
+    margin-bottom: 15px;
     cursor: pointer;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
     border-radius: 9px;
     outline: 0;
   }
 
 .button2:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 
+        0 8px 10px 0 rgba(0,0,0,0.24),
+        0 10px 25px 0 rgba(0,0,0,0.19);
   }
 
   @media screen
