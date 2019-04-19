@@ -35,6 +35,7 @@ urlpatterns = [
     path('response_detail', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
     path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker-create"),
+    path('calendar/', core_views.calendar, name="calendar"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # team has agreed to only use one urls.py file
 

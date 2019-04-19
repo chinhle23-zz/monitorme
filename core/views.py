@@ -70,5 +70,8 @@ class TrackerCreate(CreateView):
     fields = '__all__'
     template_name='core/trackergroup_create.html'
 
+def calendar(request):
+    return render(request, 'core/calendar.html')
+
 
     
