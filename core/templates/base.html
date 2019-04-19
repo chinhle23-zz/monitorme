@@ -16,12 +16,7 @@
 
 <body>
     <div class="base-body">
-        {% if user.is_authenticated %}
-        <a class="head-link" href="{% url 'landing_page' user.username %}"><header class="base-header"></header></a>
-        {% else %} 
-        <a class="head-link" href="{% url 'index' %}"><header class="base-header">
-        </header></a>
-        {% endif %}
+        <a class="head-link" href="{% if user.is_authenticated %}{% url 'landing_page' user.username %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header"></header></a>
         <div class="login-container">
             <div class="loginsection">
                 {% if user.is_authenticated %}
