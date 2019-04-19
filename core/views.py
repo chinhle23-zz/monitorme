@@ -4,7 +4,7 @@ from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
-from core.models import User, TrackerGroup
+from core.models import User, TrackerGroup, NameGroup, Question, Answer, Response
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -39,8 +39,16 @@ def response_detail(request):
     return render(request, 'response_detail', context=context)
 
 def dashboard_detail(request):
+    users = User.objects.all()
+    usergroup = NameGroup.objects.all()
+    trackers = TrackerGroup.objects.all()
+
     context = {
+        'users': users,
+        'usergroup': usergroup,
+        'trackers': trackers,
     }
+
     return render(request, 'core/dashboard_detail.html', context=context)
 # def edit_profile(request):
 #     form = EditProfileForm(request.POST)
@@ -72,6 +80,16 @@ class TrackerCreate(CreateView):
 
 def calendar(request):
     return render(request, 'core/calendar.html')
+
+def user_detail(request, pk):
+    template_name = 'core/user_detail.html'
+    trackers = TrackerGroup.objects.filter(available_to=pk)
+
+    context = {
+        'trackers': trackers,
+    }
+
+    return render(request, 'core/user_detail.html', context)
 
 
     
