@@ -38,17 +38,6 @@ class User(AbstractUser):
         def __str__(self):
             return self.username
 
-class NameGroup(models.Model):
-    """This creates a group to assign """
-    name = models.CharField(max_length=100, null=False, blank=False)
-    users = models.ManyToManyField('User')
-    created_at = models.DateTimeField(auto_now_add=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=True, blank=True)
-    active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.name
-
 class TrackerGroup(models.Model):
     """This model handles the group of questions a user creates for the tracker."""
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -62,6 +51,13 @@ class TrackerGroup(models.Model):
 
     def get_absolute_url(self):
         return reverse('trackergroup-detail', args=[str(self.id)])
+
+class TrackerGroupInstance(models.Model):
+    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
+    start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+    end = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
+
 
 class Question(models.Model):
     """This creates the questionaire"""
@@ -91,10 +87,12 @@ class Answer(models.Model):
         return self.name
 
 class Response(models.Model):
-    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=True)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    tracker = models.ForeignKey('TrackerGroup', 
+    on_delete=models.CASCADE, null=False, blank=False)
+    tracker_instance = models.ForeignKey('TrackerGroupInstance',  on_delete=models.CASCADE, null=False, blank=False)
+    question = models.ForeignKey('Question', on_delete=models.CASCADE, null=False, blank=False)
     answer = models.ManyToManyField('Answer')
-    answered_for = models.ForeignKey('User', on_delete=models.CASCADE)
+    answered_for = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
 
