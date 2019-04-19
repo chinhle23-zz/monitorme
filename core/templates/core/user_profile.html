@@ -20,7 +20,10 @@
 
         <div>Email: <span>{{ user.email }}</span></div>
 
-        <a href="{% url 'create_group' %}">Create Group</a>
+        <!-- <a href="{% url 'create_group' %}">Create Group</a> -->
+
+        <a href="{% url 'namegroup_form' %}">Create Group</a>
+            <!-- Chinh added ^^^ to test class-based views -->
     </div>
     {% endif %}
 

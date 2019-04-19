@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<p> chinh is awesome!</p>
+
+<!-- Aaron's version: -->
+<!-- <p> chinh is awesome!</p>
 
  {% comment %} <form class="font" id="edit_profile" method='POST' action="{% url 'edit_profile.html' %}">
     {% csrf_token %}
@@ -9,6 +11,16 @@
       {{ form }}
     </table>
     <input id="edit_profile" type="submit" class="snippet-field font dim button-snippet"></input>
-  </form> {% endcomment %}
+  </form> {% endcomment %} -->
 
-{% endblock content %}
+<!-- Chinh's version: -->
+<h3>Add a new post</h3>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit"/>
+</form>
+{% endblock %}

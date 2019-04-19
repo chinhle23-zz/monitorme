@@ -49,6 +49,11 @@ class NameGroup(models.Model):
     def __str__(self):
         return self.name
 
+    # Chinh added 4/19/2019
+    def get_absolute_url(self):
+        """Returns the url to user_profile after group has been created."""
+        return reverse('namegroup_detail', args=[str(self.id)])
+
 class TrackerGroup(models.Model):
     """This model handles the group of questions a user creates for the tracker."""
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -61,7 +66,7 @@ class TrackerGroup(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('trackergroup-detail', args=[str(self.id)])
+        return reverse('tracker_detail', args=[str(self.id)])
 
 class Question(models.Model):
     """This creates the questionaire"""

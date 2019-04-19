@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-from core.models import User
+from core.models import User, NameGroup, TrackerGroup
 from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from django.shortcuts import render
-from core.models import User, TrackerGroup
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -28,6 +26,21 @@ def create_group(request):
     }
     return render(request, 'core/create_group.html', context=context)
 
+#### Chinh's version ####
+class CreateGroup(LoginRequiredMixin, CreateView):
+    """
+    Form for creating a group. Requires login. 
+    """
+    model = NameGroup
+        # define the associated model
+    fields = ['name', 'users']
+        # specify the fields to dislay in the form
+
+#### Chinh's version ####
+class NameGroupDetailView(generic.DetailView):
+    """View class for NameGroup detail page of site."""
+    model = NameGroup
+
 def landing_page(request):
     context = {
     }
@@ -39,9 +52,19 @@ def response_detail(request):
     return render(request, 'response_detail', context=context)
 
 def dashboard_detail(request):
+    # Chinh added 4/19/2019:
+    namegroups = NameGroup.objects.filter(users__username=request.user.username)
+    trackergroups = TrackerGroup.objects.filter(available_to__username=request.user.username)
+        # https://docs.djangoproject.com/en/2.2/topics/db/queries/#lookups-that-span-relationships
+
     context = {
+        # Chinh added 4/19/2019:
+        'namegroups': namegroups,
+        'trackergroups': trackergroups,
     }
+
     return render(request, 'core/dashboard_detail.html', context=context)
+
 # def edit_profile(request):
 #     form = EditProfileForm(request.POST)
 #     if form.is_valid():
@@ -64,11 +87,21 @@ def landing_page(request, username):
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
 
-
 class TrackerCreate(CreateView):
     model = TrackerGroup
     fields = '__all__'
     template_name='core/trackergroup_create.html'
+
+#### Chinh's version ####
+# class CreateTracker(LoginRequiredMixin, CreateView):
+#     """
+#     Form for creating a tracker. Requires login. 
+#     """
+#     model = TrackerGroup
+#         # define the associated model
+#     fields = ['name', 'available_to']
+#         # specify the fields to dislay in the form
+
 
 def calendar(request):
     return render(request, 'core/calendar.html')
