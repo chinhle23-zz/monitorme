@@ -3,14 +3,13 @@
 
 {% block content %}
 <div class="landing">
-        <tr>
-            <td>Hello </td>
-            <td>{{ user.name }}</td>
-        <br></tr>
+
+        <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
         <br>
-        <tr>
-        <td>To find what you need, simply scroll then click the button!</td>
-        <br></tr>
+        <div class="landing-description">
+            <p>To find what you need, simply click the button! Your profile page is of course your profile, whereas your dashboard page is a summary of your trackers! Use references for examples and more information about the site.
+            </p>
+        </div>
         <br>
         <button onclick="location.href = '/profile/{{user.username}}';" class="button button2">Profile</button>
         <br>
@@ -18,6 +17,6 @@
         <br>
         <button class="button button2">References</button>
         <br>
-        <button class="button button2">Calendar</button>
+        <button onclick="location.href = '/calendar';" class="button button2">Calendar</button>
 </div>        
 {% endblock %}

@@ -7,50 +7,20 @@
 {% block content %}
 <div class="welcome">
     {% if user.is_authenticated %}
-        <h3>{{ user.username.upper }}</h3>
         <p>Welcome to your profile page!</p>
-    
-    <div class="welcome ma3">
-        <tr class="ma2">
-            <td class="ma2"><b>UserName: </b></td>
-            <td class="ma2">{{ user.username }}</td>
-        <br></tr>
-        <tr class="welcome ma2">
-            <td class="ma2"><b>Email: </b></td>
-            <td class="ma2">{{ user.email }}</td>
-        <br></tr>   
-
-    <a href="{% url 'create_group' %}">Create Group</a></h4>
-
-      <tr class=welcome>  
-        <td><b>Welcome to your profile page </b></td>
-        <td><b>{{ user.username.upper }}!</b></td>
-        <br>
-        <br>
-      </tr>  
         
 </div>    
     <div class="user_info">
-        <tr>
-        <br>
-            <td><b>UserName: </b></td>
-            <td>{{ user.username }}</td>
-        <br></tr>
-        <br>
-        <tr>
-            <td><b>Name: </b></td>
-            <td>{{ user.name }}
-        <br></tr>
-        <br>
-        <tr>
-            <td><b>Group: </b></td>
-            {% comment %} <td>{% %} {% endcomment %}
-        <br></tr>
-        <br>
-        <tr>
-            <td><b>Email: </b></td>
-            <td>{{ user.email }}</td>
-        <br></tr> 
+
+        <div>User Name: <span>{{ user.username }}</span></div>
+
+        <div>Name: <span>{{ user.name }}</span></div>
+
+        <div>Group: <span>{{ user.group }}</span></div>
+
+        <div>Email: <span>{{ user.email }}</span></div>
+
+        <a href="{% url 'create_group' %}">Create Group</a>
     </div>
     {% endif %}
 

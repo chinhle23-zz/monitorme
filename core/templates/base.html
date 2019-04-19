@@ -9,32 +9,28 @@
     <title>{% block title %}MonitorMe{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{% static '/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
     <script src="{% static '/js/script.js' %}"></script>
     {% block meta %}{% endblock %}
 </head>
 
 <body>
     <div class="base-body">
-        {% if user.is_authenticated %}
-        <a class="head-link" href="{% url 'landing_page' user.username %}"><header class="base-header">
-        </header>
-        {% else %} 
-        <a class="head-link" href="{% url 'index' %}"><header class="base-header">
-</a></header> {% endif %}
+        <a class="head-link" href="{% if user.is_authenticated %}{% url 'landing_page' user.username %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header"></header></a>
         <div class="login-container">
             <div class="loginsection">
                 {% if user.is_authenticated %}
                 <div class="username">
-                    <h4><a href="{% url 'user_profile' user.username %}">{{ user.username|upper }}</a> |
+                    <h4>
+                        <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
                         <a href="{% url 'auth_logout' %}">Logout</a> |
-                        <a href="{% url 'landing_page' user.username %}">Landing page</a></h4>      
-                        
-
+                        <a href="{% url 'landing_page' user.username %}">Landing page</a>
+                    </h4>      
                 </div>
                 {% else %}
                 <div class="login">
-                    <h4><a href="{% url 'auth_login' %}">Login</a> |
-                        <a href="{% url 'disclosure' %}">Register</a>
+                    <a href="{% url 'auth_login' %}">Login</a> |
+                    <a href="{% url 'disclosure' %}">Register</a>
                 </div>
                 {% endif %}
             </div>

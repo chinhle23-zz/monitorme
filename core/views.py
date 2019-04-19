@@ -18,11 +18,6 @@ def user_profile(request, username):
     user = User.objects.get(username=request.user)
     return render(request, 'core/user_profile.html', {"user":user})
 
-def index(request):
-    context = { 
-    }
-    return render(request, 'index.html', context=context)
-
 def disclosure(request):
     context = {
     }
@@ -74,6 +69,9 @@ class TrackerCreate(CreateView):
     model = TrackerGroup
     fields = '__all__'
     template_name='core/trackergroup_create.html'
+
+def calendar(request):
+    return render(request, 'core/calendar.html')
 
 
     
