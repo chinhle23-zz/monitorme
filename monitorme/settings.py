@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'core.apps.CoreConfig', 
-        # Chinh: "our app needs to be above registration in order to modify registration templates
+        # Chinh: "our app needs to be above registration in order to modify registration templates"
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
