@@ -28,6 +28,20 @@ def create_group(request):
     }
     return render(request, 'core/create_group.html', context=context)
 
+def landing_page(request):
+    context = {
+    }
+    return render(request, 'landing_page', context=context)
+
+def response_detail(request):
+    context = {
+    }
+    return render(request, 'response_detail', context=context)
+
+def dashboard_detail(request):
+    context = {
+    }
+    return render(request, 'core/dashboard_detail.html', context=context)
 # def edit_profile(request):
 #     form = EditProfileForm(request.POST)
 #     if form.is_valid():
