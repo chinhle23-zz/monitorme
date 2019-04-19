@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import User, NameGroup, TrackerGroup, Question, Answer, Response
+from core.models import User, TrackerGroup, Question, Answer, Response
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -20,7 +20,6 @@ class UserAdmin(admin.ModelAdmin):
     exclude= ('slug', 'password',)
 
 admin.site.register(TrackerGroup)
-admin.site.register(NameGroup)
 admin.site.register(Question)
 admin.site.register(Answer)
 admin.site.register(Response)
