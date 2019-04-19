@@ -24,8 +24,6 @@
                     <h4><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
                         <a href="{% url 'auth_logout' %}">Logout</a> |
                         <a href="{% url 'landing_page' user.username %}">Landing page</a></h4>      
-                        
-
                 </div>
                 {% else %}
                 <div class="login">
