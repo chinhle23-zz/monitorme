@@ -16,8 +16,9 @@ class UserAdmin(admin.ModelAdmin):
         'zipcode',
         'active',
         'phonenumber',
+        'password',
     )
-    exclude= ('slug', 'password',)
+    exclude= ('slug', )
 
 admin.site.register(TrackerGroup)
 admin.site.register(Question)
