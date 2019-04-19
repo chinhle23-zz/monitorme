@@ -53,10 +53,10 @@ class TrackerGroup(models.Model):
         return reverse('trackergroup-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
-    tracker = models.ForeignKey('TrackerGroup', null=False)
+    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
     start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     end = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    created_by = models.ForeignKey('User', null=False)
+    created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
 
 
 class Question(models.Model):
