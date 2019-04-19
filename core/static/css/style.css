@@ -1,5 +1,6 @@
 html {
-    background-color: rgb(170, 243, 225);
+    background:
+        linear-gradient(rgba(237, 234, 229, 0.75));
 }
 
 .base-header {
@@ -9,16 +10,25 @@ html {
     line-height: 125px;
     margin: 0px;
     background:
-        url("logo3.png") center,
-        linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75));
-    background-size: auto;
+        url("smalllogo.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: left;
+}
+
+.username {
+    font-family: 'Raleway';
+}
+
+a {
+    text-decoration: none;
+    color: #0A5E5F;
 }
 
 .header-link {
-    background:
-        url("shutterstock_659375407_copy.jpg") center;
+    /* background:
+        url("shutterstock_659375407_copy.jpg") center; */
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,24 +45,18 @@ html {
 } 
 
 .welcome {
+    font-family: 'Raleway';
     text-align: center;
 }
 
 .user_info {
+    font-family: 'Raleway';
     text-align: center;
     padding: 2rem;
-    background-color: white;
-    border: 2px solid;
-    border-color: #1e81f5;
     color: black;
-    text-decoration: none;
-    text-shadow: 1px 1px #e0e0e0;
-    display: block;
     font-size: 16px;
     margin: auto;
     width: 200px;
-    border-radius: 9px;
-    outline: 0;
 }
 
 .landing {
@@ -85,28 +89,10 @@ html {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
-.blurb {
-    padding: 1.5rem;
-    background-color: rgb(170, 243, 225);
-    border: 2px solid;
-    border-color: #1e81f5;
-    /* border-color: #ff33f0; alternate */
-    color: black; 
-    /* color: #7733ff; alternate */
-    text-decoration: none;
-    /* text-shadow: 1.5px 1.5px #1e81f5; */
-    /* text-shadow: 1px 1px #ff33f0; alternate */
-    display: block;
-    font-size: 16px;
-    margin: auto;
-    width: auto;
-    border-radius: 9px;
-    outline: 0;
-}
+  @media screen
+  and (min-width: 500px) 
+  and (max-width: 1100px) {
 
-@media screen
-    and (min-width: 10px) 
-    and (max-width: 500px) {
     .base-header {
         display: flex;
         flex-flow: wrap;
@@ -114,30 +100,30 @@ html {
         line-height: 125px;
         margin: 0px;
         background:
-            url("NewLogo2_copy.png"),
-            linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75)),
-            url("shutterstock_659375407_copy.jpg") center;
+            url("med.png") center,
+            linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+            url("journal2.jpg") center;
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: top;
     }
 }
 
 @media screen
-    and (min-width: 500px) 
-    and (max-width: 600px) {
-    .base-header {
-        display: flex;
-        flex-flow: wrap;
-        height: 125px;
-        line-height: 125px;
-        margin: 0px;
-        background:
-            url("NewLogo2_copy.png") center,
-            linear-gradient(rgba(39, 57, 84, 0.75),rgba(98, 137, 196, 0.75)),
-            url("shutterstock_659375407_copy.jpg") center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: top;
-    }
-    }
+and (min-width: 1101px) 
+and (max-width: 2880px) {
+
+  .base-header {
+      display: flex;
+      flex-flow: wrap;
+      height: 125px;
+      line-height: 125px;
+      margin: 0px;
+      background:
+          url("logonewbig2.png") center,
+          linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+          url("journal2.jpg") center;
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+}
+
