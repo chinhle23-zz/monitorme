@@ -18,11 +18,13 @@
 {% endif %}
 
 <h3>Available Trackers</h3>
-{% if trackers %}
-{% for tracker in trackers %}
-<div>{{tracker}}</div>
-{% endfor %}
-{%endif%}
+    {% if trackers %}
+        {% for tracker in trackers %}
+            <div>
+                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button><span</div>
+            </div>
+        {% endfor %}
+    {%endif%}
 
 
 {% endblock content %}

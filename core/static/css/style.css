@@ -62,7 +62,7 @@ a {
 }
 
 
-.button, .loginbutton {
+.button, .loginbutton, {
     background-color: #83C7DC;
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
@@ -82,13 +82,13 @@ a {
     outline: 0;
   }
 
-.button2:hover, .loginbutton:hover {
+.button2:hover, .loginbutton:hover, .surveybutton:hover {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
   }
 
-.loginbutton {
+.loginbutton, {
     height: 38px;
     width: 100px;
     text-align: center;
@@ -97,8 +97,30 @@ a {
     font-size: 1rem;
 }
 
+span {
+    margin-bottom: 5px;
+}
 
+.surveybutton {
+    background-color: #83C7DC;
+    font-size: .75rem;
+    -moz-box-shadow:    2px 3px 2px #D9D9D9;
+    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
+    box-shadow:         2px 3px 2px #D9D9D9;
+    color: #052e3e;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-radius: 5px;
+    outline: 0;
+}
 
+.tracker {
+    margin-bottom: 5px;
+}
 
   @media screen
   and (min-width: 450px) 
