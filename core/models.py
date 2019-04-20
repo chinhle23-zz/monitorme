@@ -50,7 +50,7 @@ class TrackerGroup(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('tracker_detail', args=[str(self.id)])
+        return reverse('trackergroup-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
@@ -73,6 +73,10 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['order']
+
+    # Chinh added 4/20/2019 to test class-based views
+    def get_absolute_url(self):
+        return reverse('question-detail', args=[str(self.id)])
 
 
 class Answer(models.Model):

@@ -25,10 +25,14 @@
         <p class="">You have no Trackers assigned to you</p>
     {% endif %}
 </h4>
-<h4><a href="{% url 'tracker_create' %}">| Add Tracker + |</a></h4>
 
-
-
+<!-- Craig's edit from cb-models -->
 <p>Aaron did a great job and will never put "Aaron sucks" again. If he does, Craig, Kasey, & Chinh continually provide positive reinforcement to "re-educate" him to a positive mindset.</p>
+
+<h4>
+    <a href="{% url 'tracker-create' %}">Create Tracker</a> |
+    <a href="{% url 'question-create' %}">Create Question</a> |
+    <a href="{% url 'answer-create' %}">Create Answer</a>
+</h4>  
 
 {% endblock %}

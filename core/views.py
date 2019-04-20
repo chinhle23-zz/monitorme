@@ -75,19 +75,18 @@ def new_group(request):
 #     }
 #     return render(request, 'response_detail', context=context)
 
-# def dashboard_detail(request):
-#     # Chinh added 4/19/2019:
-#     namegroups = NameGroup.objects.filter(users__username=request.user.username)
-#     trackergroups = TrackerGroup.objects.filter(available_to__username=request.user.username)
-#         # https://docs.djangoproject.com/en/2.2/topics/db/queries/#lookups-that-span-relationships
+# Chinh copied from kt-dashboard-page 4/20/2019:
+def dashboard_detail(request):
+    group_name = Group.objects.filter(user=request.user)
+    users = User.objects.all()
+    trackers = TrackerGroup.objects.all()
+    context = {
+        'users': users,
+        'trackers': trackers,
+        'group_name': group_name,
+    }
+    return render(request, 'core/dashboard_detail.html', context=context)
 
-#     context = {
-#         # Chinh added 4/19/2019:
-#         'namegroups': namegroups,
-#         'trackergroups': trackergroups,
-#     }
-
-#     return render(request, 'core/dashboard_detail.html', context=context)
 
 # def edit_profile(request):
 #     form = EditProfileForm(request.POST)
@@ -125,6 +124,10 @@ class TrackerCreate(CreateView):
 #         # define the associated model
 #     fields = ['name', 'available_to']
 #         # specify the fields to dislay in the form
+
+# Chinh added 4/20/2019
+class QuestionDetailView(generic.DetailView):
+    model = Question
 
 class QuestionCreate(CreateView):
     model = Question
