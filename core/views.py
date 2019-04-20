@@ -4,10 +4,11 @@ from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
-from core.models import User, TrackerGroup, NameGroup, Question, Answer, Response
+from core.models import User, TrackerGroup, Question, Answer, Response
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.models import Group
 
 # Create your views here.
 
@@ -40,12 +41,10 @@ def response_detail(request):
 
 def dashboard_detail(request):
     users = User.objects.all()
-    usergroup = NameGroup.objects.all()
     trackers = TrackerGroup.objects.all()
 
     context = {
         'users': users,
-        'usergroup': usergroup,
         'trackers': trackers,
     }
 
