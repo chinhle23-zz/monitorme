@@ -1,5 +1,11 @@
 from django import forms
 from core.models import User
+from registration.forms import RegistrationForm
+from django.contrib.auth import get_user_model, authenticate, password_validation
+from django.contrib.auth.models import Group
+    # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
+
+User = get_user_model()
 
 class EditProfileForm(forms.Form):
     name = forms.CharField(
@@ -7,13 +13,6 @@ class EditProfileForm(forms.Form):
         max_length=100,
         widget=forms.TextInput(attrs={'required': True})
     )
-
-   
-    
-from registration.forms import RegistrationForm
-from django.contrib.auth import get_user_model, authenticate, password_validation
-
-User = get_user_model()
 
 class CustomRegistrationForm(RegistrationForm):
     # https://github.com/macropin/django-registration/blob/master/registration/forms.py
@@ -48,3 +47,16 @@ class CustomRegistrationForm(RegistrationForm):
         widgets = {
             'username': forms.TextInput(attrs={'class': ''}),
         }
+
+class NewGroupForm(forms.Form):
+
+    name = forms.CharField(label='Name',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'enter a group name'})
+    )
+    def save(self, **kwargs):
+        if self.is_valid():
+            group_properties = {'name': self.cleaned_data['name']}
+            group_properties.update(kwargs)
+            return Group.objects.create(**group_properties)
+        return None

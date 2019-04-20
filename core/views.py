@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
-from core.models import User, NameGroup, TrackerGroup
+from core.models import User, TrackerGroup
+from core.forms import NewGroupForm
 from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.models import Group
+    # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -26,44 +30,64 @@ def create_group(request):
     }
     return render(request, 'core/create_group.html', context=context)
 
-#### Chinh's version ####
-class CreateGroup(LoginRequiredMixin, CreateView):
-    """
-    Form for creating a group. Requires login. 
-    """
-    model = NameGroup
-        # define the associated model
-    fields = ['name', 'users']
-        # specify the fields to dislay in the form
+### Chinh's version ####
+def new_group(request):
+    new_group_form = NewGroupForm()
+    if request.method == 'POST':
+        new_group_form = NewGroupForm(request.POST)
+        if new_group_form.is_valid():
+            # https://docs.djangoproject.com/en/2.2/ref/forms/api/#django.forms.Form.is_valid
+            name = request.POST.get('name', '')
+                # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.POST
+                # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.get
+            group = Group.objects.create(
+                name=name,
+            )
+            group.save()
+            return HttpResponseRedirect(reverse('landing_page', kwargs={'username': request.user.username,} ))
+    else:
+        new_group_form = NewGroupForm()
 
-#### Chinh's version ####
-class NameGroupDetailView(generic.DetailView):
-    """View class for NameGroup detail page of site."""
-    model = NameGroup
+    return render(request, 'core/group_form.html', {"form": new_group_form})
 
-def landing_page(request):
-    context = {
-    }
-    return render(request, 'landing_page', context=context)
+# ### Chinh's version ####
+# class CreateGroup(LoginRequiredMixin, CreateView):
+#     """
+#     Form for creating a group. Requires login. 
+#     """
+#     model = Group
+#         # define the associated model
+#     fields = ['name', ]
+#         # specify the fields to dislay in the form
 
-def response_detail(request):
-    context = {
-    }
-    return render(request, 'response_detail', context=context)
+# #### Chinh's version ####
+# class NameGroupDetailView(generic.DetailView):
+#     """View class for NameGroup detail page of site."""
+#     model = NameGroup
 
-def dashboard_detail(request):
-    # Chinh added 4/19/2019:
-    namegroups = NameGroup.objects.filter(users__username=request.user.username)
-    trackergroups = TrackerGroup.objects.filter(available_to__username=request.user.username)
-        # https://docs.djangoproject.com/en/2.2/topics/db/queries/#lookups-that-span-relationships
+# def landing_page(request):
+#     context = {
+#     }
+#     return render(request, 'landing_page', context=context)
 
-    context = {
-        # Chinh added 4/19/2019:
-        'namegroups': namegroups,
-        'trackergroups': trackergroups,
-    }
+# def response_detail(request):
+#     context = {
+#     }
+#     return render(request, 'response_detail', context=context)
 
-    return render(request, 'core/dashboard_detail.html', context=context)
+# def dashboard_detail(request):
+#     # Chinh added 4/19/2019:
+#     namegroups = NameGroup.objects.filter(users__username=request.user.username)
+#     trackergroups = TrackerGroup.objects.filter(available_to__username=request.user.username)
+#         # https://docs.djangoproject.com/en/2.2/topics/db/queries/#lookups-that-span-relationships
+
+#     context = {
+#         # Chinh added 4/19/2019:
+#         'namegroups': namegroups,
+#         'trackergroups': trackergroups,
+#     }
+
+#     return render(request, 'core/dashboard_detail.html', context=context)
 
 # def edit_profile(request):
 #     form = EditProfileForm(request.POST)
