@@ -4,7 +4,7 @@ from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
-from core.models import User, TrackerGroup
+from core.models import User, TrackerGroup, Question, Answer
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -69,6 +69,16 @@ class TrackerCreate(CreateView):
     model = TrackerGroup
     fields = '__all__'
     template_name='core/trackergroup_create.html'
+
+class QuestionCreate(CreateView):
+    model = Question
+    fields = '__all__'
+    template_name='core/question_create.html'    
+
+class AnswerCreate(CreateView):
+    model = Answer
+    fields = '__all__'
+    template_name='core/answer_create.html'      
 
 def calendar(request):
     return render(request, 'core/calendar.html')
