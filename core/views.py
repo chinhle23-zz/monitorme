@@ -41,7 +41,8 @@ def response_detail(request):
 
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
-    users = User.objects.all()
+    user_group = group_name[0]
+    users = User.objects.filter(groups__name=user_group)
     trackers = TrackerGroup.objects.all()
 
     context = {

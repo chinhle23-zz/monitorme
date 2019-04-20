@@ -15,19 +15,15 @@
 {% if request.user.is_family_admin == True %}
 <h3>Your Group Members</h3>
     {% for user in users %}
-    <a href="{% url 'user_profile' user.username %}">
         <div class="member">
-            {{user.name}} - 
+            <a href="{% url 'user_profile' user.username %}">{{user.name}} - </a>
             <span>
-                <button class="surveybutton" href="{% url 'user-detail' user.pk %}">Detail</button>
+                <a href="{% url 'user-detail' user.pk %}"><button class="surveybutton">Detail</button></a>
             </span>
         </div>
-    </a>
+    
     {% endfor %}
-{% else %}
-<h3>Your Family Admins</h3>
 {% endif %}
-
 <br>
 <h3>Available Trackers</h3>
     {% if trackers %}
