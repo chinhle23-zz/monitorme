@@ -48,7 +48,7 @@ def new_group(request):
     else:
         new_group_form = NewGroupForm()
 
-    return render(request, 'core/group_form.html', {"form": new_group_form})
+    return render(request, 'core/create_group.html', {"form": new_group_form})
 
 # ### Chinh's version ####
 # class CreateGroup(LoginRequiredMixin, CreateView):

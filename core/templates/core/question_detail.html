@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h3>Associated Tracker: {{question.tracker}}</h3> -->
+<h3>Associated Tracker: <a href="{{question.tracker.get_absolute_url}}">{{question.tracker}}</a></h3> -->
 <h3>Question: {{question.description}}</h3> -->
 
 {% endblock %}
