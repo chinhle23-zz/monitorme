@@ -64,7 +64,6 @@ def landing_page(request, username):
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
 
-
 class TrackerCreate(CreateView):
     model = TrackerGroup
     fields = '__all__'

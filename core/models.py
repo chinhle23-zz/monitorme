@@ -98,11 +98,3 @@ class Response(models.Model):
     answered_for = models.ForeignKey('User', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
-
-
-
-
-
-
-
-    

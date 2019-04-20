@@ -6,7 +6,7 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button type='Submit'>Submit</button>
+    <button onclick="location.href = 'tracker/<int:pk>';" class="button button2" type='Submit'>Submit</button>
 </form>
 
 {% endblock %}
