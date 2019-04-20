@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block content %}
 
-{% if request.user.groups %}
     <h3>Your Group</h3>
-    {% for group in request.user.groups.all %}
-        {{group.name}}
-    {% endfor %}
-{% endif %}
+    {% if request.user.groups %}
+        {% for group in request.user.groups.all %}
+            {{group.name}}
+        {% endfor %}
+    {% endif %}
 
 <br>
 {% if request.user.is_family_admin == True %}
 <h3>Your Group Members</h3>
+    {% for user in users %}
+    <a>
+        <div>{{user.name}}</div>
+    </a>
+    {% endfor %}
 {% else %}
 <h3>Your Family Admins</h3>
 {% endif %}

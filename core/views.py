@@ -40,13 +40,14 @@ def response_detail(request):
     return render(request, 'response_detail', context=context)
 
 def dashboard_detail(request):
+    group_name = Group.objects.filter(user=request.user)
     users = User.objects.all()
     trackers = TrackerGroup.objects.all()
-    group = Group.objects.all()
 
     context = {
         'users': users,
         'trackers': trackers,
+        'group_name': group_name,
     }
 
     return render(request, 'core/dashboard_detail.html', context=context)

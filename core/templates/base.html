@@ -1,4 +1,5 @@
 {% load static %}
+{% load core_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}MonitorMe{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
     <script src="{% static '/js/script.js' %}"></script>
     {% block meta %}{% endblock %}
