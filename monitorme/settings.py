@@ -132,9 +132,9 @@ USE_TZ = True
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
+# ]
 
 
 INTERNAL_IPS = [

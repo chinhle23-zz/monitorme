@@ -16,6 +16,7 @@ class UserAdmin(admin.ModelAdmin):
         'zipcode',
         'active',
         'phonenumber',
+        'password',
     )
     exclude= ('slug',)
 
