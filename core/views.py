@@ -42,6 +42,7 @@ def response_detail(request):
 def dashboard_detail(request):
     users = User.objects.all()
     trackers = TrackerGroup.objects.all()
+    group = Group.objects.all()
 
     context = {
         'users': users,
@@ -89,6 +90,8 @@ def user_detail(request, pk):
     }
 
     return render(request, 'core/user_detail.html', context)
+
+
 
 
     
