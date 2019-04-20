@@ -3,7 +3,14 @@
 
 {% block content %}
 
-<h3>Associated Tracker: <a href="{{question.tracker.get_absolute_url}}">{{question.tracker}}</a></h3> -->
-<h3>Question: {{question.description}}</h3> -->
+<h3>Associated Tracker: <a href="{{question.tracker.get_absolute_url}}">{{question.tracker}}</a></h3>
+<h3>Question: {{question.description}}</h3>
+
+<h3>Answers:</h3>
+{% for answer in question.answer_set.all %}
+<div><a href="{{answer.get_absolute_url}}">{{answer}}</a></div>
+{% endfor %}
+
+<p><a href="{% url 'answer-create' %}">Add Answer</a></p>
 
 {% endblock %}
