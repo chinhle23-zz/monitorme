@@ -7,7 +7,7 @@
     <h3>Your Group</h3>
     {% if request.user.groups %}
         {% for group in request.user.groups.all %}
-            {{group.name}}
+            <a href=""><div>{{group.name}}</div></a>
         {% endfor %}
     {% endif %}
 
@@ -15,8 +15,13 @@
 {% if request.user.is_family_admin == True %}
 <h3>Your Group Members</h3>
     {% for user in users %}
-    <a>
-        <div>{{user.name}}</div>
+    <a href="{% url 'user_profile' user.username %}">
+        <div class="member">
+            {{user.name}} - 
+            <span>
+                <button class="surveybutton" href="{% url 'user-detail' user.pk %}">Detail</button>
+            </span>
+        </div>
     </a>
     {% endfor %}
 {% else %}
@@ -28,7 +33,7 @@
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
-                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button><span</div>
+                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div>
             </div>
         {% endfor %}
     {%endif%}
