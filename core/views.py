@@ -134,6 +134,10 @@ class QuestionCreate(CreateView):
     fields = '__all__'
     template_name='core/question_create.html'    
 
+# Chinh added 4/20/2019
+class AnswerDetailView(generic.DetailView):
+    model = Answer
+
 class AnswerCreate(CreateView):
     model = Answer
     fields = '__all__'

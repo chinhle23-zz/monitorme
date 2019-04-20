@@ -43,6 +43,8 @@ urlpatterns = [
     path('question/<int:pk>', core_views.QuestionDetailView.as_view(), name='question-detail'),
         # Chinh added ^^^ to test class-based views
     path('answer/create/', core_views.AnswerCreate.as_view(), name="answer-create"),
+    path('answer/<int:pk>', core_views.AnswerDetailView.as_view(), name='answer-detail'),
+        # Chinh added ^^^ to test class-based views
     path('calendar/', core_views.calendar, name="calendar"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # team has agreed to only use one urls.py file

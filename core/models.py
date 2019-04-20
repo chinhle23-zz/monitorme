@@ -83,13 +83,17 @@ class Answer(models.Model):
     """This creates the answer model"""
     name = models.CharField(max_length=100, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    description = models.TextField(max_length=1000, null=False, blank=False)
+    # description = models.TextField(max_length=1000, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
+
+    # Chinh added 4/20/2019 to test class-based views
+    def get_absolute_url(self):
+        return reverse('answer-detail', args=[str(self.id)])
 
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', 

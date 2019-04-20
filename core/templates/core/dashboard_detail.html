@@ -3,32 +3,53 @@
 
 {% block content %}
 
-<!-- Chinh added 4/19/2019 -->
-<h1>Your Dashboard</h1>
-<h4>Below are Groups you've created:</h4>
-<h4 class="">   
-    {% if namegroups %}
-        {% for group in namegroups %}
-            <h4 class=""><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></h4>
+<!-- Copied from Kasey's kt-dashboard-page -->
+<h3>Your Group</h3>
+    {% if request.user.groups %}
+        {% for group in request.user.groups.all %}
+            <a href=""><div>{{group.name}}</div></a>
         {% endfor %}
-    {% else %}
-        <p class="">You have not created any Groups</p>
     {% endif %}
-</h4> 
-<h4>Below are Trackers assigned to you:</h4>
-<h4 class="">   
-    {% if trackergroups %}
-        {% for tracker in trackergroups %}
-            <h4 class=""><a href="{{ tracker.get_absolute_url }}">{{ tracker.name }}</a></h4>
-        {% endfor %}
-    {% else %}
-        <p class="">You have no Trackers assigned to you</p>
-    {% endif %}
-</h4>
 
-<!-- Craig's edit from cb-models -->
+<br>
+{% if request.user.is_family_admin == True %}
+<h3>Your Group Members</h3>
+    {% for user in users %}
+    <a href="{% url 'user_profile' user.username %}">
+        <div class="member">
+            {{user.name}} - 
+            <span>
+                <button class="surveybutton" href="{% url 'user-detail' user.pk %}">Detail</button>
+            </span>
+        </div>
+    </a>
+    {% endfor %}
+{% else %}
+<h3>Your Family Admins</h3>
+{% endif %}
+
+<br>
+<h3>Available Trackers</h3>
+    {% if trackers %}
+        {% for tracker in trackers %}
+            <div>
+                <!--{# <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div> #}-->
+                <div class="tracker"><a href="{% url 'trackergroup-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div>
+                    <!-- Chinh changed the url name to match what's currently in urls.py -->
+            </div>
+        {% endfor %}
+    {%endif%}
+
+<br>
+<h3>Pending Trackers</h3>
+
+<br>
+<h3>Closed Trackers</h3>
+
+<!-- Craig's edit from cb-models branch -->
 <p>Aaron did a great job and will never put "Aaron sucks" again. If he does, Craig, Kasey, & Chinh continually provide positive reinforcement to "re-educate" him to a positive mindset.</p>
 
+<!-- Chinh added 4/20/2019 to test tracker, question, and answer create forms -->
 <h4>
     <a href="{% url 'tracker-create' %}">Create Tracker</a> |
     <a href="{% url 'question-create' %}">Create Question</a> |
