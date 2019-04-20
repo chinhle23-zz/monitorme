@@ -35,9 +35,11 @@ urlpatterns = [
     path('profile/<username>', core_views.user_profile, name="user_profile"),
     path('landing_page/<username>', core_views.landing_page, name="landing_page"),
     path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker_detail"),
-    # path('response_detail', core_views.response_detail, name= 'response_detail'),
-    # path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
-    path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker_create"),
+    path('response_detail', core_views.response_detail, name= 'response_detail'),
+    path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
+    path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker-create"),
+    path('question/create/', core_views.QuestionCreate.as_view(), name="question-create"),
+    path('answer/create/', core_views.AnswerCreate.as_view(), name="answer-create"),
     path('calendar/', core_views.calendar, name="calendar"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # team has agreed to only use one urls.py file

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from core.models import User, TrackerGroup
-from core.forms import NewGroupForm
-from .forms import EditProfileForm
+from core.models import User, TrackerGroup, Question, Answer
+from core.forms import NewGroupForm, EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
+from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -126,6 +126,15 @@ class TrackerCreate(CreateView):
 #     fields = ['name', 'available_to']
 #         # specify the fields to dislay in the form
 
+class QuestionCreate(CreateView):
+    model = Question
+    fields = '__all__'
+    template_name='core/question_create.html'    
+
+class AnswerCreate(CreateView):
+    model = Answer
+    fields = '__all__'
+    template_name='core/answer_create.html'      
 
 def calendar(request):
     return render(request, 'core/calendar.html')

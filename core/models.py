@@ -79,6 +79,7 @@ class Answer(models.Model):
     """This creates the answer model"""
     name = models.CharField(max_length=100, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    description = models.TextField(max_length=1000, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
@@ -95,11 +96,3 @@ class Response(models.Model):
     answered_for = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
-
-
-
-
-
-
-
-    
