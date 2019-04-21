@@ -30,10 +30,10 @@ urlpatterns = [
     path('group/add', core_views.new_group, name='group_form'),
         # Chinh added ^^^ to test using built-in Group model, since we deleted NameGroup model
     path('profile/<username>', core_views.user_profile, name="user_profile"),
-    path('landing_page/<username>', core_views.landing_page, name="landing_page"),
-    # path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker-detail"),
-    path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="trackergroup-detail"),
-    # path('response_detail', core_views.response_detail, name= 'response_detail'),
+    # path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="trackergroup-detail"),
+    path('discover/', core_views.discover_page, name="discover_page"),
+    path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker-detail"),
+    path('response_detail', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
     path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker-create"),
     path('question/create/', core_views.QuestionCreate.as_view(), name="question-create"),
@@ -52,3 +52,4 @@ if settings.DEBUG:
     urlpatterns = [
        path('__debug__/', include(debug_toolbar.urls)),
    ] + urlpatterns
+
