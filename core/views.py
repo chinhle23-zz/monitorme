@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from core.models import User
-from .forms import EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
@@ -86,6 +85,24 @@ def user_detail(request, pk):
 
 def references(request):
     return render(request, 'core/reference.html')
+
+class UserUpdate(UpdateView):
+    model = User
+    template_name = 'core/edit_profile.html'
+    fields = (
+        'name',
+        'email',
+        'is_family_admin',
+        'label',
+        'city',
+        'state',
+        'zipcode',
+        'active',
+        'phonenumber',
+        'groups',
+    )
+
+     
 
 
 # Moved all commented out code to the bottom

@@ -1,9 +1,8 @@
 from django import forms
 from core.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-
-
-
+        
 
 
 
