@@ -30,9 +30,11 @@ def create_group(request):
 
 def discover_page(request):
     users = User.objects.all()
+    groups = Group.objects.all()
 
     context = {
         'users': users,
+        'groups': groups,
     }
     return render(request, 'core/discover_page.html', context=context)
 
@@ -43,9 +45,16 @@ def response_detail(request):
 
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
-    user_group = group_name[0]
-    users = User.objects.filter(groups__name=user_group)
     trackers = TrackerGroup.objects.all()
+
+    
+    def users(group_name):
+        if group_name == "":
+            users = User.objects.all()
+        else:
+            user_group = group_name[0]
+            users = User.objects.filter(groups__name=user_group)
+        return users
 
     context = {
         'users': users,
