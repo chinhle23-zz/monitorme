@@ -12,18 +12,86 @@
 </div>    
     <div class="user_info">
 
-        <div>User Name: <span>{{ user.username }}</span></div>
+        <div class="userprofile-line">User Name: 
+            <span class="profiledata">{{ user.username }}</span>
+        </div>
 
-        <div>Name: <span>{{ user.name }}</span></div>
+        <div class="userprofile-line">Name: 
+            {% if user.name %}
+            <span class="profiledata">{{ user.name }}</span>
+            {% else %}
+            <span class="addprofile"> Need to Add</span>
+            {% endif %}
+        </div>
 
-        <div>Group: <span>{{ user.group }}</span></div>
+        <div class="userprofile-line">Group: 
+            {% if user.groups__name is not null %}
+                <span class="profiledata">{{ user.groups__name }}</span>
+            {% else %}
+                <span class="addprofile"><a href="{% url 'create_group' %}">Create Group</a></span>
+            {%endif%}
+        </div>
 
-        <div>Email: <span>{{ user.email }}</span></div>
+        <div class="userprofile-line">Email: 
+            {% if user.email %}
+                <span class="profiledata">{{ user.email }}</span>
+            {% else %}
+                <span class="addprofile"> Need to Add</span>
+            {% endif %}
+        </div>
 
         <!-- <a href="{% url 'create_group' %}">Create Group</a> -->
 
         <a href="{% url 'group_form' %}">Create Group</a>
             <!-- Chinh added ^^^ to test class-based views -->
+            
+        <div class="userprofile-line">Group Admin: 
+            <span class="profiledata">{{ user.is_family_admin }}</span>
+        </div>
+
+        <div class="userprofile-line">Label: 
+            {% if user.label %}
+                <span class="profiledata">{{ user.label }}</span>
+            {% else %}
+                <span class="addprofile"> Need to Add</span>
+            {% endif %}
+        </div>
+
+        <div class="userprofile-line">City: 
+            {% if user.city%}
+                <span class="profiledata">{{ user.city }}</span>
+            {% else %}
+                <span class="addprofile"> Need to Add</span>
+            {% endif %}
+        </div>
+
+        <div class="userprofile-line">State: 
+            {% if user.state %}
+                <span class="profiledata">{{ user.state }}</span>
+            {% else %}
+                <span class="addprofile"> Need to Add</span>
+            {% endif %}
+        </div>
+
+        <div class="userprofile-line">Zip Code: 
+            {% if user.zipcode %}
+                <span class="profiledata">{{ user.zipcode }}</span>
+            {% else %}
+                <span class="addprofile"> Need to Add</span>
+            {% endif %}
+        </div>
+
+        <div class="userprofile-line">Phone Number: 
+            {% if user.phonenumber %}
+                <span class="profiledata">{{ user.phonenumber }}</span>
+            {% else %}
+                <span class="addprofile"> Need to Add</span>
+            {%endif%}
+        </div>
+
+
+
+        
     </div>
     {% endif %}
 

@@ -59,6 +59,18 @@ a {
     margin-top: 10px;
 }
 
+.userprofile-line {
+    margin-bottom: 10px;
+}
+
+.addprofile {
+    color: #B4B3B3;
+}
+
+.profiledata {
+    color: #8B4F77;
+}
+
 
 .button, .loginbutton {
     background-color: #83C7DC;
