@@ -2,14 +2,15 @@
 
 {% block content %}
 
-<h3>{{trackergroupinstance.trackergroup.name}}</h3> -->
+<h3>{{trackergroupinstance.tracker.name}}</h3>
 
 <div>Created by: {{trackergroupinstance.created_by}}</div>
 
-<div>Started at: {{trackergroupinstance.start}</div>
+<div>Started at: {{trackergroupinstance.start}}</div>
 
-<div>Ended at: {{trackergroupinstance.end}</div>
+<div>Ended at: {{trackergroupinstance.end}}</div>
 
-<p><a href="{% url 'response_create' %}">Add Response</a></p>
+<p><a href="">Add Response</a></p>
+{#{% url 'response_create' %}#}
 
 {% endblock %}

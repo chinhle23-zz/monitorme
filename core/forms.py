@@ -66,3 +66,5 @@ class NewTrackerInstanceForm(forms.Form):
     tracker = forms.ModelChoiceField(required=True, queryset=TrackerGroup.objects.all())
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelchoicefield
         # https://docs.djangoproject.com/en/2.2/topics/db/queries/
+
+

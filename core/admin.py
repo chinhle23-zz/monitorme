@@ -26,7 +26,7 @@ class QuestionAdmin(admin.ModelAdmin):
         'description', 
         'order', 
         'tracker', 
-        'active'
+        'active',
     )
 
 @admin.register(TrackerGroupInstance)
@@ -35,7 +35,8 @@ class TrackerGroupInstanceAdmin(admin.ModelAdmin):
         'tracker', 
         'start', 
         'end', 
-        'created_by'
+        'created_by',
+        'tracker_id',
     )
 
 @admin.register(Response)
@@ -47,7 +48,7 @@ class ResponseAdmin(admin.ModelAdmin):
         'display_answers',
         'answered_for',
         'created_at',
-        'updated_at'
+        'updated_at',
     )
 
 admin.site.register(TrackerGroup)

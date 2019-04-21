@@ -39,6 +39,8 @@ urlpatterns = [
         # Chinh added ^^^ 4/21 to test
     path('trackerinstance/<int:pk>', core_views.TrackerInstanceDetailView.as_view(), name="trackergroupinstance_detail"),
         # Chinh added ^^^ 4/21 to test
+    # path('response/create/', core_views.new_response, name="response_create"),
+        # Chinh added ^^^ 4/21 to test
     path('question/create/', core_views.QuestionCreate.as_view(), name="question-create"),
     path('question/<int:pk>', core_views.QuestionDetailView.as_view(), name='question-detail'),
         # Chinh added ^^^ to test class-based views

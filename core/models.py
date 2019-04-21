@@ -55,7 +55,7 @@ class TrackerGroup(models.Model):
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
     start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
-    end = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    end = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
 
     def __str__(self):

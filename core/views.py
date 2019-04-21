@@ -128,20 +128,20 @@ def new_tracker_instance(request):
     if request.method == 'POST':
         new_trackerinstance_form = NewTrackerInstanceForm(request.POST)
         if new_trackerinstance_form.is_valid():
+            # tracker = request.POST.get('tracker', '') 
+                # can't use this, since it returns a string
+
             query_dict_copy = request.POST.copy()
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
             tracker_keys = query_dict_copy.pop('tracker')
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
-            # tracker = request.POST.get('tracker', '')
             tracker_instance = TrackerGroupInstance.objects.create(
-                # tracker=TrackerGroup.objects.get(pk=tracker_key),
+                tracker_id=tracker_keys[0],
                 created_by=request.user,
             )
-            for key in tracker_keys:
-                tracker_instance.tracker.add(TrackerGroup.objects.get(pk=key))
             tracker_instance.save()
             
-            return HttpResponseRedirect(reverse('trackergroupinstance_detail'))
+            return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
         new_trackerinstance_form = NewTrackerInstanceForm()
     return render(request, 'core/trackergroupinstance_create.html', {"form": new_trackerinstance_form})
