@@ -30,7 +30,10 @@ def create_group(request):
     return render(request, 'core/create_group.html', context=context)
 
 def landing_page(request):
+    users = User.objects.all()
+
     context = {
+        'users': users,
     }
     return render(request, 'landing_page', context=context)
 
