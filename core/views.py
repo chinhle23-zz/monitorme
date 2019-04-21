@@ -30,9 +30,11 @@ def create_group(request):
 
 def discover_page(request):
     users = User.objects.all()
+    groups = Group.objects.all()
 
     context = {
         'users': users,
+        'groups': groups,
     }
     return render(request, 'core/discover_page.html', context=context)
 
@@ -43,9 +45,16 @@ def response_detail(request):
 
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
-    user_group = group_name[0]
-    users = User.objects.filter(groups__name=user_group)
     trackers = TrackerGroup.objects.all()
+
+    
+    def users(group_name):
+        if group_name == "":
+            users = User.objects.all()
+        else:
+            user_group = group_name[0]
+            users = User.objects.filter(groups__name=user_group)
+        return users
 
     context = {
         'users': users,
@@ -55,9 +64,6 @@ def dashboard_detail(request):
 
     return render(request, 'core/dashboard_detail.html', context=context)
 
-# def landing_page(request, username):
-#     user = User.objects.get(username=username)
-#     return render(request, 'core/landing_page.html', {"user":user})
 
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
@@ -81,6 +87,9 @@ def user_detail(request, pk):
 
     return render(request, 'core/user_detail.html', context)
 
+def references(request):
+    return render(request, 'core/reference.html')
+
 
 # Moved all commented out code to the bottom
 # def edit_profile(request):
@@ -97,5 +106,9 @@ def user_detail(request, pk):
 #             form.save(user=request.user)
 #             return render(request, 'edit_profile.html')
 
+
+# def landing_page(request, username):
+#     user = User.objects.get(username=username)
+#     return render(request, 'core/landing_page.html', {"user":user})
 
     
