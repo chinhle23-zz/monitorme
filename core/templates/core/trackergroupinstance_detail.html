@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>{{trackergroupinstance.trackergroup.name}}</h3> -->
+
+<div>Created by: {{trackergroupinstance.created_by}}</div>
+
+<div>Started at: {{trackergroupinstance.start}</div>
+
+<div>Ended at: {{trackergroupinstance.end}</div>
+
+<p><a href="{% url 'response_create' %}">Add Response</a></p>
+
+{% endblock %}

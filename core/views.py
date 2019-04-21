@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, EditProfileForm
+from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
-from core.models import User, TrackerGroup, Question, Answer, Response
+from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -115,6 +115,34 @@ def user_detail(request, pk):
 
     return render(request, 'core/user_detail.html', context)
 
+# Chinh added 4/21/2019
+def new_tracker_instance(request):
+    new_trackerinstance_form = NewTrackerInstanceForm()
+    # request.user
+    if request.method == 'POST':
+        new_trackerinstance_form = NewTrackerInstanceForm(request.POST)
+        if new_trackerinstance_form.is_valid():
+            query_dict_copy = request.POST.copy()
+                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
+            tracker_keys = query_dict_copy.pop('tracker')
+                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
+            # tracker = request.POST.get('tracker', '')
+            tracker_instance = TrackerGroupInstance.objects.create(
+                # tracker=TrackerGroup.objects.get(pk=tracker_key),
+                created_by=request.user,
+            )
+            for key in tracker_keys:
+                tracker_instance.tracker.add(TrackerGroup.objects.get(pk=key))
+            tracker_instance.save()
+            
+            return HttpResponseRedirect(reverse('trackergroupinstance_detail'))
+    else:
+        new_trackerinstance_form = NewTrackerInstanceForm()
+    return render(request, 'core/trackergroupinstance_create.html', {"form": new_trackerinstance_form})
+
+# Chinh added 4/21/2019
+class TrackerInstanceDetailView(generic.DetailView):
+    model = TrackerGroupInstance
 
 # Moved all commented out code to the bottom
 # def landing_page(request, username):

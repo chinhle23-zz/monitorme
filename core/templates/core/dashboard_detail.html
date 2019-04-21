@@ -31,10 +31,15 @@
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
-                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div>
+                <!-- <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div> -->
+                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton"><a href="{% url 'trackerinstance_create' %}">Start</a></button></span></div>
+                    <!-- Chinh added ^^^ to test trackerinstance -->
             </div>
         {% endfor %}
     {%endif%}
+
+<span class="surveybutton"><a href="{% url 'trackerinstance_create' %}">Start Tracker Instance</a></span>
+    <!-- 4/21/2019 Chinh add ^^^ to test trackerinstance -->
 
 <br>
 <h3>Pending Trackers</h3>

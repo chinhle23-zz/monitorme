@@ -1,5 +1,5 @@
 from django import forms
-from core.models import User
+from core.models import User, TrackerGroup
 from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 from django.contrib.auth.models import Group
@@ -60,3 +60,9 @@ class NewGroupForm(forms.Form):
             group_properties.update(kwargs)
             return Group.objects.create(**group_properties)
         return None
+
+class NewTrackerInstanceForm(forms.Form):
+    # https://docs.djangoproject.com/en/2.2/topics/forms/#building-a-form-in-django
+    tracker = forms.ModelChoiceField(required=True, queryset=TrackerGroup.objects.all())
+        # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelchoicefield
+        # https://docs.djangoproject.com/en/2.2/topics/db/queries/
