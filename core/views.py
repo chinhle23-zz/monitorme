@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from core.models import User, TrackerGroup, Question, Answer
 from core.forms import NewGroupForm, EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
+from core.models import User, TrackerGroup, Question, Answer, Response
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -78,13 +78,16 @@ def new_group(request):
 # Chinh copied from kt-dashboard-page 4/20/2019:
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
-    users = User.objects.all()
+    user_group = group_name[0]
+    users = User.objects.filter(groups__name=user_group)
     trackers = TrackerGroup.objects.all()
+
     context = {
         'users': users,
         'trackers': trackers,
         'group_name': group_name,
     }
+
     return render(request, 'core/dashboard_detail.html', context=context)
 
 
@@ -145,6 +148,18 @@ class AnswerCreate(CreateView):
 
 def calendar(request):
     return render(request, 'core/calendar.html')
+
+def user_detail(request, pk):
+    template_name = 'core/user_detail.html'
+    trackers = TrackerGroup.objects.filter(available_to=pk)
+
+    context = {
+        'trackers': trackers,
+    }
+
+    return render(request, 'core/user_detail.html', context)
+
+
 
 
     

@@ -58,6 +58,9 @@ class TrackerGroupInstance(models.Model):
     end = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
 
+    def __str__(self):
+        return f'{self.tracker.name} ({self.created_by.name})'
+
 
 class Question(models.Model):
     """This creates the questionaire"""
@@ -72,7 +75,7 @@ class Question(models.Model):
         return self.description
 
     class Meta:
-        ordering = ['order']
+        ordering = ['tracker', 'order']
 
     # Chinh added 4/20/2019 to test class-based views
     def get_absolute_url(self):
@@ -83,7 +86,6 @@ class Answer(models.Model):
     """This creates the answer model"""
     name = models.CharField(max_length=100, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    # description = models.TextField(max_length=1000, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
@@ -104,3 +106,14 @@ class Response(models.Model):
     answered_for = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
+
+    def __str__(self):
+        return f'Response for: {self.tracker_instance.id} {self.tracker.name} ({self.answered_for.name})'
+
+
+
+
+
+
+
+    
