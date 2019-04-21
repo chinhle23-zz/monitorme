@@ -46,15 +46,12 @@ def response_detail(request):
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
     trackers = TrackerGroup.objects.all()
-
     
-    def users(group_name):
-        if group_name == "":
-            users = User.objects.all()
-        else:
-            user_group = group_name[0]
-            users = User.objects.filter(groups__name=user_group)
-        return users
+    if group_name == "":
+        users = User.objects.all()
+    else:
+        user_group = group_name[0]
+        users = User.objects.filter(groups__name=user_group)  
 
     context = {
         'users': users,
