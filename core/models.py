@@ -110,6 +110,10 @@ class Response(models.Model):
     def __str__(self):
         return f'Response for: {self.tracker_instance.id} {self.tracker.name} ({self.answered_for.name})'
 
+    def display_answers(self):
+        """Create a string for the Answer(s). This is required to display answers in Admin."""
+        return ', '.join(answer.name for answer in self.answer.all()[:3])
+
 
 
 
