@@ -1,5 +1,5 @@
 from django import forms
-from core.models import User, TrackerGroup
+from core.models import User, TrackerGroup, Answer
 from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 from django.contrib.auth.models import Group
@@ -62,9 +62,18 @@ class NewGroupForm(forms.Form):
         return None
 
 class NewTrackerInstanceForm(forms.Form):
+    pass
     # https://docs.djangoproject.com/en/2.2/topics/forms/#building-a-form-in-django
-    tracker = forms.ModelChoiceField(required=True, queryset=TrackerGroup.objects.all())
+    # tracker = forms.ModelChoiceField(required=True, queryset=TrackerGroup.objects.all())
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelchoicefield
         # https://docs.djangoproject.com/en/2.2/topics/db/queries/
+
+class ResponseForm(forms.Form):
+    ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+    # def __init__(self, user=None, *args, **kwargs):
+    #     super(NewCardForm, self).__init__(*args, **kwargs)
+    #     self.fields['existing_decks'] = forms.ModelMultipleChoiceField(queryset=Deck.objects.filter(creator=user))
+    answer = forms.ModelMultipleChoiceField(queryset=Answer.objects.all())
+        # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
 
 

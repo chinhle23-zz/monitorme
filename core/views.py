@@ -122,7 +122,7 @@ def user_detail(request, pk):
     return render(request, 'core/user_detail.html', context)
 
 # Chinh added 4/21/2019
-def new_tracker_instance(request):
+def new_tracker_instance(request, pk):
     new_trackerinstance_form = NewTrackerInstanceForm()
     # request.user
     if request.method == 'POST':
@@ -131,12 +131,12 @@ def new_tracker_instance(request):
             # tracker = request.POST.get('tracker', '') 
                 # can't use this, since it returns a string
 
-            query_dict_copy = request.POST.copy()
-                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
-            tracker_keys = query_dict_copy.pop('tracker')
-                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
+            # query_dict_copy = request.POST.copy()
+            #     # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
+            # tracker_keys = query_dict_copy.pop('tracker')
+            #     # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
             tracker_instance = TrackerGroupInstance.objects.create(
-                tracker_id=tracker_keys[0],
+                tracker_id=pk,
                 created_by=request.user,
             )
             tracker_instance.save()
