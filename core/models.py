@@ -75,8 +75,11 @@ class Question(models.Model):
     def __str__(self):
         return self.description
 
+    # def get_absolute_url(self):
+    #     return reverse('question-create', args=[str(self.id)])    
+
     class Meta:
-        ordering = ['order']
+        ordering = ['order']    
 
 
 class Answer(models.Model):
@@ -90,6 +93,9 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse('answer-create', args=[str(self.id)])    
 
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=True)
