@@ -30,7 +30,7 @@ urlpatterns = [
     path('create_group/', core_views.create_group, name='create_group'),
     # path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
-    path('landing_page/<username>', core_views.landing_page, name="landing_page"),
+    path('discover/', core_views.discover_page, name="discover_page"),
     path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker-detail"),
     path('response_detail', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
@@ -45,3 +45,4 @@ if settings.DEBUG:
     urlpatterns = [
        path('__debug__/', include(debug_toolbar.urls)),
    ] + urlpatterns
+
