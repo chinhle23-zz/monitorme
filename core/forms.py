@@ -61,14 +61,16 @@ class NewGroupForm(forms.Form):
             return Group.objects.create(**group_properties)
         return None
 
+
 class NewTrackerInstanceForm(forms.Form):
     pass
     # https://docs.djangoproject.com/en/2.2/topics/forms/#building-a-form-in-django
     # tracker = forms.ModelChoiceField(required=True, queryset=TrackerGroup.objects.all())
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelchoicefield
         # https://docs.djangoproject.com/en/2.2/topics/db/queries/
+        # this is no longer needed as the tracker pk can be passed as a variable in the URL
 
-class ResponseForm(forms.Form):
+class NewResponseForm(forms.Form):
     ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
     # def __init__(self, user=None, *args, **kwargs):
     #     super(NewCardForm, self).__init__(*args, **kwargs)

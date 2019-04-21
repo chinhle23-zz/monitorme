@@ -43,7 +43,9 @@ class TrackerGroupInstanceAdmin(admin.ModelAdmin):
 class ResponseAdmin(admin.ModelAdmin):
     list_display = (
         'tracker', 
+        'tracker_id',
         'tracker_instance', 
+        'tracker_instance_id',
         'question', 
         'display_answers',
         'answered_for',

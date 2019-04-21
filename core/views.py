@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm
+from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
@@ -122,7 +122,7 @@ def user_detail(request, pk):
     return render(request, 'core/user_detail.html', context)
 
 # Chinh added 4/21/2019
-def new_tracker_instance(request, pk):
+def new_trackerinstance(request, pk):
     new_trackerinstance_form = NewTrackerInstanceForm()
     # request.user
     if request.method == 'POST':
@@ -130,11 +130,6 @@ def new_tracker_instance(request, pk):
         if new_trackerinstance_form.is_valid():
             # tracker = request.POST.get('tracker', '') 
                 # can't use this, since it returns a string
-
-            # query_dict_copy = request.POST.copy()
-            #     # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
-            # tracker_keys = query_dict_copy.pop('tracker')
-            #     # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
             tracker_instance = TrackerGroupInstance.objects.create(
                 tracker_id=pk,
                 created_by=request.user,
@@ -149,6 +144,32 @@ def new_tracker_instance(request, pk):
 # Chinh added 4/21/2019
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
+
+# Chinh added 4/21/2019
+def new_response(request, pk):
+    new_response_form = NewResponseForm()
+    if request.method == 'POST':
+        new_response_form = NewResponseForm(request.POST)
+        if new_response_form.is_valid():
+            tracker_instance = Tracker.objects.get(pk=pk)
+            query_dict_copy = request.POST.copy()
+                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
+            answer_keys = query_dict_copy.pop('answer')
+                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
+            response = Response.objects.create(
+                answered_for_id=request.user,
+                question_id=,
+                tracker_id=,
+                tracker_instance_id=pk,
+            )
+            for key in answer_keys:
+                response.answer.add(Answer.objects.get(pk=key))
+            response.save()
+            
+            return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(pk)]))
+    else:
+        new_response_form = NewResponseForm()
+    return render(request, 'core/response_create.html', {"form": new_response_form})
     
 def references(request):
     return render(request, 'core/reference.html')
