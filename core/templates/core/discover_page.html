@@ -13,15 +13,13 @@
         <br>
         <a href="{% url 'user_profile' user.username %} "><button class="button button2">Profile</button></a>
         <br>
-        {% if user.groups__name is not null %}
-        <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
+        {% if request.user.is_family_admin %}
+            <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
         {% else %}
-        <!-- <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a> -->
-        <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
-            <!-- Chinh changed url to test until Kasey can fix this -->
+            <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a>
         {% endif %}
         <br>
-        <button class="button button2">References</button>
+        <a href="{% url 'references' %}"><button class="button button2">References</button></a>
         <br>
         <button onclick="location.href = '/calendar';" class="button button2">Calendar</button>
 </div>        

@@ -51,9 +51,11 @@ def new_group(request):
 
 def discover_page(request):
     users = User.objects.all()
+    groups = Group.objects.all()
 
     context = {
         'users': users,
+        'groups': groups,
     }
     return render(request, 'core/discover_page.html', context=context)
 
@@ -64,9 +66,16 @@ def response_detail(request):
 
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
-    user_group = group_name[0]
-    users = User.objects.filter(groups__name=user_group)
     trackers = TrackerGroup.objects.all()
+
+    
+    def users(group_name):
+        if group_name == "":
+            users = User.objects.all()
+        else:
+            user_group = group_name[0]
+            users = User.objects.filter(groups__name=user_group)
+        return users
 
     context = {
         'users': users,
@@ -143,6 +152,10 @@ def new_tracker_instance(request):
 # Chinh added 4/21/2019
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
+    
+def references(request):
+    return render(request, 'core/reference.html')
+
 
 # Moved all commented out code to the bottom
 # def landing_page(request, username):
@@ -163,5 +176,9 @@ class TrackerInstanceDetailView(generic.DetailView):
 #             form.save(user=request.user)
 #             return render(request, 'edit_profile.html')
 
+
+# def landing_page(request, username):
+#     user = User.objects.get(username=username)
+#     return render(request, 'core/landing_page.html', {"user":user})
 
     
