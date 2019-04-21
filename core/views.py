@@ -10,7 +10,6 @@ from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
 
-# Create your views here.
 
 def index(request):
     return render(request, 'index.html')
@@ -29,13 +28,13 @@ def create_group(request):
     }
     return render(request, 'core/create_group.html', context=context)
 
-def landing_page(request):
+def discover_page(request):
     users = User.objects.all()
 
     context = {
         'users': users,
     }
-    return render(request, 'landing_page', context=context)
+    return render(request, 'core/discover_page.html', context=context)
 
 def response_detail(request):
     context = {
@@ -55,24 +54,10 @@ def dashboard_detail(request):
     }
 
     return render(request, 'core/dashboard_detail.html', context=context)
-# def edit_profile(request):
-#     form = EditProfileForm(request.POST)
-#     if form.is_valid():
-#         form.save(user=request.user)
-#     return render(request, 'edit_profile')
 
-# class EditProfileView(LoginRequiredMixin, View):
-
-#     def get(self, request):
-#         form = EditProfileForm(request.POST)
-#         if form.is_valid():
-#             form.save(user=request.user)
-#             return render(request, 'edit_profile.html')
-
-
-def landing_page(request, username):
-    user = User.objects.get(username=username)
-    return render(request, 'core/landing_page.html', {"user":user})
+# def landing_page(request, username):
+#     user = User.objects.get(username=username)
+#     return render(request, 'core/landing_page.html', {"user":user})
 
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
@@ -97,6 +82,20 @@ def user_detail(request, pk):
     return render(request, 'core/user_detail.html', context)
 
 
+# Moved all commented out code to the bottom
+# def edit_profile(request):
+#     form = EditProfileForm(request.POST)
+#     if form.is_valid():
+#         form.save(user=request.user)
+#     return render(request, 'edit_profile')
+
+# class EditProfileView(LoginRequiredMixin, View):
+
+#     def get(self, request):
+#         form = EditProfileForm(request.POST)
+#         if form.is_valid():
+#             form.save(user=request.user)
+#             return render(request, 'edit_profile.html')
 
 
     
