@@ -6,7 +6,7 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button class="button button2" type='Submit'>Create Answers</button>
+    <button onclick="location.href = 'answer/create/';" class="button button2" type='Submit'>Create Answers</button>
 </form>
 
 {% endblock %}
