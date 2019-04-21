@@ -50,7 +50,7 @@ class TrackerGroup(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('trackergroup-detail', args=[str(self.id)])
+        return reverse('tracker-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)

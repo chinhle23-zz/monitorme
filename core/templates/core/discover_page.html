@@ -16,7 +16,9 @@
         {% if user.groups__name is not null %}
         <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
         {% else %}
-        <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a>
+        <!-- <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a> -->
+        <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
+            <!-- Chinh changed url to test until Kasey can fix this -->
         {% endif %}
         <br>
         <button class="button button2">References</button>

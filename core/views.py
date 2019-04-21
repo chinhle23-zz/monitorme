@@ -43,7 +43,7 @@ def new_group(request):
                 name=name,
             )
             group.save()
-            return HttpResponseRedirect(reverse('landing_page', kwargs={'username': request.user.username,} ))
+            return HttpResponseRedirect(reverse('discover_page'))
     else:
         new_group_form = NewGroupForm()
 
@@ -83,16 +83,6 @@ class TrackerCreate(CreateView):
     model = TrackerGroup
     fields = '__all__'
     template_name='core/trackergroup_create.html'
-
-#### Chinh's version ####
-# class CreateTracker(LoginRequiredMixin, CreateView):
-#     """
-#     Form for creating a tracker. Requires login. 
-#     """
-#     model = TrackerGroup
-#         # define the associated model
-#     fields = ['name', 'available_to']
-#         # specify the fields to dislay in the form
 
 # Chinh added 4/20/2019
 class QuestionDetailView(generic.DetailView):

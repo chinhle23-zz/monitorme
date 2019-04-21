@@ -31,9 +31,7 @@
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
-                <!--{# <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div> #}-->
-                <div class="tracker"><a href="{% url 'trackergroup-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div>
-                    <!-- Chinh changed the url name to match what's currently in urls.py -->
+                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div>
             </div>
         {% endfor %}
     {%endif%}
