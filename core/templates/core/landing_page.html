@@ -11,9 +11,13 @@
             </p>
         </div>
         <br>
-        <button onclick="location.href = '/profile/{{user.username}}';" class="button button2">Profile</button>
+        <a href="{% url 'user_profile' user.username %} "><button class="button button2">Profile</button></a>
         <br>
-        <button onclick="location.href = '/dashboard_detail';" class="button button2">Dashboard</button>
+        {% if user.groups__name is not null %}
+        <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
+        {% else %}
+        <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a>
+        {% endif %}
         <br>
         <button class="button button2">References</button>
         <br>
