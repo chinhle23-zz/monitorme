@@ -28,10 +28,7 @@ urlpatterns = [
     path('disclosure/', core_views.disclosure, name='disclosure'),
     path('create_group/', core_views.create_group, name='create_group'),
     path('group/add', core_views.new_group, name='group_form'),
-    # path('group/add', core_views.CreateGroup.as_view(), name='group_form'),
-    #     # Chinh added ^^^ to test class-based views
-    # path('namegroup/<int:pk>', core_views.NameGroupDetailView.as_view(), name='namegroup_detail'),
-    #     # Chinh added ^^^ to test class-based views
+        # Chinh added ^^^ to test using built-in Group model, since we deleted NameGroup model
     path('profile/<username>', core_views.user_profile, name="user_profile"),
     path('landing_page/<username>', core_views.landing_page, name="landing_page"),
     # path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker-detail"),

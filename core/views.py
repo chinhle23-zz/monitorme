@@ -50,31 +50,6 @@ def new_group(request):
 
     return render(request, 'core/create_group.html', {"form": new_group_form})
 
-# ### Chinh's version ####
-# class CreateGroup(LoginRequiredMixin, CreateView):
-#     """
-#     Form for creating a group. Requires login. 
-#     """
-#     model = Group
-#         # define the associated model
-#     fields = ['name', ]
-#         # specify the fields to dislay in the form
-
-# #### Chinh's version ####
-# class NameGroupDetailView(generic.DetailView):
-#     """View class for NameGroup detail page of site."""
-#     model = NameGroup
-
-# def landing_page(request):
-#     context = {
-#     }
-#     return render(request, 'landing_page', context=context)
-
-# def response_detail(request):
-#     context = {
-#     }
-#     return render(request, 'response_detail', context=context)
-
 # Chinh copied from kt-dashboard-page 4/20/2019:
 def dashboard_detail(request):
     group_name = Group.objects.filter(user=request.user)
