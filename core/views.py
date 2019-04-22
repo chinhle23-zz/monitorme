@@ -42,9 +42,9 @@ def response_detail(request):
     }
     return render(request, 'response_detail', context=context)
 
-def dashboard_detail(request):
-    group_name = Group.objects.filter(user=request.user)
-    trackers = TrackerGroup.objects.all()
+# def dashboard_detail(request):
+#     group_name = Group.objects.filter(user=request.user)
+#     trackers = TrackerGroup.objects.all()
     
     if group_name == "":
         users = User.objects.all()
