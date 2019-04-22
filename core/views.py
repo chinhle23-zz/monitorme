@@ -85,7 +85,7 @@ class TrackerCreate(CreateView):
 def calendar(request):
     return render(request, 'core/calendar.html')
 
-def user_detail(request, user):
+def user_detail(request, pk):
     template_name = 'core/user_detail.html'
     trackers = TrackerGroup.objects.filter(available_to=pk)
 

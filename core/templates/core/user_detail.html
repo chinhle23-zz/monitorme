@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<h3>Your Personal Dashboard</h3>
+<p>Welcome {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %} to your personal dashboard!</p>
 
 
 <h3>Available Trackers</h3>
