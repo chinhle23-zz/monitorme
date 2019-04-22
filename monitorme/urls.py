@@ -37,6 +37,7 @@ urlpatterns = [
     path('user_detail/<int:pk>', core_views.user_detail, name="user-detail"),
     path('references/', core_views.references, name="references"),
     path('profile/<int:pk>/update', core_views.UserUpdate.as_view(), name="edit-profile"),
+    path('quicklinks/', core_views.quick_links, name="quick-links"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # team has agreed to only use one urls.py file
 

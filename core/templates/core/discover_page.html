@@ -20,6 +20,8 @@
             <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a>
         {% endif %}
         <br>
+        <a href="{% url 'quick-links' %}"><button class="button button2">Quick Links</button></a>
+        <br>
         <a href="{% url 'references' %}"><button class="button button2">References</button></a>
         <br>
         <button onclick="location.href = '/calendar';" class="button button2">Calendar</button>
