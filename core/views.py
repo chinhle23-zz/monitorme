@@ -134,8 +134,36 @@ class UserUpdate(UpdateView):
 #             return render(request, 'edit_profile.html')
 
 
-# def landing_page(request, username):
-#     user = User.objects.get(username=username)
-#     return render(request, 'core/landing_page.html', {"user":user})
+def landing_page(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'core/landing_page.html', {"user":user})
+
+class TrackerDetailView(generic.DetailView):
+    model = TrackerGroup
+
+class TrackerCreate(CreateView):
+    model = TrackerGroup
+    fields = '__all__'
+    template_name='core/trackergroup_create.html'
+
+class QuestionCreate(CreateView):
+    model = Question
+    fields = '__all__'
+    template_name='core/question_create.html'    
+
+class QuestionDetailView(generic.DetailView):
+    model = Question    
+
+class AnswerCreate(CreateView):
+    model = Answer
+    fields = '__all__'
+    template_name='core/answer_create.html'     
+
+class AnswerDetailView(generic.DetailView):
+    model = Answer     
+
+def calendar(request):
+    return render(request, 'core/calendar.html')
+
 
     

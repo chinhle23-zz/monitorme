@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>{{trackergroup.name}}</h3>
+
+<h3>Question: {{question.description}}</h3>
+
+<button class="button button2"><a href="{% url 'answer-create' %}">Create Answers</a></button>
+
+
+{% endblock %} 

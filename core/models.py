@@ -50,7 +50,7 @@ class TrackerGroup(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('trackergroup-detail', args=[str(self.id)])
+        return reverse('tracker-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
@@ -74,6 +74,9 @@ class Question(models.Model):
     def __str__(self):
         return self.description
 
+    def get_absolute_url(self):
+        return reverse('question-detail', args=[str(self.id)])    
+
     class Meta:
         ordering = ['tracker', 'order']
 
@@ -88,6 +91,9 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('answer-detail', args=[str(self.id)])    
 
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', 
