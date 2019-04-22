@@ -96,7 +96,11 @@ a {
     outline: 0;
   }
 
-.button2:hover, .loginbutton:hover, .surveybutton:hover, .tracker-button {
+.button2:hover, 
+.loginbutton:hover, 
+.surveybutton:hover, 
+.tracker-button:hover ,
+.add-tracker:hover {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
