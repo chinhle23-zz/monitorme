@@ -1,4 +1,5 @@
 {% load static %}
+{% load core_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -8,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}MonitorMe{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
-    <script src="{% static '/js/script.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
     {% block meta %}{% endblock %}
 </head>
 
 <body>
     <div class="base-body">
-        <a class="head-link" href="{% if user.is_authenticated %}{% url 'landing_page' user.username %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header"></header></a>
+        <a class="head-link" href="{% if user.is_authenticated %}{% url 'discover_page' %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header"></header></a>
         <div class="login-container">
             <div class="loginsection">
                 {% if user.is_authenticated %}
@@ -24,7 +25,7 @@
                     <h4>
                         <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
                         <a href="{% url 'auth_logout' %}">Logout</a> |
-                        <a href="{% url 'landing_page' user.username %}">Landing page</a>
+                        <a href="{% url 'discover_page' %}">Discover</a>
                     </h4>      
                 </div>
                 {% else %}
