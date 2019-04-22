@@ -1,4 +1,4 @@
-heroku site: https://nameless-fortress-39675.herokuapp.com/
+heroku site: https://nameless-fortress-39675.herokuapp.com/ hello
 
 # github_guide
 
