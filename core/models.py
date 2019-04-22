@@ -53,9 +53,9 @@ class TrackerGroup(models.Model):
         return reverse('tracker-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
-    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
+    tracker = models.ForeignKey('TrackerGroup', related_name='tracker_instances', on_delete=models.CASCADE, null=False)
     start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
-    end = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    end = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
 
     def __str__(self):
@@ -66,19 +66,19 @@ class Question(models.Model):
     """This creates the questionaire"""
     description = models.TextField(max_length=1000, null=False, blank=False) 
     order = models.IntegerField(null=False, blank=False)
-    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE)
+    tracker = models.ForeignKey('TrackerGroup', related_name='questions', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.description
-
-    def get_absolute_url(self):
-        return reverse('question-detail', args=[str(self.id)])    
+        return self.description   
 
     class Meta:
         ordering = ['tracker', 'order']
+
+    def get_absolute_url(self):
+        return reverse('question-detail', args=[str(self.id)])
 
 
 class Answer(models.Model):
@@ -93,7 +93,7 @@ class Answer(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('answer-detail', args=[str(self.id)])    
+        return reverse('answer-detail', args=[str(self.id)])
 
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', 
@@ -107,6 +107,10 @@ class Response(models.Model):
 
     def __str__(self):
         return f'Response for: {self.tracker_instance.id} {self.tracker.name} ({self.answered_for.name})'
+
+    def display_answers(self):
+        """Create a string for the Answer(s). This is required to display answers in Admin."""
+        return ', '.join(answer.name for answer in self.answer.all()[:3])
 
 
 

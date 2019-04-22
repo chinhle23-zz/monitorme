@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'core.apps.CoreConfig', 
-        # Chinh: "our app needs to be above registration in order to modify registration templates
+        # Chinh: "our app needs to be above registration in order to modify registration templates"
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -134,7 +134,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'core/static'), # chinh added to test heroku push
-# ]
+# ] # Clinton removed, it's not needed
 
 
 INTERNAL_IPS = [

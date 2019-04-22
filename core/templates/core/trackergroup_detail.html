@@ -2,16 +2,16 @@
 
 {% block content %}
 
-<h3>{{trackergroup.name}}</h3>
+<h3>{{trackergroup.name}}</h3> -->
 
 <div>Available To: {{trackergroup.available_to}}</div>
-<button onclick="location.href = 'question/create/';" class="button button2">Create Questions</button>
+<button class="button button2"><a href="{% url 'question-create' %}">Create Questions</a></button>
 
 {% for question in trackergroup.question_set.all %}
-<div>{{question.order}})  {{question}}</div>
+<div>{{question.order}})  <a href="{{question.get_absolute_url}}">{{question}}</a></div>
     {% for answer in question.answer_set.all %}
     <div style="margin-left: 25px;">{{answer}}</div>
     {% endfor %}
 {% endfor %}
 
-{% endblock %} 
+{% endblock %}
