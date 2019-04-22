@@ -26,15 +26,35 @@ class QuestionAdmin(admin.ModelAdmin):
         'description', 
         'order', 
         'tracker', 
-        'active'
+        'active',
     )
 
+@admin.register(TrackerGroupInstance)
+class TrackerGroupInstanceAdmin(admin.ModelAdmin):
+    list_display = (
+        'tracker', 
+        'start', 
+        'end', 
+        'created_by',
+        'tracker_id',
+    )
 
+@admin.register(Response)
+class ResponseAdmin(admin.ModelAdmin):
+    list_display = (
+        'tracker', 
+        'tracker_id',
+        'tracker_instance', 
+        'tracker_instance_id',
+        'question', 
+        'display_answers',
+        'answered_for',
+        'created_at',
+        'updated_at',
+    )
 
 admin.site.register(TrackerGroup)
 admin.site.register(Answer)
-admin.site.register(Response)
-admin.site.register(TrackerGroupInstance)
 
 
 
