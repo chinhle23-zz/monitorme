@@ -101,6 +101,7 @@ class UserUpdate(UpdateView):
         'phonenumber',
         'groups',
     )
+    success_url = ('/profile/{{user.username}}')
 
      
 
