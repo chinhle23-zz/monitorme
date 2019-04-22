@@ -3,7 +3,7 @@ from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, Ne
 from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -147,11 +147,11 @@ class TrackerInstanceDetailView(generic.DetailView):
 
 # Chinh added 4/21/2019
 def new_response(request, pk):
-    new_response_form = NewResponseForm()
+    # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
+    question = get_object_or_404(Question, pk=pk)
     if request.method == 'POST':
-        new_response_form = NewResponseForm(request.POST)
+        new_response_form = NewResponseForm(pk, request.POST)
         if new_response_form.is_valid():
-            question = Question.objects.get(pk=pk)
             tracker = question.tracker
             tracker_instance = tracker.tracker_instances.last()
                 # need a better way to do this
@@ -171,7 +171,7 @@ def new_response(request, pk):
             
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
-        new_response_form = NewResponseForm()
+        new_response_form = NewResponseForm(pk)
     
     context = {
         'form': new_response_form,

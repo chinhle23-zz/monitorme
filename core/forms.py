@@ -78,11 +78,12 @@ class NewTrackerInstanceForm(forms.Form):
         # this is no longer needed as the tracker pk can be passed as a variable in the URL
 
 class NewResponseForm(forms.Form):
-    ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
-    # def __init__(self, user=None, *args, **kwargs):
-    #     super(NewCardForm, self).__init__(*args, **kwargs)
-    #     self.fields['existing_decks'] = forms.ModelMultipleChoiceField(queryset=Deck.objects.filter(creator=user))
-    answer = forms.ModelMultipleChoiceField(queryset=Answer.objects.all())
-        # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
+    # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
+    def __init__(self, question, *args, **kwargs):
+        super(NewResponseForm, self).__init__(*args, **kwargs)
+        self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
+            # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
+       
+        
 
 
