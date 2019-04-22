@@ -13,7 +13,7 @@
         <br>
         <a href="{% url 'user_profile' user.username %} "><button class="button button2">Profile</button></a>
         <br>
-        {% if request.user.group.0 != '' and request.user.is_family_admin == True %}
+        {% if request.user.groups.count >= 1 and request.user.is_family_admin == True %}
             <a href="{% url 'dashboard_detail' %}"><button class="button button2">Dashboard</button></a>
         {% else %}
             <a href="{% url 'user-detail' request.user.pk %}"><button class="button button2">Dashboard</button></a>

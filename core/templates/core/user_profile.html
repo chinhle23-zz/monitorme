@@ -25,8 +25,10 @@
         </div>
 
         <div class="userprofile-line">Group: 
-            {% if user.groups__name is not null %}
-                <span class="profiledata">{{ user.groups__name }}</span>
+            {% if request.user.groups.count >= 1 %}
+                {% for group in request.user.groups.all %}
+                <span class="profiledata">{{ group.name }}</span>
+                {% endfor %}
             {% else %}
                 <span class="addprofile"><a href="{% url 'create_group' %}">Create Group</a></span>
             {%endif%}
