@@ -96,7 +96,11 @@ a {
     outline: 0;
   }
 
-.button2:hover, .loginbutton:hover, .surveybutton:hover {
+.button2:hover, 
+.loginbutton:hover, 
+.surveybutton:hover, 
+.tracker-button:hover ,
+.add-tracker:hover {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
@@ -149,6 +153,48 @@ span {
     outline: 0;
     margin-bottom: 1rem;
     margin-top: 1rem;
+}
+
+.tracker-button {
+    background-color: #83C7DC;
+    -moz-box-shadow:    2px 3px 2px #D9D9D9;
+    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
+    box-shadow:         2px 3px 2px #D9D9D9;
+    color: #052e3e;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: .5px .5px .5px rgba(40, 68, 89, 0.474);
+    font-size: 1rem;
+    height: 45px;
+    width: 200px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-radius: 9px;
+    outline: 0;
+}
+
+.add-tracker {
+    background-color: rgb(204, 238, 195);
+    -moz-box-shadow:    2px 3px 2px #D9D9D9;
+    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
+    box-shadow:         2px 3px 2px #D9D9D9;
+    color: #052e3e;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: .5px .5px .5px rgba(40, 68, 89, 0.474);
+    font-size: 1rem;
+    height: 45px;
+    width: 200px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-radius: 9px;
+    outline: 0;
 }
 
 .tracker {

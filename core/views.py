@@ -37,6 +37,18 @@ def discover_page(request):
     }
     return render(request, 'core/discover_page.html', context=context)
 
+def quick_links(request):
+    groups = Group.objects.all()
+    trackers = TrackerGroup.objects.filter(available_to=request.user)
+
+    context = {
+        'groups': groups,
+        'trackers': trackers,
+    }
+    return render(request, 'core/quick_links.html', context=context)
+
+
+
 def response_detail(request):
     context = {
     }
@@ -73,7 +85,7 @@ class TrackerCreate(CreateView):
 def calendar(request):
     return render(request, 'core/calendar.html')
 
-def user_detail(request, pk):
+def user_detail(request, user):
     template_name = 'core/user_detail.html'
     trackers = TrackerGroup.objects.filter(available_to=pk)
 
