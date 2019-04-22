@@ -50,7 +50,7 @@ class TrackerGroup(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('trackergroup-detail', args=[str(self.id)])
+        return reverse('tracker-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
@@ -74,8 +74,8 @@ class Question(models.Model):
     def __str__(self):
         return self.description
 
-    # def get_absolute_url(self):
-    #     return reverse('question-create', args=[str(self.id)])    
+    def get_absolute_url(self):
+        return reverse('question-detail', args=[str(self.id)])    
 
     class Meta:
         ordering = ['tracker', 'order']
@@ -85,7 +85,6 @@ class Answer(models.Model):
     """This creates the answer model"""
     name = models.CharField(max_length=100, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    description = models.TextField(max_length=1000, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
@@ -93,8 +92,8 @@ class Answer(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse('answer-create', args=[str(self.id)])    
+    def get_absolute_url(self):
+        return reverse('answer-detail', args=[str(self.id)])    
 
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', 

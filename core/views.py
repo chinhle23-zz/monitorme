@@ -139,10 +139,16 @@ class QuestionCreate(CreateView):
     fields = '__all__'
     template_name='core/question_create.html'    
 
+class QuestionDetailView(generic.DetailView):
+    model = Question    
+
 class AnswerCreate(CreateView):
     model = Answer
     fields = '__all__'
-    template_name='core/answer_create.html'      
+    template_name='core/answer_create.html'     
+
+class AnswerDetailView(generic.DetailView):
+    model = Answer     
 
 def calendar(request):
     return render(request, 'core/calendar.html')

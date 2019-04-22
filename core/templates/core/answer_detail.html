@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Associated Tracker: <a href="{{answer.question.tracker.get_absolute_url}}">{{answer.question.tracker}}
+<h3>Associated Question: <a href="{{answer.question.get_absolute_url}}">{{answer.question.description}}
+<h3>Answer: {{answer.name}}</h3>
+
+{% endblock %} 
