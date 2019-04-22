@@ -74,10 +74,12 @@ class Question(models.Model):
     def __str__(self):
         return self.description
 
+    def get_absolute_url(self):
+        return reverse('question-detail', args=[str(self.id)])    
+
     class Meta:
         ordering = ['tracker', 'order']
 
-    # Chinh added 4/20/2019 to test class-based views
     def get_absolute_url(self):
         return reverse('question-detail', args=[str(self.id)])
 
@@ -93,7 +95,6 @@ class Answer(models.Model):
     def __str__(self):
         return self.name
 
-    # Chinh added 4/20/2019 to test class-based views
     def get_absolute_url(self):
         return reverse('answer-detail', args=[str(self.id)])
 

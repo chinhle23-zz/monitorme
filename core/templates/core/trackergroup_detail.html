@@ -5,6 +5,7 @@
 <h3>{{trackergroup.name}}</h3> -->
 
 <div>Available To: {{trackergroup.available_to}}</div>
+<button class="button button2"><a href="{% url 'question-create' %}">Create Questions</a></button>
 
 {% for question in trackergroup.question_set.all %}
 <div>{{question.order}})  <a href="{{question.get_absolute_url}}">{{question}}</a></div>
@@ -12,7 +13,5 @@
     <div style="margin-left: 25px;">{{answer}}</div>
     {% endfor %}
 {% endfor %}
-
-<p><a href="{% url 'question-create' %}">Add Question</a></p>
 
 {% endblock %}

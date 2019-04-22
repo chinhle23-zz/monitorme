@@ -11,9 +11,9 @@
         {% endfor %}
     {% endif %}
 
-<br>
 {% if request.user.is_family_admin == True %}
     <h3>Your Group Members</h3>
+       
         {% for user in users %}
             <div class="member">
                 <a href="{% url 'user_profile' user.username %}">{{user.name}} - </a>
@@ -23,8 +23,14 @@
             </div>
         {% endfor %}
 {% endif %}
+    <a href="">
+        <button class='add-member' type='submit'>
+            Add Members
+        </button>
+    </a>
 <br>
 <h3>Available Trackers</h3>
+
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
@@ -35,6 +41,13 @@
         {% endfor %}
     {%endif%}
 
+    <a href="">
+        <button class='add-member' type='submit'>
+            <a href="{% url 'tracker-create' %}">Add Tracker</a> 
+        </button>
+    </a>        
+
+
 <br>
 <h3>Pending Trackers</h3>
 
@@ -43,7 +56,7 @@
 
 <!-- Chinh added 4/20/2019 to test tracker, question, and answer create forms -->
 <h4>
-    <a href="{% url 'tracker-create' %}">Create Tracker</a> |
+    Create Tracker|
     <a href="{% url 'question-create' %}">Create Question</a> |
     <a href="{% url 'answer-create' %}">Create Answer</a>
 </h4>  

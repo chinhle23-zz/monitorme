@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-<!-- Chinh created this page 4/20/2019 -->
 
 {% block content %}
 
@@ -11,6 +10,7 @@
 <div><a href="{{answer.get_absolute_url}}">{{answer}}</a></div>
 {% endfor %}
 
-<p><a href="{% url 'answer-create' %}">Add Answer</a></p>
+<button class="button button2"><a href="{% url 'answer-create' %}">Create Answers</a></button>
 
-{% endblock %}
+
+{% endblock %} 
