@@ -46,7 +46,7 @@ def response_detail(request):
 #     group_name = Group.objects.filter(user=request.user)
 #     trackers = TrackerGroup.objects.all()
     
-    if group_name == "":
+    if group_      name == "":
         users = User.objects.all()
     else:
         user_group = group_name[0]
