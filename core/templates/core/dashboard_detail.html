@@ -30,17 +30,15 @@
     
 <br>
 <h3>Available Trackers</h3>
-    <a href="">
-        <button class="add-member" type="submit">
-            Add Tracker
-        </button>
-    </a>  
+<a href="">
+    <button class='add-member' type='submit'>
+        <a href="{% url 'tracker-create' %}">Add Tracker</a> 
+    </button>
+</a>  
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
-                <!-- <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div> -->
                 <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton"><a href="{% url 'trackerinstance_create' tracker.pk %}">Start</a></button></span></div>
-                    <!-- Chinh added ^^^ to test trackerinstance -->
             </div>
         {% endfor %}
     {%endif%}
@@ -49,12 +47,5 @@
 
 <br>
 <h3>Closed Trackers</h3>
-
-<!-- Chinh added 4/20/2019 to test tracker, question, and answer create forms -->
-<h4>
-    Create Tracker|
-    <a href="{% url 'question-create' %}">Create Question</a> |
-    <a href="{% url 'answer-create' %}">Create Answer</a>
-</h4>  
 
 {% endblock %}
