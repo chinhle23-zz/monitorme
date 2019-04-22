@@ -8,9 +8,15 @@
 
 
 <h3>Available Trackers</h3>
+    <a href="">
+        <button class="add-member" type="submit">
+            Add Tracker
+        </button>
+    </a>  
+
 {% if trackers %}
 {% for tracker in trackers %}
-<div>{{tracker}} - <span><button class="surveybutton">Start</button></span></div>
+    <div>{{tracker}} - <span><button class="surveybutton">Start</button></span></div>
 {% endfor %}
 {%endif%}
 
