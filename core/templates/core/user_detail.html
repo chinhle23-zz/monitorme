@@ -10,9 +10,17 @@
 <h3>Available Trackers</h3>
 {% if trackers %}
 {% for tracker in trackers %}
-<div>{{tracker}}</div>
+<div>{{tracker}} - <span><button class="surveybutton">Start</button></span></div>
 {% endfor %}
 {%endif%}
+
+<br>
+<h3>Pending Trackers</h3>
+
+<br>
+<h3>Closed Trackers</h3>
+
+
 
 
 {% endblock content %}
