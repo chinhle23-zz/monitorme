@@ -72,10 +72,7 @@ class Question(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.description
-
-    def get_absolute_url(self):
-        return reverse('question-detail', args=[str(self.id)])    
+        return self.description   
 
     class Meta:
         ordering = ['tracker', 'order']
