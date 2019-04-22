@@ -4,6 +4,13 @@ from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+        
+
+
+
+
 
 User = get_user_model()
 

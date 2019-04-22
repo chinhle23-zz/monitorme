@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm
+from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render
-from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -181,6 +181,25 @@ def new_response(request, pk):
     
 def references(request):
     return render(request, 'core/reference.html')
+
+class UserUpdate(UpdateView):
+    model = User
+    template_name = 'core/edit_profile.html'
+    fields = (
+        'name',
+        'email',
+        'is_family_admin',
+        'label',
+        'city',
+        'state',
+        'zipcode',
+        'active',
+        'phonenumber',
+        'groups',
+    )
+    success_url = ('/profile/{{user.username}}')
+
+     
 
 
 # Moved all commented out code to the bottom
