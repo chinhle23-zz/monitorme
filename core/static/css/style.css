@@ -197,7 +197,7 @@ span {
     outline: 0;
 }
 
-.tracker {
+.tracker, .member {
     margin-bottom: 5px;
 }
 
