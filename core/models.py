@@ -53,7 +53,7 @@ class TrackerGroup(models.Model):
         return reverse('tracker-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
-    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE, null=False)
+    tracker = models.ForeignKey('TrackerGroup', related_name='tracker_instances', on_delete=models.CASCADE, null=False)
     start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     end = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
@@ -66,7 +66,7 @@ class Question(models.Model):
     """This creates the questionaire"""
     description = models.TextField(max_length=1000, null=False, blank=False) 
     order = models.IntegerField(null=False, blank=False)
-    tracker = models.ForeignKey('TrackerGroup', on_delete=models.CASCADE)
+    tracker = models.ForeignKey('TrackerGroup', related_name='questions', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)

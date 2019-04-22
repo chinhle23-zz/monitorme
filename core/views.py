@@ -151,25 +151,33 @@ def new_response(request, pk):
     if request.method == 'POST':
         new_response_form = NewResponseForm(request.POST)
         if new_response_form.is_valid():
-            tracker_instance = Tracker.objects.get(pk=pk)
+            question = Question.objects.get(pk=pk)
+            tracker = question.tracker
+            tracker_instance = tracker.tracker_instances.last()
+                # need a better way to do this
             query_dict_copy = request.POST.copy()
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
             answer_keys = query_dict_copy.pop('answer')
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
             response = Response.objects.create(
-                answered_for_id=request.user,
-                question_id=,
-                tracker_id=,
-                tracker_instance_id=pk,
+                answered_for_id=request.user.id,
+                question_id=pk,
+                tracker_id=tracker.id,
+                tracker_instance_id=tracker_instance.id,
             )
             for key in answer_keys:
                 response.answer.add(Answer.objects.get(pk=key))
             response.save()
             
-            return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(pk)]))
+            return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
         new_response_form = NewResponseForm()
-    return render(request, 'core/response_create.html', {"form": new_response_form})
+    
+    context = {
+        'form': new_response_form,
+    }
+
+    return render(request, 'core/response_create.html', context=context)
     
 def references(request):
     return render(request, 'core/reference.html')

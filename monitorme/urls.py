@@ -42,7 +42,7 @@ urlpatterns = [
     path('response/create/<int:pk>', core_views.new_response, name="response_create"),
         # Chinh added ^^^ 4/21 to test
     path('question/create/', core_views.QuestionCreate.as_view(), name="question-create"),
-    path('question/<int:pk>', core_views.QuestionDetailView.as_view(), name='question-detail'),
+    path('question/<int:pk>/', core_views.QuestionDetailView.as_view(), name='question-detail'),
         # Chinh added ^^^ to test class-based views
     path('answer/create/', core_views.AnswerCreate.as_view(), name="answer-create"),
     path('answer/<int:pk>', core_views.AnswerDetailView.as_view(), name='answer-detail'),

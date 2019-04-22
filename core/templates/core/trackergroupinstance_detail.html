@@ -10,7 +10,13 @@
 
 <div>Ended at: {{trackergroupinstance.end}}</div>
 
-<p><a href="">Add Response</a></p>
-{#{% url 'response_create' %}#}
+<h3>Questions</h3>
+    {% if trackergroupinstance.tracker.questions.all %}
+        {% for question in trackergroupinstance.tracker.questions.all %}
+            <div>
+                <div class="tracker">{{question}}<span><button class="surveybutton"><a href="{% url 'response_create' question.pk %}">Add Response</a></button></span></div>
+            </div>
+        {% endfor %}
+    {%endif%}
 
 {% endblock %}
