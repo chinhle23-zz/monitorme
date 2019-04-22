@@ -152,7 +152,6 @@ span {
     border-radius: 5px;
     outline: 0;
     margin-bottom: 1rem;
-    margin-top: 1rem;
 }
 
 .tracker-button {
@@ -197,7 +196,7 @@ span {
     outline: 0;
 }
 
-.tracker {
+.tracker, .member {
     margin-bottom: 5px;
 }
 

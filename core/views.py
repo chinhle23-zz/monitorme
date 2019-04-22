@@ -161,7 +161,7 @@ def dashboard_detail(request):
 
     return render(request, 'core/dashboard_detail.html', context=context)
 
-def user_detail(request, user):
+def user_detail(request, pk):
     template_name = 'core/user_detail.html'
     trackers = TrackerGroup.objects.filter(available_to=pk)
     context = {
