@@ -40,11 +40,12 @@ class User(AbstractUser):
 
 class TrackerGroup(models.Model):
     """This model handles the group of questions a user creates for the tracker."""
-    name = models.CharField(max_length=100, null=False, blank=False)
-    available_to = models.ManyToManyField('User')
+    # Chinh added verbose name to name, available_to, and active fields
+    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='tracker name')
+    available_to = models.ManyToManyField('User', verbose_name='assign users')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True, verbose_name='set active')
 
     def __str__(self):
         return self.name
@@ -53,6 +54,7 @@ class TrackerGroup(models.Model):
         return reverse('tracker-detail', args=[str(self.id)])
 
 class TrackerGroupInstance(models.Model):
+    
     tracker = models.ForeignKey('TrackerGroup', related_name='tracker_instances', on_delete=models.CASCADE, null=False)
     start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     end = models.DateTimeField(auto_now_add=False, null=True, blank=True)
@@ -64,12 +66,13 @@ class TrackerGroupInstance(models.Model):
 
 class Question(models.Model):
     """This creates the questionaire"""
-    description = models.TextField(max_length=1000, null=False, blank=False) 
-    order = models.IntegerField(null=False, blank=False)
-    tracker = models.ForeignKey('TrackerGroup', related_name='questions', on_delete=models.CASCADE)
+    # Chinh added verbose name to description, order, tracker and active fields
+    description = models.TextField(max_length=1000, null=False, blank=False, verbose_name='question') 
+    order = models.IntegerField(null=False, blank=False, verbose_name='order your question')
+    tracker = models.ForeignKey('TrackerGroup', related_name='questions', on_delete=models.CASCADE, verbose_name='assign tracker')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True, verbose_name='set active')
 
     def __str__(self):
         return self.description   
@@ -83,11 +86,12 @@ class Question(models.Model):
 
 class Answer(models.Model):
     """This creates the answer model"""
-    name = models.CharField(max_length=100, null=False, blank=False)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    # Chinh added verbose name to name, question, and active fields
+    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='answer')
+    question = models.ForeignKey('Question', on_delete=models.CASCADE, verbose_name='assign question')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True, verbose_name='set active')
 
     def __str__(self):
         return self.name

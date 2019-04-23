@@ -6,11 +6,15 @@
 <h3>Question: {{question.description}}</h3>
 
 <h3>Answers:</h3>
-{% for answer in question.answer_set.all %}
-<div><a href="{{answer.get_absolute_url}}">{{answer}}</a></div>
-{% endfor %}
+{% if question.answer_set.all %}
+    {% for answer in question.answer_set.all %}
+        <div><a href="{{answer.get_absolute_url}}">{{answer}}</a></div>
+    {% endfor %}
+{% else %}
+    <p>There are currently no answers associated with this question</p>
+{% endif %}
 
-<button class="button button2"><a href="{% url 'answer-create' %}">Create Answers</a></button>
+<a href="{% url 'answer-create' %}"><button class="button button2">Create Answers</button></a>
 
 
 {% endblock %} 

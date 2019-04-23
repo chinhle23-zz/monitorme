@@ -2,11 +2,13 @@
 
 {% block content %}
 
+<h3>Add a new answer</h3>
+
 <form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button class="button button2" type='Submit'>Submit Answers</button>
+    <button class="button button2" type='Submit'>Save Answer</button>
 </form>
 
 {% endblock %}

@@ -6,9 +6,8 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit"/>
+    {{ form.as_p }}
+    <button class="button button2" type='Submit'>Save Group</button>
 </form>
+
 {% endblock %}
