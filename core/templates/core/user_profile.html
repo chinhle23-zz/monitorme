@@ -30,9 +30,7 @@
                 <span class="profiledata">{{ group.name }}</span>
                 {% endfor %}
             {% else %}
-                <!-- <span class="addprofile"><a href="{% url 'create_group' %}">Create Group</a></span> -->
                 <span class="addprofile"><a href="{% url 'group_form' %}">Create Group</a></span>
-                    <!-- 4/20/2019 Chinh changed the the href url -->
             {%endif%}
         </div>
 
