@@ -12,7 +12,7 @@ class User(AbstractUser):
     email = models.CharField(max_length=50, null=False, blank=False)
     name = models.CharField(max_length=100, null=False, blank=False)
     is_family_admin = models.BooleanField(default=False)
-    label = models.CharField(max_length=50, null=False, blank=False)
+    label = models.CharField(max_length=50, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
@@ -20,6 +20,7 @@ class User(AbstractUser):
     zipcode = models.CharField(max_length=10, null=True, blank=True)
     active = models.BooleanField(default=True)
     phonenumber = models.CharField(max_length=25, null=True, blank=True)
+    parent = models.ForeignKey('User', on_delete=models.CASCADE, default=1)
     slug = models.SlugField()
 
     def set_slug(self):
@@ -41,13 +42,14 @@ class User(AbstractUser):
 class TrackerGroup(models.Model):
     """This model handles the group of questions a user creates for the tracker."""
     name = models.CharField(max_length=100, null=False, blank=False)
-    available_to = models.ManyToManyField('User')
+    available_to = models.ManyToManyField('User', related_name='available_trackers')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
+    created_by = models.ForeignKey('User', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return self.name
+        return f'{self.id} {self.name}'
 
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])
@@ -70,6 +72,7 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
+    created_by = models.ForeignKey('User', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.description   
@@ -88,6 +91,7 @@ class Answer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
+    created_by = models.ForeignKey('User', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
