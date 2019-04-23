@@ -6,12 +6,6 @@ from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-        
-
-
-
-
-
 User = get_user_model()
 
 class EditProfileForm(forms.Form):
@@ -34,8 +28,8 @@ class CustomRegistrationForm(RegistrationForm):
         label="Password",
         strip=False,
         widget=forms.PasswordInput(attrs={'class': ''}),
-        # help_text=password_validation.password_validators_help_text_html(),
-        help_text=None,
+        help_text=password_validation.password_validators_help_text_html(),
+        # help_text=None,
     )
 
     password2 = forms.CharField(
@@ -76,14 +70,16 @@ class NewTrackerInstanceForm(forms.Form):
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelchoicefield
         # https://docs.djangoproject.com/en/2.2/topics/db/queries/
         # this is no longer needed as the tracker pk can be passed as a variable in the URL
+    
 
 class NewResponseForm(forms.Form):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
-    def __init__(self, question, *args, **kwargs):
+    def __init__(self, question, group, *args, **kwargs):
+    # def __init__(self, question, *args, **kwargs):
         super(NewResponseForm, self).__init__(*args, **kwargs)
         self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
-       
+        self.fields['answered_for'] = forms.ModelChoiceField(User.objects.filter(groups=group))
         
 
 

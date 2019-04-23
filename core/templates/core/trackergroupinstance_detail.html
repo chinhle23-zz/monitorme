@@ -6,16 +6,33 @@
 
 <div>Created by: {{trackergroupinstance.created_by}}</div>
 
+<div>Group:
+    {% if trackergroupinstance.created_by.groups.all %}
+        {% for group in trackergroupinstance.created_by.groups.all %}
+            {{group}}
+        {% endfor %}
+    {%endif%}
+</div>
+
 <div>Started at: {{trackergroupinstance.start}}</div>
 
 <div>Ended at: {{trackergroupinstance.end}}</div>
 
 <h3>Questions</h3>
     {% if trackergroupinstance.tracker.questions.all %}
-        {% for question in trackergroupinstance.tracker.questions.all %}
+        <!--{# {% for question in trackergroupinstance.tracker.questions.all %}
             <div>
-                <div class="tracker">{{question}}<span><button class="surveybutton"><a href="{% url 'response_create' question.pk %}">Add Response</a></button></span></div>
+                <div class="tracker">{{question}}<span><button class="surveybutton"><a href="{ url 'response_create' question_pk=question.pk }">Add Response</a></button></span></div>
             </div>
+        {% endfor %} #}-->
+        {% for question in trackergroupinstance.tracker.questions.all %}
+            {% if trackergroupinstance.created_by.groups.all %}
+                {% for group in trackergroupinstance.created_by.groups.all %}
+                    <div>
+                        <div class="tracker">{{question}} for {{group}}<span><button class="surveybutton"><a href="{% url 'response_create' question_pk=question.pk group_pk=group.pk %}">Add Response</a></button></span></div>
+                    </div>
+                {% endfor %}
+            {%endif%}
         {% endfor %}
     {%endif%}
 

@@ -84,7 +84,7 @@ class AnswerCreate(CreateView):
 class AnswerDetailView(generic.DetailView):
     model = Answer
 
-def new_trackerinstance(request, pk):
+def new_trackerinstance(request, tracker_pk):
     new_trackerinstance_form = NewTrackerInstanceForm()
     if request.method == 'POST':
         new_trackerinstance_form = NewTrackerInstanceForm(request.POST)
@@ -92,7 +92,7 @@ def new_trackerinstance(request, pk):
             # tracker = request.POST.get('tracker', '') 
                 # can't use this, since it returns a string
             tracker_instance = TrackerGroupInstance.objects.create(
-                tracker_id=pk,
+                tracker_id=tracker_pk,
                 created_by=request.user,
             )
             tracker_instance.save()
@@ -105,11 +105,14 @@ def new_trackerinstance(request, pk):
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
 
-def new_response(request, pk):
+def new_response(request, question_pk, group_pk):
+# def new_response(request, question_pk):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
-    question = get_object_or_404(Question, pk=pk)
+    question = get_object_or_404(Question, id=question_pk)
+    group = get_object_or_404(Group, id=group_pk)
     if request.method == 'POST':
-        new_response_form = NewResponseForm(pk, request.POST)
+        # new_response_form = NewResponseForm(question_pk, request.POST)
+        new_response_form = NewResponseForm(question_pk, group_pk, request.POST)
         if new_response_form.is_valid():
             tracker = question.tracker
             tracker_instance = tracker.tracker_instances.last()
@@ -118,19 +121,37 @@ def new_response(request, pk):
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
             answer_keys = query_dict_copy.pop('answer')
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
+            answered_for_keys = query_dict_copy.pop('answered_for')
+            answered_for = []
+            for key in answered_for_keys:
+                answered_for.append(key)
+
             response = Response.objects.create(
-                answered_for_id=request.user.id,
-                question_id=pk,
+                answered_for_id=answered_for[0],
+                question_id=question_pk,
                 tracker_id=tracker.id,
                 tracker_instance_id=tracker_instance.id,
             )
             for key in answer_keys:
                 response.answer.add(Answer.objects.get(pk=key))
+
+            
+
+            # if query_dict_copy.get('answered_for'):
+            #     answered_for_keys = query_dict_copy.pop('answered_for')
+            #     for key in card_keys:
+            #         card = Card.objects.get(pk=key)
+            #         card.decks.add(deck)
+            #         card.save()
+            # else:
+            #     pass
+                
             response.save()
             
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
-        new_response_form = NewResponseForm(pk)
+        # new_response_form = NewResponseForm(question_pk)
+        new_response_form = NewResponseForm(question_pk, group_pk)
     
     context = {
         'form': new_response_form,
