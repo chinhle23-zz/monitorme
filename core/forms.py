@@ -1,5 +1,9 @@
 from django import forms
-from core.models import User
+from core.models import User, TrackerGroup, Answer
+from registration.forms import RegistrationForm
+from django.contrib.auth import get_user_model, authenticate, password_validation
+from django.contrib.auth.models import Group
+    # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
         
@@ -8,6 +12,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 
+User = get_user_model()
 
 class EditProfileForm(forms.Form):
     name = forms.CharField(
@@ -15,13 +20,6 @@ class EditProfileForm(forms.Form):
         max_length=100,
         widget=forms.TextInput(attrs={'required': True})
     )
-
-   
-    
-from registration.forms import RegistrationForm
-from django.contrib.auth import get_user_model, authenticate, password_validation
-
-User = get_user_model()
 
 class CustomRegistrationForm(RegistrationForm):
     # https://github.com/macropin/django-registration/blob/master/registration/forms.py
@@ -56,3 +54,36 @@ class CustomRegistrationForm(RegistrationForm):
         widgets = {
             'username': forms.TextInput(attrs={'class': ''}),
         }
+
+class NewGroupForm(forms.Form):
+
+    name = forms.CharField(label='Name',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'enter a group name'})
+    )
+    def save(self, **kwargs):
+        if self.is_valid():
+            group_properties = {'name': self.cleaned_data['name']}
+            group_properties.update(kwargs)
+            return Group.objects.create(**group_properties)
+        return None
+
+
+class NewTrackerInstanceForm(forms.Form):
+    pass
+    # https://docs.djangoproject.com/en/2.2/topics/forms/#building-a-form-in-django
+    # tracker = forms.ModelChoiceField(required=True, queryset=TrackerGroup.objects.all())
+        # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelchoicefield
+        # https://docs.djangoproject.com/en/2.2/topics/db/queries/
+        # this is no longer needed as the tracker pk can be passed as a variable in the URL
+
+class NewResponseForm(forms.Form):
+    # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
+    def __init__(self, question, *args, **kwargs):
+        super(NewResponseForm, self).__init__(*args, **kwargs)
+        self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
+            # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
+       
+        
+
+

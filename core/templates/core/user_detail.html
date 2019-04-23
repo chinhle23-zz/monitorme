@@ -4,15 +4,29 @@
 {% block content %}
 
 
-<h3>Your Personal Dashboard</h3>
+<p>Welcome {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %} to your personal dashboard!</p>
 
 
 <h3>Available Trackers</h3>
+    <a href="">
+        <button class="add-member" type="submit">
+            Add Tracker
+        </button>
+    </a>  
+
 {% if trackers %}
 {% for tracker in trackers %}
-<div>{{tracker}}</div>
+    <div>{{tracker}} - <span><button class="surveybutton">Start</button></span></div>
 {% endfor %}
 {%endif%}
+
+<br>
+<h3>Pending Trackers</h3>
+
+<br>
+<h3>Closed Trackers</h3>
+
+
 
 
 {% endblock content %}

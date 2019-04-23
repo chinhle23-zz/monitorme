@@ -13,7 +13,11 @@
 
 {% if request.user.is_family_admin == True %}
     <h3>Your Group Members</h3>
-       
+        <a href="">
+            <button class="add-member" type="submit">
+                Add Members
+            </button>
+        </a>
         {% for user in users %}
             <div class="member">
                 <a href="{% url 'user_profile' user.username %}">{{user.name}} - </a>
@@ -23,36 +27,25 @@
             </div>
         {% endfor %}
 {% endif %}
-    <a href="">
-        <button class='add-member' type='submit'>
-            Add Members
-        </button>
-    </a>
+    
 <br>
 <h3>Available Trackers</h3>
-
+<a href="">
+    <button class='add-member' type='submit'>
+        <a href="{% url 'tracker-create' %}">Add Tracker</a> 
+    </button>
+</a>  
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
-                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton">Start</button></span></div>
+                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><button class="surveybutton"><a href="{% url 'trackerinstance_create' tracker.pk %}">Start</a></button></span></div>
             </div>
         {% endfor %}
     {%endif%}
-
-    <a href="">
-        <button class='add-member' type='submit'>
-            Add Tracker
-        </button>
-    </a>        
-
-
 <br>
 <h3>Pending Trackers</h3>
 
 <br>
 <h3>Closed Trackers</h3>
-
-
-<a href="{% url 'tracker-create' %}">Create Tracker</a>
 
 {% endblock %}
