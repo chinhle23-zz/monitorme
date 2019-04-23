@@ -27,6 +27,7 @@ class QuestionAdmin(admin.ModelAdmin):
         'order', 
         'tracker', 
         'active',
+        'id',
     )
 
 @admin.register(TrackerGroupInstance)
