@@ -9,8 +9,7 @@
 
 <h3>Available Trackers</h3>
     <a href="">
-        <button class="add-member" type="submit">
-            Add Tracker
+     <a href="/tracker/create"><button class="add-tracker">Add Tracker</button></a>
         </button>
     </a>  
 
@@ -18,7 +17,7 @@
 {% for tracker in trackers %}
     <div>{{tracker}} - <span><button class="surveybutton"><a href="{% url 'trackerinstance_create' tracker.pk %}">Start</a></button></span></div>
 {% endfor %}
-{%endif%}
+{% endif %}
 
 <br>
 <h3>Pending Trackers</h3>

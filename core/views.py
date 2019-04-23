@@ -87,7 +87,6 @@ class AnswerCreate(CreateView):
 class AnswerDetailView(generic.DetailView):
     model = Answer
 
-<<<<<<< HEAD
 class AnswerUpdate(UpdateView):
     model = Answer
     template_name = 'answer_edit'
@@ -95,10 +94,7 @@ class AnswerUpdate(UpdateView):
     'answer',
     'tracker']
 
-def new_trackerinstance(request, pk):
-=======
 def new_trackerinstance(request, tracker_pk):
->>>>>>> master
     new_trackerinstance_form = NewTrackerInstanceForm()
     if request.method == 'POST':
         new_trackerinstance_form = NewTrackerInstanceForm(request.POST)

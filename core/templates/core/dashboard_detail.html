@@ -32,7 +32,7 @@
 <h3>Available Trackers</h3>
 <a href="">
     <button class='add-member' type='submit'>
-        <a href="{% url 'tracker-create' %}">Add Tracker</a> 
+        <a href="{% url 'tracker-create' user.pk %}">Add Tracker</a> 
     </button>
 </a>  
     {% if trackers %}
