@@ -15,11 +15,6 @@ from django.http import HttpResponseRedirect
 def index(request):
     return render(request, 'index.html')
 
-def disclosure(request):
-    context = {
-    }
-    return render(request, 'core/disclosure.html', context=context)
-
 def user_profile(request, username):
     user = User.objects.get(username=request.user)
     return render(request, 'core/user_profile.html', {"user":user})

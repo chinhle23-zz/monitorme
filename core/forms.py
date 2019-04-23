@@ -45,6 +45,8 @@ class CustomRegistrationForm(RegistrationForm):
         help_text="Enter the same password as before, for verification.",
     )
 
+    disclosure_accepted = forms.BooleanField(required=True, label="By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions: ")
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.label_suffix = None

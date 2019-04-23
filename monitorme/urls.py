@@ -24,7 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', core_views.index, name='index'),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('disclosure/', core_views.disclosure, name='disclosure'),
     path('profile/<username>', core_views.user_profile, name="user_profile"),
     path('profile/<int:pk>/update', core_views.UserUpdate.as_view(), name="edit-profile"),
     path('group/add', core_views.new_group, name='group_form'),
