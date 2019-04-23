@@ -34,9 +34,10 @@ urlpatterns = [
     path('answer/create/', core_views.AnswerCreate.as_view(), name="answer-create"),
         # path('answer_edit/', core_views.AnswerEdit.as_view(), name="answer_edit"),
     path('answer/<int:pk>', core_views.AnswerDetailView.as_view(), name="answer-detail"),
-    path('trackerinstance/create/<int:pk>', core_views.new_trackerinstance, name="trackerinstance_create"),
+    path('trackerinstance/create/<int:tracker_pk>', core_views.new_trackerinstance, name="trackerinstance_create"),
     path('trackerinstance/<int:pk>', core_views.TrackerInstanceDetailView.as_view(), name="trackergroupinstance_detail"),
-    path('response/create/<int:pk>', core_views.new_response, name="response_create"),
+    path('response/create/<int:question_pk>/<int:group_pk>', core_views.new_response, name="response_create"),
+    # /<int:group_pk>$
     path('response_detail', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
     path('user_detail/<int:pk>', core_views.user_detail, name="user-detail"),
