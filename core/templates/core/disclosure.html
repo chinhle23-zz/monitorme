@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-<script src="script.js"></script>
 
 {% block content %}
 <h3>By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions:</h3>
@@ -13,19 +12,6 @@
 <h3>Confidentiality</h3>
 <p>We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by Monitor-Me will only be in connection with the agreed upon services.
 
-
-<button onclick="myFunction()">submit</button>
-
-<script>
-function myFunction() {
-  location.replace("/accounts/register/")
-}
-</script>
-
 <br><input type="checkbox" name="TOS" value="TOS"><b> I have read the terms of agreement all terms and conditions set for for using the Monitor-Me website/mobile application.</b><br>
-
-
-
-
 
 {% endblock content %}

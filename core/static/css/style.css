@@ -238,3 +238,27 @@ and (max-width: 2880px) {
   }
 }
 
+disclosure {
+    outline: 0;
+}
+
+details {
+    border-radius: 4px;
+    padding: .5em .5em 0;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+    outline: 0;
+}
+
+details[open] {
+    padding: .5em;
+}
+
+details[open] summary {
+    margin-bottom: .5em;
+    outline: 0;
+}
