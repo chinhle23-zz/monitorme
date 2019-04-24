@@ -49,7 +49,7 @@ class TrackerGroup(models.Model):
     created_by = models.ForeignKey('User', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return f'{self.id} {self.name}'
+        return f'{self.name} ({self.id})'
 
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])
@@ -61,7 +61,7 @@ class TrackerGroupInstance(models.Model):
     created_by = models.ForeignKey('User', on_delete=models.CASCADE,  null=False)
 
     def __str__(self):
-        return f'{self.tracker.name} ({self.created_by.name})'
+        return self.tracker.name
 
 
 class Question(models.Model):

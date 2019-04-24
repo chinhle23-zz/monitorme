@@ -71,6 +71,10 @@ a {
     color: #B4B3B3;
 }
 
+.smalltext {
+    font-size: .85rem;
+}
+
 .profiledata {
     color: #8B4F77;
 }
