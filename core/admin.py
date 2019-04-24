@@ -54,7 +54,17 @@ class ResponseAdmin(admin.ModelAdmin):
         'updated_at',
     )
 
-admin.site.register(TrackerGroup)
+@admin.register(TrackerGroup)
+class TrackerGroupAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 
+        'display_available_to', 
+        'created_at', 
+        'updated_at',
+        'active',
+        'created_by',
+    )
+
 admin.site.register(Answer)
 
 

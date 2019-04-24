@@ -27,7 +27,12 @@ urlpatterns = [
     path('profile/<username>', core_views.user_profile, name="user_profile"),
     path('profile/<int:pk>/update', core_views.UserUpdate.as_view(), name="edit-profile"),
     path('group/add', core_views.new_group, name='group_form'),
-    path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker-create"),
+    # path('tracker/create/', core_views.TrackerCreate.as_view(), name="tracker-create"),
+    path('tracker/create/', core_views.NewTrackerView.as_view(), name="tracker-create"),
+    path(
+        'tracker/create/questions/',
+        core_views.create_tracker_questions,
+        name="create_tracker_questions"),
     path('tracker/<int:pk>', core_views.TrackerDetailView.as_view(), name="tracker-detail"),
     path('question/create/', core_views.QuestionCreate.as_view(), name="question-create"),
     path('question/<int:pk>/', core_views.QuestionDetailView.as_view(), name='question-detail'),
@@ -36,7 +41,6 @@ urlpatterns = [
     path('trackerinstance/create/<int:tracker_pk>', core_views.new_trackerinstance, name="trackerinstance_create"),
     path('trackerinstance/<int:pk>', core_views.TrackerInstanceDetailView.as_view(), name="trackergroupinstance_detail"),
     path('response/create/<int:question_pk>/<int:group_pk>', core_views.new_response, name="response_create"),
-    # /<int:group_pk>$
     path('response_detail', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
     path('user_detail/<int:pk>', core_views.user_detail, name="user-detail"),

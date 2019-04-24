@@ -1,5 +1,5 @@
 from django import forms
-from core.models import User, TrackerGroup, Answer
+from core.models import User, TrackerGroup, Answer, Question
 from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 from django.contrib.auth.models import Group
@@ -83,5 +83,62 @@ class NewResponseForm(forms.Form):
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
         self.fields['answered_for'] = forms.ModelChoiceField(User.objects.filter(groups=group))
         
+class NewTrackerGroupForm(forms.Form):
+    name = forms.CharField(
+        label='Tracker Name',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'name your tracker'}),
+    )
+    available_to = forms.ModelMultipleChoiceField(
+        label='Assign users',
+        queryset=User.objects.all(), 
+    )
+    active = forms.BooleanField(
+        initial=True,
+        required=False,
+        label='Set Active',
+        widget=forms.CheckboxInput
+    )
 
+    def save(self, **kwargs):
+        if self.is_valid():
+            tracker_properties = {
+                "name": self.cleaned_data['name'],
+                "active": self.cleaned_data['active'],
+            }
+            tracker_properties.update(kwargs)
+            return TrackerGroup.objects.create(**tracker_properties)
+        return None
+
+class NewQuestionForm(forms.Form):
+    description = forms.CharField(
+        label='Question',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'type your question'}),
+    )
+    order = forms.IntegerField(
+        label='Order your question',
+    )
+    tracker = forms.ModelChoiceField(
+        label='Assign tracker',
+        queryset=TrackerGroup.objects.all()
+    )
+    active = forms.BooleanField(
+        initial=True,
+        required=False,
+        label='Set Active',
+        widget=forms.CheckboxInput
+    )
+
+    def save(self, **kwargs):
+        if self.is_valid():
+            question_properties = {
+                "description": self.cleaned_data['description'],
+                "order": self.cleaned_data['order'],
+                "tracker": self.cleaned_data['tracker'],
+                "active": self.cleaned_data['active'],
+            }
+            question_properties.update(kwargs)
+            return Question.objects.create(**question_properties)
+        return None
 

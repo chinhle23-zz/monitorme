@@ -43,7 +43,7 @@ class TrackerGroup(models.Model):
     """This model handles the group of questions a user creates for the tracker."""
     # Chinh added verbose name to name, available_to, and active fields
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='tracker name')
-    available_to = models.ManyToManyField('User', verbose_name='assign users')
+    available_to = models.ManyToManyField('User', related_name='available_trackers', verbose_name='assign users')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True, verbose_name='set active')
@@ -54,6 +54,10 @@ class TrackerGroup(models.Model):
 
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])
+
+    def display_available_to(self):
+        """Create a string for the available_to Users. This is required to display answers in Admin."""
+        return ', '.join(user.username for user in self.available_to.all()[:3])
 
 class TrackerGroupInstance(models.Model):
     

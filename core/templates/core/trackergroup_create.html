@@ -2,13 +2,33 @@
 
 {% block content %}
 
-<h3>Add a new tracker</h3>
+<h3>Last tracker created: {{last_tracker_created}}</h3>
 
-<form method="post" action="">
+<h3>Create a new tracker</h3>
+
+<form method="post" action="" class="">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}
+        <div class="">
+            <div class="{% if field.field.required %}b{% endif %}">{{ field.label_tag }}</div>
+            <div>{{ field }}</div>
+            {% if field.help_text %}
+                <p class="">{{ field.help_text}}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button class="button button2" type="Submit">Save Tracker</button>
+</form>
 
-    <button class="button button2" type='Submit'>Save Tracker</button>
+
+<h3>Last question created: {{last_question_created}}</h3>
+
+<h3>Create a new question</h3>
+
+<form method="POST" action="{% url 'create_tracker_questions' %}" class="">
+    {% csrf_token %}
+    {{ question_form.as_p }}
+    <button class="button button2" type="Submit">Save Question</button>
 </form>
 
 {% endblock %}

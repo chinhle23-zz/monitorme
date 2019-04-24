@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm
+from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm, NewTrackerGroupForm, NewQuestionForm
 from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -10,6 +11,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_http_methods
 
 
 def index(request):
@@ -55,10 +57,56 @@ def new_group(request):
 
     return render(request, 'core/create_group.html', {"form": new_group_form})
 
-class TrackerCreate(CreateView):
-    model = TrackerGroup
-    fields = '__all__'
-    template_name='core/trackergroup_create.html'
+# class TrackerCreate(CreateView):
+#     model = TrackerGroup
+#     fields = '__all__'
+#     template_name='core/trackergroup_create.html'
+
+class NewTrackerView(LoginRequiredMixin, View):
+
+    def dispatch(self, request, *args, **kwargs):
+        self.question_form = NewQuestionForm()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        last_tracker_created = TrackerGroup.objects.filter(created_by=request.user).last()
+        last_question_created = Question.objects.filter(created_by=request.user).last()
+        form = NewTrackerGroupForm()
+        context = {
+            "form": form,
+            "question_form": self.question_form,
+            "last_tracker_created": last_tracker_created,
+            "last_question_created": last_question_created,
+        }
+        return render(request, "core/trackergroup_create.html", context)
+
+    def post(self, request):
+        last_tracker_created = TrackerGroup.objects.filter(created_by=request.user).last()
+        last_question_created = Question.objects.filter(created_by=request.user).last()
+        form = NewTrackerGroupForm(request.POST)
+        if form.is_valid():
+            tracker = form.save(created_by=request.user)
+            query_dict_copy = request.POST.copy()
+            available_to_keys = query_dict_copy.pop('available_to')
+            for key in available_to_keys:
+                tracker.available_to.add(User.objects.get(pk=key))
+            return redirect('tracker-create')
+
+        context = {
+            "form": form,
+            "question_form": self.question_form,
+            "last_tracker_created": last_tracker_created,
+            "last_question_created": last_question_created,
+        }
+        return render(request, "core/trackergroup_create.html", context)
+
+@login_required
+def create_tracker_questions(request):
+    if request.method == 'POST':
+        form = NewQuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(created_by=request.user)
+    return redirect('tracker-create')
 
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
@@ -129,17 +177,6 @@ def new_response(request, question_pk, group_pk):
             )
             for key in answer_keys:
                 response.answer.add(Answer.objects.get(pk=key))
-
-            
-
-            # if query_dict_copy.get('answered_for'):
-            #     answered_for_keys = query_dict_copy.pop('answered_for')
-            #     for key in card_keys:
-            #         card = Card.objects.get(pk=key)
-            #         card.decks.add(deck)
-            #         card.save()
-            # else:
-            #     pass
                 
             response.save()
             
