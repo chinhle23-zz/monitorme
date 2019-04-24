@@ -9,16 +9,16 @@
         <div class="landing-description">
             <p>These are some quick links to where you might need to go in the system!</p> 
         </div>
-            <a href=""><button class="add-tracker">Add Tracker</button></a>
+            <a href="/tracker/create"><button class="add-tracker">Add Tracker</button></a>
         <br>
             {% if trackers %}
                 {% for tracker in trackers %}
-                <a href="">
-                    <button class="tracker-button">Start {{tracker}}</button>
+            <a href="{% url 'trackerinstance_create' tracker.pk %}">                    
+            <button class="tracker-button">Start {{tracker}}</button>
                 </a>
                 <br>
                 {% endfor %}
-            {%endif%}
+            {% endif %}
             
         
 </div>        

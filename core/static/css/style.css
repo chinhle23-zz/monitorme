@@ -51,7 +51,7 @@ a {
 }
 
 .landing {
-    color: #026670;
+    color: #002c30;
 }
 
 .hello-message {
@@ -77,16 +77,15 @@ a {
 
 
 .button, .loginbutton {
-    background-color: #83C7DC;
+    background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
-    color: #052e3e;
+    color: black;
     padding: 10px 25px;
     text-align: center;
     text-decoration: none;
-    text-shadow: .5px .5px .5px rgba(40, 68, 89, 0.474);
-    font-size: 1rem;
+    font-size: 1.1rem;
     height: 45px;
     width: 200px;
     margin-bottom: 15px;
@@ -94,6 +93,7 @@ a {
     transition-duration: 0.2s;
     border-radius: 9px;
     outline: 0;
+    font-family: 'Noto Sans';
   }
 
 .button2:hover, 
@@ -110,7 +110,7 @@ a {
     height: 38px;
     width: 100px;
     text-align: center;
-    max-height: 38px
+    max-height: 38px;
     padding: 1.5px;
     font-size: 1rem;
 }
@@ -120,12 +120,12 @@ span {
 }
 
 .surveybutton {
-    background-color: #83C7DC;
+    background-color: rgb(176, 219, 232);
     font-size: .75rem;
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
-    color: #052e3e;
+    color: black;
     padding-left: .5rem;
     padding-right: .5rem;
     text-align: center;
@@ -142,7 +142,7 @@ span {
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
-    color: #052e3e;
+    color: black;
     padding-left: .5rem;
     padding-right: .5rem;
     text-align: center;
@@ -155,16 +155,14 @@ span {
 }
 
 .tracker-button {
-    background-color: #83C7DC;
+    background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
-    color: #052e3e;
-    padding: 1rem;
-    padding-bottom: 2rem;
+    color: black;
+    padding: auto;
     text-align: center;
     text-decoration: none;
-    text-shadow: .5px .5px .5px rgba(40, 68, 89, 0.474);
     font-size: 1rem;
     height: 45px;
     width: 200px;
@@ -180,12 +178,11 @@ span {
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
-    color: #052e3e;
+    color: black;
     padding: 1rem;
     padding-bottom: 2rem;
     text-align: center;
     text-decoration: none;
-    text-shadow: .5px .5px .5px rgba(40, 68, 89, 0.474);
     font-size: 1rem;
     height: 45px;
     width: 200px;

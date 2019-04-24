@@ -119,6 +119,14 @@ class QuestionCreate(CreateView):
 class QuestionDetailView(generic.DetailView):
     model = Question
 
+class QuestionUpdate(UpdateView):
+    model = Question
+    template_name = 'question_edit'
+    fields = ['tracker',
+    'active',
+    'question']
+
+
 class AnswerCreate(CreateView):
     model = Answer
     fields = '__all__'
@@ -126,6 +134,13 @@ class AnswerCreate(CreateView):
 
 class AnswerDetailView(generic.DetailView):
     model = Answer
+
+class AnswerUpdate(UpdateView):
+    model = Answer
+    template_name = 'answer_edit'
+    fields = ['question',
+    'answer',
+    'tracker']
 
 def new_trackerinstance(request, tracker_pk):
     new_trackerinstance_form = NewTrackerInstanceForm()

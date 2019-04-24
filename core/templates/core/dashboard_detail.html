@@ -30,19 +30,15 @@
     
 <br>
 <h3>Available Trackers</h3>
-<a href="">
-    <a href="{% url 'tracker-create' %}">
-        <button class='add-member' type='submit'>
-            Add Tracker
-        </button>
-    </a> 
-    <!-- Chinh moved the <a> tag outside the Add Tracker button -->
+<a href="{% url 'tracker-create' %}">
+    <button class='add-member' type='submit'>
+        Add Tracker 
+    </button>
 </a>  
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
                 <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
-                    <!-- Chinh moved the <a> tag outside the Start button -->
             </div>
         {% endfor %}
     {%endif%}

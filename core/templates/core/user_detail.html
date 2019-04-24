@@ -9,7 +9,6 @@
 
 <h3>Available Trackers</h3>
     <a href="{% url 'tracker-create' %}">
-        <!-- Chinh added href -->
         <button class="add-member" type="submit">
             Add Tracker
         </button>
@@ -18,9 +17,8 @@
 {% if trackers %}
 {% for tracker in trackers %}
     <div>{{tracker}} - <span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
-        <!-- Chinh moved the <a> tag outside the Start button -->
 {% endfor %}
-{%endif%}
+{% endif %}
 
 <br>
 <h3>Pending Trackers</h3>

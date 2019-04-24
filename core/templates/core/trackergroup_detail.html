@@ -6,7 +6,6 @@
 
 <div>Available To: {{trackergroup.available_to}}</div>
 <a href="{% url 'question-create' %}"><button class="button button2">Create A Question</button></a>
-    <!-- Chinh moved the <a> tag outside the Create A Question button -->
 
 {% for question in trackergroup.questions.all %}
 <div>{{question.order}})  <a href="{{question.get_absolute_url}}">{{question}}</a></div>

@@ -5,5 +5,7 @@
 <h3>Associated Tracker: <a href="{{answer.question.tracker.get_absolute_url}}">{{answer.question.tracker}}</a></h3>
 <h3>Associated Queston: <a href="{{answer.question.get_absolute_url}}">{{answer.question.description}}</a></h3>
 <h3>Answer: {{answer.name}}</h3>
-
+<a href="{% url 'answer_edit' user.pk %}">
+            <button type='submit'>Edit Answer</button>
+        </a>
 {% endblock %}
