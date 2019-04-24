@@ -15,7 +15,7 @@
 
 {% if trackers %}
 {% for tracker in trackers %}
-    <div>{{tracker}} - <span><button class="surveybutton"><a href="{% url 'trackerinstance_create' tracker.pk %}">Start</a></button></span></div>
+    <div>{{tracker}} - <span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
 {% endfor %}
 {% endif %}
 
