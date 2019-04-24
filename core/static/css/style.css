@@ -259,3 +259,7 @@ details[open] summary {
     margin-bottom: .5em;
     outline: 0;
 }
+
+.registration_look {
+    text-align: left;
+}
