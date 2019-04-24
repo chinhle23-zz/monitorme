@@ -197,6 +197,10 @@ span {
     margin-bottom: 5px;
 }
 
+.reportpage {
+    text-align: left
+}
+
   @media screen
   and (min-width: 450px) 
   and (max-width: 750px) {
