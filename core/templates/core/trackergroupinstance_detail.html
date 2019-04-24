@@ -29,7 +29,7 @@
             {% if trackergroupinstance.created_by.groups.all %}
                 {% for group in trackergroupinstance.created_by.groups.all %}
                     <div>
-                        <div class="tracker">{{question}} for {{group}}<span><button class="surveybutton"><a href="{% url 'response_create' question_pk=question.pk group_pk=group.pk %}">Add Response</a></button></span></div>
+                        <div class="tracker">{{question}} for {{group}}<span><a href="{% url 'response_create' question_pk=question.pk group_pk=group.pk %}"><button class="surveybutton">Add Response</button></a></span></div>
                     </div>
                 {% endfor %}
             {%endif%}

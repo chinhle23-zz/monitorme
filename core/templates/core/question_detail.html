@@ -10,7 +10,7 @@
 <div><a href="{{answer.get_absolute_url}}">{{answer}}</a></div>
 {% endfor %}
 
-<button class="button button2"><a href="{% url 'answer-create' %}">Create Answers</a></button>
+<a href="{% url 'answer-create' %}"><button class="button button2">Create Answers</button></a>
 
 
 {% endblock %} 
