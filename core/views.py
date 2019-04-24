@@ -90,7 +90,8 @@ class NewTrackerView(LoginRequiredMixin, View):
             available_to_keys = query_dict_copy.pop('available_to')
             for key in available_to_keys:
                 tracker.available_to.add(User.objects.get(pk=key))
-            return redirect('tracker-create')
+            return HttpResponseRedirect(reverse('tracker-detail', args=[str(tracker.id)]))
+                #credit: https://stackoverflow.com/questions/50731218/django-str-object-has-no-attribute-get
 
         context = {
             "form": form,
