@@ -8,13 +8,6 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 User = get_user_model()
 
-class EditProfileForm(forms.Form):
-    name = forms.CharField(
-        label= 'Name',
-        max_length=100,
-        widget=forms.TextInput(attrs={'required': True})
-    )
-
 class CustomRegistrationForm(RegistrationForm):
     # https://github.com/macropin/django-registration/blob/master/registration/forms.py
     # https://github.com/django/django/blob/master/django/contrib/auth/forms.py
@@ -48,11 +41,6 @@ class CustomRegistrationForm(RegistrationForm):
 
     disclosure_accepted = forms.BooleanField(required=True, label="By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions: ")
 
-    # is_family_admin = forms.BooleanField(
-    #     label="ONLY check here if adding others to a group",
-    #     required=False,
-    #     widget=forms.CheckboxInput
-    # )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
