@@ -35,7 +35,7 @@
         {% for tracker in trackers %}
             <div>
                 <div class="tracker">
-                    <a href="% url 'trackerinstance_create' tracker.pk %}">
+                    <a href="{% url 'trackerinstance_create' tracker.pk %}">
                         Start {{tracker}}
                     </a>
                 </div>
