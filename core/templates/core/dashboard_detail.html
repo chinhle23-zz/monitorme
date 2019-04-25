@@ -14,40 +14,37 @@
 
 {% if request.user.is_family_admin == True %}
     <h3>Your Group Members</h3>
-        <a href="">
-            <button class="add-member" type="submit">
-                Add Members
-            </button>
-        </a>
+    <h4 class="smalltext purple">Select to open User Detail Page</h4>
         {% for user in user_list %}
-            
             <div class="member">
-                <a href="{% url 'user_profile' user.username %}">
-                    {% if user.name == '' %}{{user.username}}{% else %}{{user.name}}{% endif %} - </a>
-                <span>
-                    <a href="{% url 'user-detail' user.pk %}"><button class="surveybutton">Detail</button></a>
-                </span>
+                <a href="{% url 'user-detail' user.pk %}">
+                    {% if user.name == '' %}{{user.username}}{% else %}{{user.name}}{% endif %}</a>
             </div>
         {% endfor %}
 {% endif %}
     
 <br>
 <h3>Available Trackers</h3>
-<a href="{% url 'tracker-create' %}">
+<h4 class="smalltext purple">Select to Start Tracker</h4>
+<!-- <a href="{% url 'tracker-create' %}">
     <button class='add-member' type='submit'>
         Add Tracker 
     </button>
-</a>  
+</a>   -->
     {% if trackers %}
         {% for tracker in trackers %}
             <div>
-                <div class="tracker"><a href="{% url 'tracker-detail' tracker.pk %}">{{tracker}} - </a><span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
+                <div class="tracker">
+                    <a href="% url 'trackerinstance_create' tracker.pk %}">
+                        Start {{tracker}}
+                    </a>
+                </div>
             </div>
         {% endfor %}
     {%endif%}
 <br>
 <h3>Pending Trackers</h3>
-<h4 class="smalltext">Tracker Name <span class="addprofile smalltext">(Start Date)</span></h4>
+<h4 class="smalltext purple">Tracker Name <span class="addprofile smalltext">(Start Date)</span></h4>
 {% if pending %}
         {% for tracker in pending%}
             <div>
@@ -57,7 +54,7 @@
     {%endif%}
 <br>
 <h3>Closed Trackers</h3>
-<h4 class="smalltext">Tracker Name <span class="addprofile smalltext">(Completed Date)</span></h4>
+<h4 class="smalltext purple">Tracker Name <span class="addprofile smalltext">(Completed Date)</span></h4>
 {% if completed  %}
         {% for tracker in completed %}
             <div>

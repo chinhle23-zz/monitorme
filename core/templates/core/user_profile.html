@@ -36,8 +36,20 @@
 
         </div>
         <a href="{% url 'edit-profile' user.pk %}">
-            <button class="add-tracker" type="submit">Edit Profile</button>
+            <button class="tracker-button" type="submit">Edit Profile</button>
         </a>
+        {% if request.user.is_family_admin == True %}
+        <a href="">
+            <button class="add-tracker" type="submit">
+                Add Members
+            </button>
+        </a>
+        {% endif %}
+        <a href="{% url 'tracker-create' %}">
+            <button class="add-tracker" type="submit">
+                Add Tracker 
+            </button>
+        </a>  
 
 
         

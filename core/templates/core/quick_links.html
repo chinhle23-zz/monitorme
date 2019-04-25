@@ -24,12 +24,6 @@
                 <button class="add-tracker">Add Tracker</button>
             </a>
             <br>
-            {% if request.user.is_family_admin == True %}
-                <a href="{% url 'dashboard_detail' %}"><button class="dashboard">Dashboard</button></a>
-            {% else %}
-                <a href="{% url 'user-detail' request.user.pk %}"><button class="dashboard">Dashboard</button></a>
-            {% endif %}
-        <br>
         </div>
         {% endfor %}
         {% endif %}
