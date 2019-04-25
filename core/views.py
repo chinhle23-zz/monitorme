@@ -26,6 +26,13 @@ class UserUpdate(UpdateView):
         'name',
         'email',
         'is_family_admin',
+        'label',
+        'city',
+        'state',
+        'zipcode',
+        'active',
+        'phonenumber',
+        'groups',
     )
     success_url = ('/profile/{{user.username}}')
 
@@ -42,8 +49,7 @@ def new_group(request):
                 name=name,
             )
             group.save()
-            # return HttpResponseRedirect(reverse('discover_page'))
-            # removed discoverpage
+            return HttpResponseRedirect(reverse('discover_page'))
     else:
         new_group_form = NewGroupForm()
 
@@ -290,6 +296,15 @@ def user_detail(request, pk):
     }
     return render(request, 'core/user_detail.html', context)
 
+def discover_page(request):
+    users = User.objects.all()
+    groups = Group.objects.all()
+
+    context = {
+        'users': users,
+        'groups': groups,
+    }
+    return render(request, 'core/discover_page.html', context=context)
 
 def quick_links(request):
     groups = Group.objects.all()
