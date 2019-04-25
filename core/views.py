@@ -268,25 +268,22 @@ def new_response(request, question_pk, group_pk):
 
     return render(request, 'core/response_create.html', context=context)
 
-def response_detail(request):
+def response_detail(request, pk):
     context = {
     }
     return render(request, 'response_detail', context=context)
 
 def dashboard_detail(request):
-    group_name = Group.objects.filter(user=request.user)
-    trackers = TrackerGroup.objects.all()
-    
-    if group_name == "":
-        users = User.objects.all()
-    else:
-        user_group = group_name[0]
-        users = User.objects.filter(groups__name=user_group)  
+    user_list = User.objects.filter(parent=request.user.pk)
+    trackers = TrackerGroup.objects.all() 
+    pending = TrackerGroupInstance.objects.filter(end=None)
+    completed = TrackerGroupInstance.objects.exclude(end=None)
 
     context = {
-        'users': users,
+        'user_list': user_list,
         'trackers': trackers,
-        'group_name': group_name,
+        'pending': pending,
+        'completed': completed,
     }
 
     return render(request, 'core/dashboard_detail.html', context=context)
@@ -322,8 +319,24 @@ def quick_links(request):
 def references(request):
     return render(request, 'core/reference.html')
       
-def calendar(request):
-    return render(request, 'core/calendar.html')
+def report(request):
+    user_info = User.objects.filter(parent=request.user)
+    trackers = TrackerGroup.objects.all()
+    questions = Question.objects.all()
+    answers = Answer.objects.all()
+    instances = TrackerGroupInstance.objects.all()
+    responses = Response.objects.all()
+
+    context = {
+        'user_info': user_info,
+        'trackers': trackers, 
+        'questions': questions,
+        'answers': answers,
+        'instances': instances,
+        'responses': responses,
+    }
+
+    return render(request, 'core/report.html', context=context)
 
 ### Unused Code ###
 # def landing_page(request, username):
