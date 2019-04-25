@@ -95,9 +95,17 @@ class NewResponseForm(forms.Form):
     def __init__(self, question, group, *args, **kwargs):
     # def __init__(self, question, *args, **kwargs):
         super(NewResponseForm, self).__init__(*args, **kwargs)
-        self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
+        self.fields['answer'] = forms.ModelMultipleChoiceField(
+            Answer.objects.filter(question_id=question),
+            label='Select answer(s)',
+            widget=forms.CheckboxSelectMultiple,
+            )
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
-        self.fields['answered_for'] = forms.ModelChoiceField(User.objects.filter(groups=group))
+        self.fields['answered_for'] = forms.ModelChoiceField(
+            User.objects.filter(groups=group),
+            label='Who are you answering for',
+            widget=forms.RadioSelect,
+            )
 
 class CreateTrackerQuestionAnswerForm(forms.Form):
     tracker_name = forms.CharField(
@@ -170,3 +178,17 @@ class CreateAnswerForm(forms.Form):
             answer_properties.update(kwargs)
             return Answer.objects.create(**answer_properties)
         return None
+
+class ResponseForm(forms.Form):
+    def __init__(self, question_id, *args, **kwargs):
+        super(NewResponseForm, self).__init__(*args, **kwargs)
+        self.fields['answer'] = forms.ModelMultipleChoiceField(
+            Answer.objects.filter(question_id=question_id),
+            label='Select answer(s)',
+            widget=forms.CheckboxSelectMultiple,
+            )
+        self.fields['answered_for'] = forms.ModelChoiceField(
+            User.objects.all(),
+            label='Who are you answering for',
+            widget=forms.RadioSelect,
+            )
