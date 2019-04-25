@@ -54,6 +54,10 @@ class TrackerGroup(models.Model):
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])
 
+    def display_available_to(self):
+        """Create a string for the Users that have access to the tracker."""
+        return ', '.join(user.username for user in self.available_to.all()[:3])
+
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', related_name='tracker_instances', on_delete=models.CASCADE, null=False)
     start = models.DateTimeField(auto_now_add=True, null=False, blank=False)
