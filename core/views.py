@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm, CreateAnswerForm
+from core.forms import NewGroupForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm, CreateAnswerForm
 from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
@@ -25,14 +25,6 @@ class UserUpdate(UpdateView):
     fields = (
         'name',
         'email',
-        'is_family_admin',
-        'label',
-        'city',
-        'state',
-        'zipcode',
-        'active',
-        'phonenumber',
-        'groups',
     )
     success_url = ('/profile/{{user.username}}')
 
@@ -274,15 +266,13 @@ def response_detail(request, pk):
     return render(request, 'response_detail', context=context)
 
 def dashboard_detail(request):
-    user_list = User.objects.filter(parent=request.user.pk)
-    trackers = TrackerGroup.objects.all() 
-    pending = TrackerGroupInstance.objects.filter(end=None)
-    completed = TrackerGroupInstance.objects.exclude(end=None)
+    user_list = User.objects.all()
+    trackers = TrackerGroup.objects.all()
+    completed = TrackerGroupInstance.objects.all()
 
     context = {
         'user_list': user_list,
         'trackers': trackers,
-        'pending': pending,
         'completed': completed,
     }
 
@@ -290,7 +280,7 @@ def dashboard_detail(request):
 
 def user_detail(request, pk):
     template_name = 'core/user_detail.html'
-    trackers = TrackerGroup.objects.filter(available_to=pk)
+    trackers = TrackerGroup.objects.all()
     context = {
         'trackers': trackers,
     }
@@ -308,7 +298,7 @@ def discover_page(request):
 
 def quick_links(request):
     groups = Group.objects.all()
-    trackers = TrackerGroup.objects.filter(available_to=request.user)
+    trackers = TrackerGroup.objects.all()
 
     context = {
         'groups': groups,
@@ -320,7 +310,7 @@ def references(request):
     return render(request, 'core/reference.html')
       
 def report(request):
-    user_info = User.objects.filter(parent=request.user)
+    user_info = User.objects.all()
     trackers = TrackerGroup.objects.all()
     questions = Question.objects.all()
     answers = Answer.objects.all()
