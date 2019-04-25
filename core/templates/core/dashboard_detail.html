@@ -4,12 +4,13 @@
 
 {% block content %}
 
-    <h3>Your Group</h3>
-    {% if request.user.groups %}
+<!-- Leaving due to will be adding group back after demo day KTiller 4.24.2019-->
+    <!-- <h3>Your Group</h3>
+    {% if user_list %}
         {% for group in request.user.groups.all %}
             <a href=""><div>{{group.name}}</div></a>
         {% endfor %}
-    {% endif %}
+    {% endif %} -->
 
 {% if request.user.is_family_admin == True %}
     <h3>Your Group Members</h3>
@@ -18,9 +19,11 @@
                 Add Members
             </button>
         </a>
-        {% for user in users %}
+        {% for user in user_list %}
+            
             <div class="member">
-                <a href="{% url 'user_profile' user.username %}">{{user.name}} - </a>
+                <a href="{% url 'user_profile' user.username %}">
+                    {% if user.name == '' %}{{user.username}}{% else %}{{user.name}}{% endif %} - </a>
                 <span>
                     <a href="{% url 'user-detail' user.pk %}"><button class="surveybutton">Detail</button></a>
                 </span>
@@ -44,8 +47,24 @@
     {%endif%}
 <br>
 <h3>Pending Trackers</h3>
-
+<h4 class="smalltext">Tracker Name <span class="addprofile smalltext">(Start Date)</span></h4>
+{% if pending %}
+        {% for tracker in pending%}
+            <div>
+                <div class="tracker">{{tracker}} <span class="addprofile smalltext">({{tracker.start}})</span></div>
+            </div>
+        {% endfor %}
+    {%endif%}
 <br>
 <h3>Closed Trackers</h3>
+<h4 class="smalltext">Tracker Name <span class="addprofile smalltext">(Completed Date)</span></h4>
+{% if completed  %}
+        {% for tracker in completed %}
+            <div>
+                <div class="tracker">{{tracker}} <span class="addprofile smalltext">({{tracker.end}})</span> </div>
+            </div>
+        {% endfor %}
+    {%endif%}
+<br>
 
 {% endblock %}
