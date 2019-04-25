@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<<<<<<< HEAD
 {% if user_info %}
     <h2>Members</h2>
     {% for user in user_info %}
@@ -23,5 +24,22 @@
         {% endif %}
     {% endfor %}
 {% endif %}
+=======
+    {% if user_info %}
+        <h2>Members</h2>
+        <div class="reportpage">
+        {% for user in user_info %}
+        <h3>{% if user.name %}{{user.name}}{%else%}{{user}}{% endif %}</h3>
+            {% if user.trackergroup_set.all %}
+                {% for tracker in user.trackergroup_set.all %}
+                <h3 style="margin-left: 1.5rem;">Trackers</h3>
+                <div style="margin-left: 2.5rem;">{{tracker}}</div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endif %}
+
+>>>>>>> 4c3facaf38a6fff254129402e84ec01c70c4d98c
 
 {% endblock %}
