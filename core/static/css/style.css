@@ -29,7 +29,7 @@ span {
     line-height: 125px;
     margin: 0px;
     background:
-        url("smalllogo.png") center,
+        url("logosketch.png") center,
         linear-gradient(rgba(40, 139, 142, 0.837),rgba(40, 139, 142, 0.372)),
         url("journal2.jpg") center;
     background-size: cover;
@@ -44,8 +44,8 @@ span {
     line-height: 125px;
     margin: 0px;
     background:
-        url("smalllogo.png") center,
-        linear-gradient(rgba(40, 139, 142, 0.837),rgba(40, 139, 142, 0.372));
+        url("logosketch.png") center,
+        linear-gradient(rgba(33, 146, 178, 0.837),rgba(33, 146, 178, 0.372));
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -258,6 +258,26 @@ h4.smalltext {
     outline: 0;
 }
 
+.dashboard {
+    background-color: rgb(237, 234, 229);
+    -moz-box-shadow:    2px 3px 2px #D9D9D9;
+    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
+    box-shadow:         2px 3px 2px #D9D9D9;
+    color: black;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    height: 45px;
+    width: 80%;
+    margin-bottom: .30rem;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-radius: 5px;
+    outline: 0;
+}
+
 .tracker, .member {
     margin-bottom: 5px;
 }
@@ -266,43 +286,6 @@ h4.smalltext {
     text-align: left
 }
 
-  @media screen
-  and (min-width: 450px) 
-  and (max-width: 750px) {
-
-    .base-header {
-        display: flex;
-        flex-flow: wrap;
-        height: 125px;
-        line-height: 125px;
-        margin: 0px;
-        background:
-            url("med.png") center,
-            linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
-            url("journal2.jpg") center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-}
-
-@media screen
-and (min-width: 752px) 
-and (max-width: 2880px) {
-
-  .base-header {
-      display: flex;
-      flex-flow: wrap;
-      height: 125px;
-      line-height: 125px;
-      margin: 0px;
-      background:
-          url("logonewbig2.png") center,
-          linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
-          url("journal2.jpg") center;
-      background-size: cover;
-      background-repeat: no-repeat;
-  }
-}
 
 disclosure {
     outline: 0;
@@ -331,4 +314,69 @@ details[open] summary {
 
 .registration_look {
     text-align: left;
+}
+
+@media screen
+and (min-width: 450px) 
+and (max-width: 750px) {
+
+  .base-header {
+      display: flex;
+      flex-flow: wrap;
+      height: 125px;
+      line-height: 125px;
+      margin: 0px;
+      background:
+          url("med.png") center,
+          linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+          url("journal2.jpg") center;
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+  .base-header2 {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("med.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+}
+
+@media screen
+and (min-width: 752px) 
+and (max-width: 2880px) {
+
+.base-header {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("logonewbig2.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.base-header2 {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("logonewbig2.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 }

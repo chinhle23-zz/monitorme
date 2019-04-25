@@ -12,10 +12,6 @@
                 Create a tracker or start a response!
             </p>
         <div class="needscenter">
-            <a href="/tracker/create">
-                <button class="add-tracker">Add Tracker</button>
-            </a>
-            <br>
             {% if trackers %}
             {% for tracker in trackers %}
             <a href="{% url 'trackerinstance_create' tracker.pk %}">
@@ -24,6 +20,16 @@
                 </button>
             </a>
             <br>
+            <a href="/tracker/create">
+                <button class="add-tracker">Add Tracker</button>
+            </a>
+            <br>
+            {% if request.user.is_family_admin == True %}
+                <a href="{% url 'dashboard_detail' %}"><button class="dashboard">Dashboard</button></a>
+            {% else %}
+                <a href="{% url 'user-detail' request.user.pk %}"><button class="dashboard">Dashboard</button></a>
+            {% endif %}
+        <br>
         </div>
         {% endfor %}
         {% endif %}
