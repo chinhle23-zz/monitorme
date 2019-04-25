@@ -1,7 +1,8 @@
 html {
     font-family: 'Raleway';
-    background-color: rgba(247, 253, 254, 0.652);
+    background-color: rgba(247, 253, 254, 0.618);
     height: 100%;
+    padding: 0;
 }
 
 h3 {
@@ -29,8 +30,21 @@ span {
     margin: 0px;
     background:
         url("smalllogo.png") center,
-        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        linear-gradient(rgba(40, 139, 142, 0.837),rgba(40, 139, 142, 0.372)),
         url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.base-header2 {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("smalllogo.png") center,
+        linear-gradient(rgba(0, 71, 77, 0.75),rgba(40, 139, 142, 0.20));
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -40,6 +54,7 @@ span {
     flex-flow: column;
     height: auto;
     vertical-align: middle;
+    padding: 0;
 }
 
 .loginsection {
@@ -69,7 +84,7 @@ span {
 
 input {
     border: none;
-    background-color: rgba(245, 254, 255, 0.652);
+    background-color: rgba(247, 253, 254, 0.652);
 }
 
 input:focus, 
@@ -77,10 +92,28 @@ select:focus,
 textarea:focus, 
 button:focus {
     outline: none;
-    background-color: rgba(245, 254, 255, 0.652);
+    background-color: rgba(247, 253, 254, 0.652);
 }
 
+.landing {
+    color: #002c30;
+}
 
+footer {
+    display: flex;
+    flex-flow: row wrap;
+    position: fixed; 
+    bottom: 0px; 
+    width: 100%; 
+    height: 12.5%;
+    margin-left: 0px;
+}
+
+.box {
+    width: 33.3%;
+    font-size: 20px;
+    padding-bottom: 1rem;
+}
 
 .user_info {
     padding: 2rem;
@@ -89,18 +122,17 @@ button:focus {
     margin: auto;
 }
 
-.landing {
-    color: #002c30;
-}
-
 .mediumteal,
 .fa-user,
-.fa-lock-alt  {
+.fa-lock-alt,
+.fa-home-lg-alt,
+.fa-bars,
+.fa-sign-out {
     color: #00474d;
 }
 
 .hello-message {
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 1.5rem;
 }
 
@@ -122,7 +154,8 @@ h4.smalltext {
 }
 
 
-.button, .loginbutton {
+.button, 
+.loginbutton {
     background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
@@ -137,9 +170,8 @@ h4.smalltext {
     margin-bottom: 15px;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
-    font-family: 'Noto Sans';
   }
 
 .button2:hover, 
@@ -151,8 +183,6 @@ h4.smalltext {
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
   }
-
-
 
 .surveybutton {
     background-color: rgb(176, 219, 232);
@@ -200,11 +230,11 @@ h4.smalltext {
     text-decoration: none;
     font-size: 1rem;
     height: 45px;
-    width: 200px;
-    margin-bottom: 15px;
+    width: 80%;
+    margin-bottom: .30rem;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
 }
 
@@ -217,11 +247,11 @@ h4.smalltext {
     text-decoration: none;
     font-size: 1rem;
     height: 45px;
-    width: 200px;
-    margin-bottom: 15px;
+    width: 80%;
+    margin-bottom: .30rem;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
 }
 

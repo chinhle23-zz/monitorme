@@ -1,0 +1,64 @@
+{% load static %}
+{% load core_tags %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}MonitorMe{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Noto Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block meta %}{% endblock %}
+</head>
+
+<body>
+    <div class="base-body">
+        <a class="head-link" href="{% if user.is_authenticated %}{% url 'discover_page' %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header2"></header></a>
+        <div class="login-container">
+            <div class="loginsection">
+                {% if user.is_authenticated %}
+                <div class="username">
+                    <h4>
+                        <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
+                        <a href="{% url 'discover_page' %}">Discover</a>
+                    </h4>      
+                </div>
+                {% else %}
+                <div class="login">
+                    <a href="{% url 'auth_login' %}">Login</a> |
+                    <a href="/accounts/register/">Register</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <!-- https://stackoverflow.com/questions/13788357/css-for-fixed-footer -->
+    <footer>
+        <div class="needscenter box">
+            <a href="{% url 'quick-links' %}">
+                <i class="far fa-home-lg-alt"></i>
+            </a>
+        </div>
+        <div class="needscenter box">
+            <!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()"> -->
+                <i class="far fa-bars"></i>
+            <!-- </a> -->
+        </div>
+        <div class="needscenter box">
+                <a href="{% url 'auth_logout' %}">
+                    <i class="far fa-sign-out"></i>
+                </a>
+        </div>
+    </footer>
+</body>
+
+</html>
