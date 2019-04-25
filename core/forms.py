@@ -5,8 +5,11 @@ from django.contrib.auth import get_user_model, authenticate, password_validatio
 from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.forms import formset_factory
+
 
 User = get_user_model()
+
 
 class EditProfileForm(forms.Form):
     name = forms.CharField(
@@ -179,11 +182,12 @@ class CreateAnswerForm(forms.Form):
             return Answer.objects.create(**answer_properties)
         return None
 
-class ResponseForm(forms.Form):
-    def __init__(self, question_id, *args, **kwargs):
-        super(NewResponseForm, self).__init__(*args, **kwargs)
+class QuestionResponseForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(QuestionResponseForm, self).__init__(*args, **kwargs)
+        self.fields['question'] = forms.CharField()
         self.fields['answer'] = forms.ModelMultipleChoiceField(
-            Answer.objects.filter(question_id=question_id),
+            Answer.objects.filter(question_id=1),
             label='Select answer(s)',
             widget=forms.CheckboxSelectMultiple,
             )
