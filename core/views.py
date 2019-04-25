@@ -156,7 +156,7 @@ def answer_questions(request):
     tracker = TrackerGroup.objects.get(pk=84)
     questions = tracker.questions
     QuestionResponseFormSet = formset_factory(QuestionResponseForm, extra=len(questions))
-    
+    some_formset = FormSet(initial=[{'id': x.id} for x in some_objects])
     if request.method == 'POST':
         formset = QuestionResponseFormSet(request.POST, request.Files)
         if formset.is_valid():
