@@ -39,6 +39,7 @@ span {
 .base-header2 {
     display: flex;
     flex-flow: wrap;
+    width: 100%;
     height: 125px;
     line-height: 125px;
     margin: 0px;
@@ -100,20 +101,47 @@ button:focus {
 }
 
 footer {
-    display: flex;
-    flex-flow: row wrap;
     position: fixed; 
     bottom: 0px; 
     width: 100%; 
-    height: 12.5%;
     margin-left: 0px;
 }
+
+.footercontainer {
+    display: flex;
+    flex-direction: row wrap;
+    height: 12.5%;
+}
+
+.collapsible {
+    margin: 0px;
+    font-size: 20px;
+}
+
+.collapsible:after {
+    font-weight: bold;
+    max-height: ;
+  }
+
+.content {
+    display: flex;
+    flex-direction: row wrap;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
 
 .box {
     width: 33.3%;
     font-size: 20px;
     padding-bottom: 1rem;
 }
+
+.menu {
+    padding: 0;
+}
+
 
 .user_info {
     padding: 2rem;

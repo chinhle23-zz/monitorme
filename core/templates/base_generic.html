@@ -1,5 +1,4 @@
-{% load static %}
-{% load core_tags %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html>
@@ -12,13 +11,11 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Noto Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
-    <script src="{% static 'js/script.js' %}"></script>
-    {% block meta %}{% endblock %}
 </head>
-
+<header class="base-header2"></header>
 <body>
     <div class="base-body">
-        <a class="head-link" href="{% if user.is_authenticated %}{% url 'discover_page' %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header2"></header></a>
+        
         <div class="login-container">
             <div class="loginsection">
                 {% if user.is_authenticated %}
@@ -43,22 +40,24 @@
     </div>
     <!-- https://stackoverflow.com/questions/13788357/css-for-fixed-footer -->
     <footer>
-        <div class="needscenter box">
-            <a href="{% url 'quick-links' %}">
-                <i class="far fa-home-lg-alt"></i>
-            </a>
-        </div>
-        <div class="needscenter box">
-            <!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()"> -->
-                <i class="far fa-bars"></i>
-            <!-- </a> -->
-        </div>
-        <div class="needscenter box">
+        <div class="footercontainer">
+            <div class="needscenter box">
+                <a href="{% url 'quick-links' %}">
+                    <i class="far fa-home-lg-alt"></i>
+                </a>
+            </div>
+            <div class="needscenter box">
+                <a href="{% url 'quick-links' %}">
+                    <i class="far fa-bars"></i>
+                </a>
+            </div>
+            <div class="needscenter box">
                 <a href="{% url 'auth_logout' %}">
                     <i class="far fa-sign-out"></i>
                 </a>
+            </div>
         </div>
     </footer>
 </body>
-
+<script src="{% static 'js/script.js' %}"></script>
 </html>
