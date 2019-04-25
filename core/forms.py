@@ -48,12 +48,11 @@ class CustomRegistrationForm(RegistrationForm):
 
     disclosure_accepted = forms.BooleanField(required=True, label="By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions: ")
 
-    is_user_admin = forms.BooleanField(
-        label="ONLY check here if adding others to a group",
-        initial=True
-    )
-
-        
+    # is_family_admin = forms.BooleanField(
+    #     label="ONLY check here if adding others to a group",
+    #     required=False,
+    #     widget=forms.CheckboxInput
+    # )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -65,7 +64,7 @@ class CustomRegistrationForm(RegistrationForm):
             'username': forms.TextInput(attrs={'class': ''}),
         }
 
-        fields = ['username', 'name', 'email', 'password1', 'password2']
+        fields = ['username', 'name', 'email', 'password1', 'password2']      
 
 class NewGroupForm(forms.Form):
 
