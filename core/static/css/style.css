@@ -167,7 +167,6 @@ h4.smalltext {
     width: 200px;
     margin-bottom: 15px;
     cursor: pointer;
-    transition-duration: 0.2s;
     border-radius: 5px;
     outline: 0;
   }

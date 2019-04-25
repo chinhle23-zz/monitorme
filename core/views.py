@@ -26,13 +26,6 @@ class UserUpdate(UpdateView):
         'name',
         'email',
         'is_family_admin',
-        'label',
-        'city',
-        'state',
-        'zipcode',
-        'active',
-        'phonenumber',
-        'groups',
     )
     success_url = ('/profile/{{user.username}}')
 
