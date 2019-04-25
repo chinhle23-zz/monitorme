@@ -1,11 +1,24 @@
 html {
-    background:
-        linear-gradient(rgba(132, 153, 155, 0.50));
     font-family: 'Raleway';
+    background-color: rgba(247, 253, 254, 0.652);
+    height: 100%;
 }
 
 h3 {
     margin-bottom: .75rem;
+}
+
+a {
+    text-decoration: none;
+    color: #0A5E5F;
+}
+
+li {
+    list-style: none;
+}
+
+span {
+    margin-bottom: 5px;
 }
 
 .base-header {
@@ -22,22 +35,49 @@ h3 {
     background-repeat: no-repeat;
 }
 
-
-a {
-    text-decoration: none;
-    color: #0A5E5F;
-}
-
-.header-link {
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .base-body {
     display: flex;
     flex-flow: column;
     height: auto;
+    vertical-align: middle;
+}
+
+.loginsection {
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 10px;
+    font-size: 1.10rem;
+}
+
+.login-row {
+    margin: 22px;
+    border-bottom: 2px solid rgb(154, 154, 154);
+    padding-bottom: 2px;
+    font-size: 1rem;
+    max-width: auto;
+}
+
+.needscenter {
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+#id_username {
+    font-size: .8rem;
+}
+
+input {
+    border: none;
+    background-color: rgba(245, 254, 255, 0.652);
+}
+
+input:focus, 
+select:focus, 
+textarea:focus, 
+button:focus {
+    outline: none;
+    background-color: rgba(245, 254, 255, 0.652);
 }
 
 
@@ -53,13 +93,15 @@ a {
     color: #002c30;
 }
 
+.mediumteal,
+.fa-user,
+.fa-lock-alt  {
+    color: #00474d;
+}
+
 .hello-message {
     margin-top: 10px;
     font-size: 1.5rem;
-}
-
-.login {
-    margin-top: 10px;
 }
 
 .userprofile-line {
@@ -75,7 +117,7 @@ h4.smalltext {
     margin-top: 0px;
 }
 
-.profiledata {
+.purple {
     color: #8B4F77;
 }
 
@@ -110,18 +152,7 @@ h4.smalltext {
         0 10px 25px 0 rgba(0,0,0,0.19);
   }
 
-.loginbutton, {
-    height: 38px;
-    width: 100px;
-    text-align: center;
-    max-height: 38px;
-    padding: 1.5px;
-    font-size: 1rem;
-}
 
-span {
-    margin-bottom: 5px;
-}
 
 .surveybutton {
     background-color: rgb(176, 219, 232);
