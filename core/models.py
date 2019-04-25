@@ -11,7 +11,7 @@ class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
     email = models.CharField(max_length=50, null=False, blank=False)
     name = models.CharField(max_length=100, null=False, blank=False)
-    is_family_admin = models.BooleanField(default=False)
+    is_family_admin = models.BooleanField(default=False, blank=False)
     label = models.CharField(max_length=50, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
@@ -65,6 +65,10 @@ class TrackerGroup(models.Model):
 
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])
+
+    def display_available_to(self):
+        """Create a string for the Users that have access to the tracker."""
+        return ', '.join(user.username for user in self.available_to.all()[:3])
 
 class TrackerGroupInstance(models.Model):
     tracker = models.ForeignKey('TrackerGroup', related_name='tracker_instances', on_delete=models.CASCADE, null=False)

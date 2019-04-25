@@ -2,16 +2,37 @@
 
 {% block content %}
 
-<h3>{{trackergroup.name}}</h3> -->
+<h3>Tracker Name: {{tracker.id}} - {{tracker.name}}
 
-<div>Available To: {{trackergroup.available_to}}</div>
-<a href="{% url 'question-create' %}"><button class="button button2">Create Questions</button></a>
+<div>Available To: {{tracker.display_available_to}}</div>
 
-{% for question in trackergroup.questions.all %}
-<div>{{question.order}})  <a href="{{question.get_absolute_url}}">{{question}}</a></div>
+{% for question in tracker.questions.all %}
+<div>Question {{question.order}})  
+    <a href="{{question.get_absolute_url}}">{{question}}</a> 
+</div>
     {% for answer in question.answer_set.all %}
-    <div style="margin-left: 25px;">{{answer}}</div>
+        <div style="margin-left: 25px;">
+            {{answer}} 
+        </div>
     {% endfor %}
 {% endfor %}
 
+<div>
+    <h4>Add Question</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="surveybutton" type='Submit'>Save Question</button>
+    </form>
+</div>
+
 {% endblock %}
+
+{% comment %}
+    - <a href="{% url 'answer-create' %}"><button class="surveybutton">Add Answer</button></a>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ answer_form.as_p }}
+        <button class="surveybutton" type='Submit'>Add Answer</button>
+    </form>
+{% endcomment %}

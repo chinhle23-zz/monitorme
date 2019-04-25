@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm
+from core.forms import NewGroupForm, EditProfileForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm, CreateAnswerForm
 from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
@@ -49,10 +49,121 @@ def new_group(request):
 
     return render(request, 'core/create_group.html', {"form": new_group_form})
 
-class TrackerCreate(CreateView):
-    model = TrackerGroup
-    fields = '__all__'
-    template_name='core/trackergroup_create.html'
+# class TrackerCreate(CreateView):
+#     model = TrackerGroup
+#     fields = '__all__'
+#     template_name='core/trackergroup_create.html'
+
+def tracker_create(request):
+    form = CreateTrackerQuestionAnswerForm()
+    if request.method == 'POST':
+        form = CreateTrackerQuestionAnswerForm(request.POST)
+        if form.is_valid:
+            tracker_name = request.POST.get('tracker_name', '')
+            tracker = TrackerGroup.objects.create(
+                name=tracker_name,
+            )
+            query_dict_copy = request.POST.copy()
+            available_to_keys = query_dict_copy.pop('tracker_available_to')
+            for key in available_to_keys:
+                tracker.available_to.add(User.objects.get(pk=key))
+            tracker.save()
+            question_description = request.POST.get('question_description', '')
+            question = Question.objects.create(
+                description=question_description,
+                order=1,
+                tracker=tracker,
+                created_by=request.user,
+            )
+            answer_name1 = request.POST.get('answer_name1', '')
+            answer = Answer.objects.create(
+                name=answer_name1,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name2 = request.POST.get('answer_name2', '')
+            answer = Answer.objects.create(
+                name=answer_name2,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name3 = request.POST.get('answer_name3', '')
+            answer = Answer.objects.create(
+                name=answer_name3,
+                question=question,
+                created_by=request.user,
+            )
+            return HttpResponseRedirect(reverse('tracker-create'))
+        else:
+            form = CreateTrackerQuestionAnswerForm()
+    tracker = TrackerGroup.objects.filter(created_by=request.user).last
+    context = {
+        'form': form,
+        'tracker': tracker,
+    }
+    return render(request, 'core/trackergroup_create.html', context=context)
+
+def question_create(request, pk):
+    form = CreateQuestionAnswerForm()
+    tracker = TrackerGroup.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CreateQuestionAnswerForm(request.POST)
+        answer_form = CreateAnswerForm(request.POST)
+        if form.is_valid:
+            question_description = request.POST.get('question_description', '')
+            question = Question.objects.create(
+                description=question_description,
+                order=len(tracker.questions.all())+1,
+                tracker=tracker,
+                created_by=request.user,
+            )
+            answer_name1 = request.POST.get('answer_name1', '')
+            answer = Answer.objects.create(
+                name=answer_name1,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name2 = request.POST.get('answer_name2', '')
+            answer = Answer.objects.create(
+                name=answer_name2,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name3 = request.POST.get('answer_name3', '')
+            answer = Answer.objects.create(
+                name=answer_name3,
+                question=question,
+                created_by=request.user,
+            )
+            return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
+        else:
+            form = CreateQuestionAnswerForm()
+    context = {
+        'form': form,
+        'tracker': tracker,
+    }
+    return render(request, 'core/trackergroup_detail.html', context=context)
+
+# def answer_create(request, pk):
+#     form = CreateAnswerForm()
+#     question = question.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = CreateQuestionAnswerForm(request.POST)
+#         if form.is_valid:
+#             answer_name = request.POST.get('answer_name', '')
+#             answer = Answer.objects.create(
+#                 name=answer_name1,
+#                 question=question,
+#                 created_by=request.user,
+#             )
+#             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
+#         else:
+#             form = CreateQuestionAnswerForm()
+#     context = {
+#         'form': form,
+#         'tracker': tracker,
+#     }
+#     return render(request, 'core/trackergroup_detail.html', context=context)
 
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
@@ -71,7 +182,6 @@ class QuestionUpdate(UpdateView):
     fields = ['tracker',
     'active',
     'question']
-
 
 class AnswerCreate(CreateView):
     model = Answer
@@ -139,17 +249,6 @@ def new_response(request, question_pk, group_pk):
             for key in answer_keys:
                 response.answer.add(Answer.objects.get(pk=key))
 
-            
-
-            # if query_dict_copy.get('answered_for'):
-            #     answered_for_keys = query_dict_copy.pop('answered_for')
-            #     for key in card_keys:
-            #         card = Card.objects.get(pk=key)
-            #         card.decks.add(deck)
-            #         card.save()
-            # else:
-            #     pass
-                
             response.save()
             
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
