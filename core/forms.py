@@ -1,5 +1,5 @@
 from django import forms
-from core.models import User, TrackerGroup, Answer
+from core.models import User, TrackerGroup, Answer, Question
 from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 from django.contrib.auth.models import Group
@@ -28,8 +28,8 @@ class CustomRegistrationForm(RegistrationForm):
         label="Password",
         strip=False,
         widget=forms.PasswordInput(attrs={'class': ''}),
-        help_text=password_validation.password_validators_help_text_html(),
-        # help_text=None,
+        # help_text=password_validation.password_validators_help_text_html(),
+        help_text=None,
     )
 
     password2 = forms.CharField(
@@ -98,4 +98,75 @@ class NewResponseForm(forms.Form):
         self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
         self.fields['answered_for'] = forms.ModelChoiceField(User.objects.filter(groups=group))
-        
+
+class CreateTrackerQuestionAnswerForm(forms.Form):
+    tracker_name = forms.CharField(
+        label='Enter a name for your tracker',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type tracker name here'}),
+    )
+    tracker_available_to = forms.ModelMultipleChoiceField(
+        label='Select users to have access',
+        widget=forms.CheckboxSelectMultiple,
+        queryset=User.objects.all(),
+        initial=User.objects.all().first,
+    )
+    question_description = forms.CharField(
+        label='Enter a question',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type question here'}),
+    )
+    answer_name1 = forms.CharField(
+        label='Enter answer',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type answer here'}),
+    )
+    answer_name2 = forms.CharField(
+        label='Enter answer',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type answer here'}),
+    )
+    answer_name3 = forms.CharField(
+        label='Enter answer',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type answer here'}),
+        required=False,
+    )
+
+class CreateQuestionAnswerForm(forms.Form):
+    question_description = forms.CharField(
+        label='Enter a question',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type question here'}),
+    )
+    answer_name1 = forms.CharField(
+        label='Enter answer',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type answer here'}),
+    )
+    answer_name2 = forms.CharField(
+        label='Enter answer',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type answer here'}),
+    )
+    answer_name3 = forms.CharField(
+        label='Enter answer',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': 'Type answer here'}),
+        required=False,
+    )
+
+class CreateAnswerForm(forms.Form):
+    answer_name = forms.CharField(
+        label='',
+        max_length=512,
+        widget=forms.TextInput(attrs={'placeholder': '+ another answer'}),
+    )
+    def save(self, **kwargs):
+        if self.is_valid():
+            answer_properties = {
+                "name": self.cleaned_data['answer_name'],
+            }
+            answer_properties.update(kwargs)
+            return Answer.objects.create(**answer_properties)
+        return None
