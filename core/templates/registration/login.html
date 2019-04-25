@@ -1,17 +1,40 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load staticfiles %}
+{% load static %}
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-<form method="post" action="">
+
+<form method="post" action="" class="loginform">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div>
+        <div class="login-row">
+            <span>
+                <i class="fas fa-user"></i> 
+                {{ form.username.label_tag }}
+            </span>
+            <span class="noborder">
+                {{ form.username }}
+            </span>
+        </div>
+        <div class="login-row">
+            <span>
+                <i class="fas fa-lock-alt"></i>
+                {{ form.password.label_tag }}
+            </span>
+            <span class="noborder">
+                {{ form.password }}
+            </span>
+        </div>
+    </div> 
+    <div class="needscenter">
     <input class="loginbutton" type="submit" value="{% trans 'Log in' %}" />
+    </div>  
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+<div class="needscenter">
 <p>{% trans "Forgot password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>
 <p>{% trans "Not a member?" %} <a href="/accounts/register/">{% trans "Register" %}</a>.</p>
+</div>
 {% endblock %}

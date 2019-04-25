@@ -42,7 +42,6 @@ urlpatterns = [
     path('response_detail/<int:pk>', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
     path('user_detail/<int:pk>', core_views.user_detail, name="user-detail"),
-    path('discover/', core_views.discover_page, name="discover_page"),
     path('quicklinks/', core_views.quick_links, name="quick-links"),
     path('references/', core_views.references, name="references"),
     path('report/', core_views.report, name="report"), 

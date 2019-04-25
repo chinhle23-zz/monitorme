@@ -1,12 +1,25 @@
 html {
-    background:
-        linear-gradient(rgba(132, 153, 155, 0.50));
     font-family: 'Raleway';
-    text-align: center;
+    background-color: rgba(247, 253, 254, 0.618);
+    height: 100%;
+    padding: 0;
 }
 
 h3 {
     margin-bottom: .75rem;
+}
+
+a {
+    text-decoration: none;
+    color: #0A5E5F;
+}
+
+li {
+    list-style: none;
+}
+
+span {
+    margin-bottom: 5px;
 }
 
 .base-header {
@@ -16,22 +29,24 @@ h3 {
     line-height: 125px;
     margin: 0px;
     background:
-        url("smalllogo.png") center,
-        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("logosketch.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.837),rgba(40, 139, 142, 0.372)),
         url("journal2.jpg") center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-
-a {
-    text-decoration: none;
-    color: #0A5E5F;
-}
-
-.header-link {
-    background-size: 100%;
-    background-position: center;
+.base-header2 {
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("logosketch.png") center,
+        linear-gradient(rgba(33, 146, 178, 0.837),rgba(33, 146, 178, 0.372));
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -39,28 +54,84 @@ a {
     display: flex;
     flex-flow: column;
     height: auto;
+    vertical-align: middle;
+    padding: 0;
 }
 
-
-
-.user_info {
-    padding: 2rem;
-    color: black;
-    font-size: 16px;
-    margin: auto;
+.needscenter {
+    text-align: center;
+    margin-top: 30px;
 }
 
-.landing {
+.login-row {
+    margin: 22px;
+    border-bottom: 2px solid rgb(154, 154, 154);
+    padding-bottom: 2px;
+    font-size: 1rem;
+    max-width: auto;
+}
+
+#id_username {
+    font-size: .8rem;
+}
+
+input {
+    border: none;
+    background-color: rgba(247, 253, 254, 0.652);
+}
+
+input:focus, 
+select:focus, 
+textarea:focus, 
+button:focus {
+    outline: none;
+    background-color: rgba(247, 253, 254, 0.652);
+}
+
+.darkteal {
     color: #002c30;
 }
 
-.hello-message {
-    margin-top: 10px;
-    font-size: 1.5rem;
+.navbarcontainer {
+    display: flex;
+    flex-direction: row wrap;
+    padding: 0;
+    line-height: 25px;
+
 }
 
-.login {
-    margin-top: 10px;
+.box {
+    width: 20%;
+    font-size: auto;
+    vertical-align: middle;
+    margin: 10px;
+}
+
+.user_info {
+    color: black;
+    font-size: 16px;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+
+.user-detail {
+    text-align: left;
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+
+.mediumteal,
+.fa-user,
+.fa-lock-alt,
+.fa-home-lg-alt,
+.fa-bars,
+.fa-sign-out {
+    color: #00474d;
+}
+
+.hello-message {
+    margin-top: 10%;
+    font-size: 1.5rem;
 }
 
 .userprofile-line {
@@ -76,12 +147,13 @@ h4.smalltext {
     margin-top: 0px;
 }
 
-.profiledata {
+.purple {
     color: #8B4F77;
 }
 
 
-.button, .loginbutton {
+.button, 
+.loginbutton {
     background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
@@ -95,34 +167,19 @@ h4.smalltext {
     width: 200px;
     margin-bottom: 15px;
     cursor: pointer;
-    transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
-    font-family: 'Noto Sans';
   }
 
 .button2:hover, 
 .loginbutton:hover, 
 .surveybutton:hover, 
-.tracker-button:hover ,
+.tracker-button:hover,
 .add-tracker:hover {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
   }
-
-.loginbutton, {
-    height: 38px;
-    width: 100px;
-    text-align: center;
-    max-height: 38px;
-    padding: 1.5px;
-    font-size: 1rem;
-}
-
-span {
-    margin-bottom: 5px;
-}
 
 .surveybutton {
     background-color: rgb(176, 219, 232);
@@ -159,22 +216,24 @@ span {
     margin-bottom: 1rem;
 }
 
-.tracker-button {
+.tracker-button,
+.button2 {
     background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
     color: black;
-    padding: auto;
+    padding: 1rem;
+    padding-bottom: 2rem;
     text-align: center;
     text-decoration: none;
     font-size: 1rem;
     height: 45px;
-    width: 200px;
-    margin-bottom: 15px;
+    width: 80%;
+    margin-bottom: .30rem;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
 }
 
@@ -190,11 +249,31 @@ span {
     text-decoration: none;
     font-size: 1rem;
     height: 45px;
-    width: 200px;
-    margin-bottom: 15px;
+    width: 80%;
+    margin-bottom: .30rem;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.dashboard {
+    background-color: rgb(237, 234, 229);
+    -moz-box-shadow:    2px 3px 2px #D9D9D9;
+    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
+    box-shadow:         2px 3px 2px #D9D9D9;
+    color: black;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    height: 45px;
+    width: 80%;
+    margin-bottom: .30rem;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-radius: 5px;
     outline: 0;
 }
 
@@ -206,43 +285,6 @@ span {
     text-align: left
 }
 
-  @media screen
-  and (min-width: 450px) 
-  and (max-width: 750px) {
-
-    .base-header {
-        display: flex;
-        flex-flow: wrap;
-        height: 125px;
-        line-height: 125px;
-        margin: 0px;
-        background:
-            url("med.png") center,
-            linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
-            url("journal2.jpg") center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-}
-
-@media screen
-and (min-width: 752px) 
-and (max-width: 2880px) {
-
-  .base-header {
-      display: flex;
-      flex-flow: wrap;
-      height: 125px;
-      line-height: 125px;
-      margin: 0px;
-      background:
-          url("logonewbig2.png") center,
-          linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
-          url("journal2.jpg") center;
-      background-size: cover;
-      background-repeat: no-repeat;
-  }
-}
 
 disclosure {
     outline: 0;
@@ -271,4 +313,69 @@ details[open] summary {
 
 .registration_look {
     text-align: left;
+}
+
+@media screen
+and (min-width: 450px) 
+and (max-width: 750px) {
+
+  .base-header {
+      display: flex;
+      flex-flow: wrap;
+      height: 125px;
+      line-height: 125px;
+      margin: 0px;
+      background:
+          url("med.png") center,
+          linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+          url("journal2.jpg") center;
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+  .base-header2 {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("med.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+}
+
+@media screen
+and (min-width: 752px) 
+and (max-width: 2880px) {
+
+.base-header {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("logonewbig2.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.base-header2 {
+    display: flex;
+    flex-flow: wrap;
+    height: 125px;
+    line-height: 125px;
+    margin: 0px;
+    background:
+        url("logonewbig2.png") center,
+        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
+        url("journal2.jpg") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 }

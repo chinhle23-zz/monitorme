@@ -10,30 +10,21 @@
     <title>{% block title %}MonitorMe{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Noto Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Noto Sans|Alegreya+Sans+SC|Barlow" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
     <script src="{% static 'js/script.js' %}"></script>
     {% block meta %}{% endblock %}
 </head>
 
 <body>
     <div class="base-body">
-        <a class="head-link" href="{% if user.is_authenticated %}{% url 'discover_page' %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header"></header></a>
+        <header class="base-header"></header>
         <div class="login-container">
-            <div class="loginsection">
-                {% if user.is_authenticated %}
-                <div class="username">
-                    <h4>
-                        <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
-                        <a href="{% url 'auth_logout' %}">Logout</a> |
-                        <a href="{% url 'discover_page' %}">Discover</a>
-                    </h4>      
-                </div>
-                {% else %}
+            <div class="loginsection needscenter">
                 <div class="login">
                     <a href="{% url 'auth_login' %}">Login</a> |
                     <a href="/accounts/register/">Register</a>
                 </div>
-                {% endif %}
             </div>
         </div>
         <div>

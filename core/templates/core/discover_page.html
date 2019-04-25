@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'base_generic.html' %}
 {% load static %}
 
 {% block content %}
-<div class="landing">
+<div class="darkteal">
 
         <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
         <br>
-        <div class="landing-description">
+        <div class="darkteal">
             <p>To find what you need, simply click the button!</p> 
             <p>Your dashboard page is a summary of your trackers and members, and you can use references for examples and more information about the site.
             </p>

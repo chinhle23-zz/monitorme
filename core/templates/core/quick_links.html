@@ -1,24 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'base_generic.html' %}
 {% load static %}
 
 {% block content %}
-<div class="landing">
+<div class="darkteal">
 
-        <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
-        <br>
-        <div class="landing-description">
-            <p>These are some quick links to where you might need to go in the system!</p> 
+        <div class="needscenter hello-message">
+            Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!
         </div>
-            <a href="/tracker/create"><button class="add-tracker">Add Tracker</button></a>
         <br>
+            <p style="margin-top: 5px;" class="needscenter">
+                Create a tracker or start a response!
+            </p>
+        <div class="needscenter">
             {% if trackers %}
-                {% for tracker in trackers %}
-            <a href="{% url 'trackerinstance_create' tracker.pk %}">                    
-            <button class="tracker-button">Start {{tracker}}</button>
-                </a>
-                <br>
-                {% endfor %}
+            {% for tracker in trackers %}
+            <a href="{% url 'trackerinstance_create' tracker.pk %}">
+                <button class="tracker-button button2">
+                    Start {{tracker}}
+                </button>
+            </a>
+            <br>
+            {% endfor %}
             {% endif %}
+            <a href="/tracker/create">
+                <button class="add-tracker">Add Tracker</button>
+            </a>
+            <br>
+        </div>
+
             
         
 </div>        
