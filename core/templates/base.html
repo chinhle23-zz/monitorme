@@ -18,17 +18,10 @@
 
 <body>
     <div class="base-body">
-        <a class="head-link" href="{% if user.is_authenticated %}{% url 'discover_page' %}{%else%}{% url 'index' %}{%endif%}"><header class="base-header"></header></a>
+        <header class="base-header"></header>
         <div class="login-container">
-            <div class="loginsection">
+            <div class="loginsection needscenter">
                 {% if user.is_authenticated %}
-                <div class="username">
-                    <h4>
-                        <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
-                        <a href="{% url 'auth_logout' %}">Logout</a> |
-                        <a href="{% url 'discover_page' %}">Discover</a>
-                    </h4>      
-                </div>
                 {% else %}
                 <div class="login">
                     <a href="{% url 'auth_login' %}">Login</a> |

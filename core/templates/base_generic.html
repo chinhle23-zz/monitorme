@@ -12,52 +12,51 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Noto Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
 </head>
-<header class="base-header2"></header>
 <body>
     <div class="base-body">
-        
-        <div class="login-container">
-            <div class="loginsection">
-                {% if user.is_authenticated %}
-                <div class="username">
-                    <h4>
-                        <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a> |
-                        <a href="{% url 'discover_page' %}">Discover</a>
-                    </h4>      
+        <header class="base-header2"></header>
+            {% if user.is_authenticated %}
+            <div class="navbarcontainer">
+                <div class="needscenter box">
+                    <a href="{% url 'quick-links' %}">
+                        <i class="far fa-home-lg-alt"></i>
+                    </a>
                 </div>
-                {% else %}
+                <div class="needscenter box">
+                    <a href="{% url 'references' %}">
+                        <i class="fal fa-glasses"></i>
+                    </a>
+                </div>
+                <div class="needscenter box">
+                    <a href="{% url 'report' %}">
+                        <i class="far fa-file-chart-line"></i>
+                    </a>
+                </div>
+                <div class="needscenter box">
+                    <a href="{% url 'user_profile' user.username %}">
+                        <i class="far fa-user-cog"></i>
+                    </a>
+                </div>
+                <div class="needscenter box">
+                    <a href="{% url 'auth_logout' %}">
+                        <i class="far fa-sign-out"></i>
+                    </a>
+                </div>
+            </div>
+            {% else %}
                 <div class="login">
                     <a href="{% url 'auth_login' %}">Login</a> |
                     <a href="/accounts/register/">Register</a>
                 </div>
-                {% endif %}
-            </div>
-        </div>
+            {% endif %}
         <div>
             {% block content %}
             {% endblock %}
         </div>
+       
     </div>
     <!-- https://stackoverflow.com/questions/13788357/css-for-fixed-footer -->
-    <footer>
-        <div class="footercontainer">
-            <div class="needscenter box">
-                <a href="{% url 'quick-links' %}">
-                    <i class="far fa-home-lg-alt"></i>
-                </a>
-            </div>
-            <div class="needscenter box">
-                <a href="{% url 'quick-links' %}">
-                    <i class="far fa-bars"></i>
-                </a>
-            </div>
-            <div class="needscenter box">
-                <a href="{% url 'auth_logout' %}">
-                    <i class="far fa-sign-out"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+    
 </body>
 <script src="{% static 'js/script.js' %}"></script>
 </html>
