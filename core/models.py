@@ -20,7 +20,7 @@ class User(AbstractUser):
     zipcode = models.CharField(max_length=10, null=True, blank=True)
     active = models.BooleanField(default=True)
     phonenumber = models.CharField(max_length=25, null=True, blank=True)
-    parent = models.ForeignKey('User', on_delete=models.CASCADE)
+    parent = models.ForeignKey('User', on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField()
 
     def set_slug(self):
@@ -58,7 +58,7 @@ class TrackerGroup(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     active = models.BooleanField(default=True)
-    created_by = models.ForeignKey('User', on_delete=models.CASCADE)
+    created_by = models.ForeignKey('User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.name} ({self.id})'

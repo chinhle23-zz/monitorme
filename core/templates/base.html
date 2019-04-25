@@ -21,13 +21,10 @@
         <header class="base-header"></header>
         <div class="login-container">
             <div class="loginsection needscenter">
-                {% if user.is_authenticated %}
-                {% else %}
                 <div class="login">
                     <a href="{% url 'auth_login' %}">Login</a> |
                     <a href="/accounts/register/">Register</a>
                 </div>
-                {% endif %}
             </div>
         </div>
         <div>
