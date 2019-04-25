@@ -28,8 +28,8 @@ class CustomRegistrationForm(RegistrationForm):
         label="Password",
         strip=False,
         widget=forms.PasswordInput(attrs={'class': ''}),
-        help_text=password_validation.password_validators_help_text_html(),
-        # help_text=None,
+        # help_text=password_validation.password_validators_help_text_html(),
+        help_text=None,
     )
 
     password2 = forms.CharField(
