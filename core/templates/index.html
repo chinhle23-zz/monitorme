@@ -2,6 +2,31 @@
 {% load static %}
 {% block content %}
 
+
+{% if request.user.is_authenticated %}
+<div class="landing">
+
+        <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
+        <br>
+        <div class="landing-description">
+            <p>These are some quick links to where you might need to go in the system!</p> 
+        </div>
+            
+       
+            {% if trackers %}
+                {% for tracker in trackers %}
+            <a href="{% url 'trackerinstance_create' tracker.pk %}">                    
+            <button class="tracker-button">Start {{tracker}}</button>
+                </a>
+                <br>
+                {% endfor %}
+            {% endif %}
+            <br>
+            <a href="/tracker/create"><button class="add-tracker">Add Tracker</button></a>
+            
+        
+</div> 
+{% else %}
 <div class="blurb">
     <p> Have you ever had to fill out one of these less than specific charts when trying to keep up with a health issue?</p>
 
@@ -18,6 +43,7 @@
 </a>
 <br>
 
+{% endif %}
 
 {% endblock content %}
 

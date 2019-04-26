@@ -12,8 +12,14 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 
 
+
 def index(request):
-    return render(request, 'index.html')
+    trackers = TrackerGroup.objects.all()
+
+    context = {
+        'trackers': trackers,
+    }
+    return render(request, 'index.html', context=context)
 
 def user_profile(request, username):
     user = User.objects.get(username=request.user)
@@ -280,13 +286,7 @@ def discover_page(request):
     return render(request, 'core/discover_page.html', context=context)
 
 def quick_links(request):
-    groups = Group.objects.all()
-    trackers = TrackerGroup.objects.all()
 
-    context = {
-        'groups': groups,
-        'trackers': trackers,
-    }
     return render(request, 'core/quick_links.html', context=context)
 
 def references(request):
