@@ -287,6 +287,8 @@ def discover_page(request):
 
 
 def references(request):
+    context = {
+    }
     return render(request, 'core/reference.html')
       
 def report(request):
