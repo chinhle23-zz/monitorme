@@ -331,6 +331,10 @@ span {
     border-bottom: 1px solid black;
 }
 
+.done {
+    margin-top: 0;
+}
+
 
   @media screen
   and (min-width: 450px) 
