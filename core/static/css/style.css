@@ -19,7 +19,7 @@ a {
     color: #0A5E5F;
 }
 
- li {
+li {
     list-style: none;
 }
 
@@ -68,21 +68,32 @@ span {
     text-align:left;
 }
 
-#id_username {
-    font-size: .8rem;
-}
-
 input {
     border: none;
     background-color: rgba(247, 253, 254, 0.652);
+    width: auto;
 }
 
 input:focus, 
+textarea:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+input#id_tracker_name, 
+input#id_question_description {
+    width: 100%;
+}
+
+input#id_answer_name1,
+input#id_answer_name2,
+input#id_answer_name3 {
+    width: 65%;
+}
+
 select:focus, 
-textarea:focus, 
 button:focus {
     outline: none;
-    background-color: rgba(247, 253, 254, 0.652);
 }
 
 .darkteal {
@@ -141,16 +152,16 @@ p.landingmessage {
     margin-bottom: .75rem;
 }
 
-.formlinetext::placeholder {
-    color: #E6E2E1;
-}
-
 .margin15 {
     margin-left: 15%;
 }
 
 .marginbottom {
     margin-bottom: 1rem;
+}
+
+.margintop {
+    margin-top: 0px;
 }
 
 .hello-message {
@@ -167,8 +178,12 @@ p.landingmessage {
     margin-bottom: 10px;
 }
 
-.addprofile {
+.helptext {
     color: #B4B3B3;
+}
+
+.medgray {
+    color: rgb(57, 93, 101);
 }
 
 
@@ -222,10 +237,6 @@ p.landingmessage {
     max-height: 38px;
     padding: 1.5px;
     font-size: 1rem;
-}
-
-span {
-    margin-bottom: 5px;
 }
 
 .surveybutton {
@@ -306,6 +317,10 @@ span {
     outline: 0;
 }
 
+.cancel {
+    background-color: #EDEAe5;
+}
+
 .tracker, .member {
     margin-bottom: 5px;
 }
@@ -323,6 +338,10 @@ span {
     font-size: .5rem;
 }
 
+.medfont {
+    font-size: .85rem;
+}
+
 .bold {
     font-weight: bold;
 }
@@ -332,7 +351,15 @@ span {
 }
 
 .done {
-    margin-top: 0;
+    margin-top: 2px;
+}
+
+.trackername {
+    width: 40%;
+}
+
+.column {
+    width: 20%;
 }
 
 .answer {
