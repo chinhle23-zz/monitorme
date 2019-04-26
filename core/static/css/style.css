@@ -82,7 +82,11 @@ button:focus {
 
 .darkteal {
     color: #002c30;
-}	
+}
+
+.medteal {
+    color: rgb(77, 105, 138);
+}
 
 
 .navbarcontainer {

@@ -1,36 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="needsleft">
+    <h3 class="darkteal">{{tracker.name}} </h3>
 
-<h3>Tracker Name: {{tracker.id}} - {{tracker.name}}
-
-{% for question in tracker.questions.all %}
-<div>Question:
-    <a href="{{question.get_absolute_url}}">{{question}}</a> 
-</div>
-    {% for answer in question.answer_set.all %}
-        <div style="margin-left: 25px;">
-            {{answer}} 
-        </div>
+    {% for question in tracker.questions.all %}
+    <div>
+        <a href="{{question.get_absolute_url}}">{{question}}</a> 
+    </div>
+        {% for answer in question.answer_set.all %}
+            <div style="margin-left: 25px;">
+                {{answer}} 
+            </div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
 
-<div>
-    <h4>Add Question</h4>
-    <form method="post" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="surveybutton" type='Submit'>Save Question</button>
-    </form>
+    <div>
+        <h4 class="medteal">Need to add more Questions?</h4>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="login-row">
+                    <span class="formline purple">{{ form.question_description.label_tag}}</span>
+                    <span>{{ form.question_description }}</span>
+                </div>
+                <div class="login-row">
+                    <span class="formline purple">{{ form.answer_name1.label_tag}}</span>
+                    <span>{{ form.answer_name1 }}</span>
+                </div>
+                <div class="login-row">
+                    <span class="formline purple">{{ form.answer_name2.label_tag}}</span>
+                    <span>{{ form.answer_name2 }}</span>
+                </div>
+                <div class="login-row">
+                    <span class="formline purple">{{ form.answer_name3.label_tag}}</span>
+                    <span>{{ form.answer_name3 }}</span>
+                </div>
+            <button class="surveybutton" type="Submit">Save Question</button>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
 
 {% comment %}
-    - <a href="{% url 'answer-create' %}"><button class="surveybutton">Add Answer</button></a>
+    - <a href="{% url 'answer-create' %}">
+        <button class="surveybutton">Add Answer</button>
+    </a>
     <form method="post" action="">
         {% csrf_token %}
         {{ answer_form.as_p }}
-        <button class="surveybutton" type='Submit'>Add Answer</button>
+        <button class="surveybutton" type="Submit">Add Answer</button>
     </form>
 {% endcomment %}
