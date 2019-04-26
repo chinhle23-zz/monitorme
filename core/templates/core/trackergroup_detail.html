@@ -2,37 +2,67 @@
 
 {% block content %}
 
-<h3>Tracker Name: {{tracker.id}} - {{tracker.name}}
 
-<div>Available To: {{tracker.display_available_to}}</div>
+<div class="needsleft">
+    <h3 class="darkteal">{{tracker.name}}</h3>
 
-{% for question in tracker.questions.all %}
-<div>Question {{question.order}})  
-    <a href="{{question.get_absolute_url}}">{{question}}</a> 
-</div>
-    {% for answer in question.answer_set.all %}
-        <div style="margin-left: 25px;">
-            {{answer}} 
-        </div>
+    {% for question in tracker.questions.all %}
+    <div class="marginbottom">
+        <a href="{{question.get_absolute_url}}">{{question}}</a> 
+    </div>
+    <div class="marginbottom">
+        {% for answer in question.answer_set.all %}
+            <div class="margin15">
+                {{answer}} 
+            </div>
+        {% endfor %}
+    </div>
     {% endfor %}
-{% endfor %}
 
-<div>
-    <h4>Add Question</h4>
-    <form method="post" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="surveybutton" type='Submit'>Save Question</button>
-    </form>
+    <div>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="login-row">
+                    <span class="formline purple">{{ form.question_description.label_tag}}</span>
+                    <span>{{ form.question_description }}</span>
+                </div>
+                <div class="login-row">
+                    <span class="formline purple">{{ form.answer_name1.label_tag}}</span>
+                    <span>{{ form.answer_name1 }}</span>
+                </div>
+                <div class="login-row">
+                    <span class="formline purple">{{ form.answer_name2.label_tag}}</span>
+                    <span>{{ form.answer_name2 }}</span>
+                </div>
+                <div class="login-row">
+                    <span class="formline purple">{{ form.answer_name3.label_tag}}</span>
+                    <span>{{ form.answer_name3 }}</span>
+                </div>
+            <div class="needscenter">
+                <button class="add-tracker" type="Submit">
+                    Save Question
+                </button>
+            </div>
+        </form>  
+    <div class="needscenter done">
+        <a href="{% url 'index' %}">
+            <button class="tracker-button button2"> 
+                Done
+            </button>
+        </a>  
+    </div>
+    </div>
 </div>
 
 {% endblock %}
 
 {% comment %}
-    - <a href="{% url 'answer-create' %}"><button class="surveybutton">Add Answer</button></a>
+    - <a href="{% url 'answer-create' %}">
+        <button class="add-tracker">Add Answer</button>
+    </a>
     <form method="post" action="">
         {% csrf_token %}
         {{ answer_form.as_p }}
-        <button class="surveybutton" type='Submit'>Add Answer</button>
+        <button class="surveybutton" type="Submit">Add Answer</button>
     </form>
 {% endcomment %}

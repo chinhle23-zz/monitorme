@@ -12,8 +12,14 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 
 
+
 def index(request):
-    return render(request, 'index.html')
+    trackers = TrackerGroup.objects.all()
+
+    context = {
+        'trackers': trackers,
+    }
+    return render(request, 'index.html', context=context)
 
 def user_profile(request, username):
     user = User.objects.get(username=request.user)
@@ -60,41 +66,36 @@ def tracker_create(request):
             tracker_name = request.POST.get('tracker_name', '')
             tracker = TrackerGroup.objects.create(
                 name=tracker_name,
+                user=request.user,
             )
-            query_dict_copy = request.POST.copy()
-            available_to_keys = query_dict_copy.pop('tracker_available_to')
-            for key in available_to_keys:
-                tracker.available_to.add(User.objects.get(pk=key))
-            tracker.save()
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                description=question_description,
-                order=1,
+                tracker_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                name=answer_name1,
+                question_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                name=answer_name2,
+                question_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                name=answer_name3,
+                question_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
-            return HttpResponseRedirect(reverse('tracker-create'))
+            return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
         else:
             form = CreateTrackerQuestionAnswerForm()
-    tracker = TrackerGroup.objects.filter(created_by=request.user).last
+    tracker = TrackerGroup.objects.filter(user=request.user).last
     context = {
         'form': form,
         'tracker': tracker,
@@ -110,26 +111,25 @@ def question_create(request, pk):
         if form.is_valid:
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                description=question_description,
-                order=len(tracker.questions.all())+1,
+                tracker_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                name=answer_name1,
+                question_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                name=answer_name2,
+                question_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                name=answer_name3,
+                question_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -217,42 +217,31 @@ def new_trackerinstance(request, tracker_pk):
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
 
-def new_response(request, question_pk, group_pk):
+def new_response(request, question_pk):
 # def new_response(request, question_pk):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
     question = get_object_or_404(Question, id=question_pk)
-    group = get_object_or_404(Group, id=group_pk)
     if request.method == 'POST':
         # new_response_form = NewResponseForm(question_pk, request.POST)
-        new_response_form = NewResponseForm(question_pk, group_pk, request.POST)
+        new_response_form = NewResponseForm(question_pk, request.POST)
         if new_response_form.is_valid():
             tracker = question.tracker
             tracker_instance = tracker.tracker_instances.last()
                 # need a better way to do this
-            query_dict_copy = request.POST.copy()
-                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
-            answer_keys = query_dict_copy.pop('answer')
-                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
-            answered_for_keys = query_dict_copy.pop('answered_for')
-            answered_for = []
-            for key in answered_for_keys:
-                answered_for.append(key)
 
             response = Response.objects.create(
-                answered_for_id=answered_for[0],
                 question_id=question_pk,
                 tracker_id=tracker.id,
                 tracker_instance_id=tracker_instance.id,
+                user = request.user,
             )
-            for key in answer_keys:
-                response.answer.add(Answer.objects.get(pk=key))
 
             response.save()
             
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
         # new_response_form = NewResponseForm(question_pk)
-        new_response_form = NewResponseForm(question_pk, group_pk)
+        new_response_form = NewResponseForm(question_pk)
     
     context = {
         'form': new_response_form,
@@ -296,15 +285,6 @@ def discover_page(request):
     }
     return render(request, 'core/discover_page.html', context=context)
 
-def quick_links(request):
-    groups = Group.objects.all()
-    trackers = TrackerGroup.objects.all()
-
-    context = {
-        'groups': groups,
-        'trackers': trackers,
-    }
-    return render(request, 'core/quick_links.html', context=context)
 
 def references(request):
     return render(request, 'core/reference.html')
@@ -316,6 +296,7 @@ def report(request):
     answers = Answer.objects.all()
     instances = TrackerGroupInstance.objects.all()
     responses = Response.objects.all()
+
 
     context = {
         'user_info': user_info,

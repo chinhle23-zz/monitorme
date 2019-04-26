@@ -8,6 +8,25 @@ html {
 h3 {
     margin-bottom: .75rem;
 }
+
+h4.smalltext {
+    font-size: .85rem;
+    margin-top: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: #0A5E5F;
+}
+
+ li {
+    list-style: none;
+}
+
+span {
+    margin-bottom: 5px;
+}
+
 .index-edit {
     font-style: italic;}
 
@@ -18,17 +37,10 @@ h3 {
     line-height: 125px;
     margin: 0px;
     background:
-        url("smalllogo.png") center,
-        linear-gradient(rgba(40, 139, 142, 0.75),rgba(40, 139, 142, 0.20)),
-        url("journal2.jpg") center;
+        url("attempt2.png") center,
+        linear-gradient(rgba(39, 152, 172, 0.885),rgba(39, 152, 172, 0.57));
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-
-a {
-    text-decoration: none;
-    color: #0A5E5F;
 }
 
 .header-link {
@@ -43,22 +55,108 @@ a {
     height: auto;
 }
 
+.needscenter {
+    text-align: center;
+    margin-top: 30px;
+}
 
+.login-row {
+    margin: 22px;
+    border-bottom: 2px solid rgb(154, 154, 154);
+    padding-bottom: 2px;
+    font-size: 1rem;
+    text-align:left;
+}
+
+#id_username {
+    font-size: .8rem;
+}
+
+input {
+    border: none;
+    background-color: rgba(247, 253, 254, 0.652);
+}
+
+input:focus, 
+select:focus, 
+textarea:focus, 
+button:focus {
+    outline: none;
+    background-color: rgba(247, 253, 254, 0.652);
+}
+
+.darkteal {
+    color: #002c30;
+}
+
+.medteal {
+    color: rgb(77, 105, 138);
+}
+
+.darkpurple {
+    color: rgb(75, 45, 104);
+}
+
+
+.navbarcontainer {
+    display: flex;
+    flex-direction: row wrap;
+    padding: 0;
+    line-height: 25px;
+ }
+
+.box {
+    width: 20%;
+    font-size: auto;
+    vertical-align: middle;
+    margin: 10px;
+}
 
 .user_info {
     padding: 2rem;
     color: black;
     font-size: 16px;
-    margin: auto;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
 }
+
+.mediumteal,
+.fa-user,
+.fa-lock-alt,
+.fa-home-lg-alt,
+.fa-bars,
+.fa-sign-out {
+    color: #00474d;
+}	    
 
 .landing {
     color: #002c30;
 }
 
+p.landingmessage {
+    padding: .75rem;
+}
+
+.formline {
+    margin-bottom: .75rem;
+}
+
+.formlinetext::placeholder {
+    color: #E6E2E1;
+}
+
+.margin15 {
+    margin-left: 15%;
+}
+
+.marginbottom {
+    margin-bottom: 1rem;
+}
+
 .hello-message {
     margin-top: 10px;
     font-size: 1.5rem;
+    margin-bottom: 0;
 }
 
 .login {
@@ -73,17 +171,21 @@ a {
     color: #B4B3B3;
 }
 
-h4.smalltext {
-    font-size: .85rem;
-    margin-top: 0px;
-}
 
-.profiledata {
+.purple {
     color: #8B4F77;
 }
 
+.painchart {
+    width: 70%;
+}
 
-.button, .loginbutton {
+.needsleft {
+    text-align: left;
+}
+
+.button, 
+.loginbutton {
     background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
@@ -98,7 +200,7 @@ h4.smalltext {
     margin-bottom: 15px;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
     font-family: 'Raleway';
   }
@@ -106,14 +208,14 @@ h4.smalltext {
 .button2:hover, 
 .loginbutton:hover, 
 .surveybutton:hover, 
-.tracker-button:hover ,
+.tracker-button:hover,
 .add-tracker:hover {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
   }
 
-.loginbutton, {
+.loginbutton {
     height: 38px;
     width: 100px;
     text-align: center;
@@ -163,22 +265,24 @@ span {
     margin-bottom: 1rem;
 }
 
-.tracker-button {
+.tracker-button,
+.button2 {
     background-color: rgb(176, 219, 232);
     -moz-box-shadow:    2px 3px 2px #D9D9D9;
     -webkit-box-shadow: 2px 3px 2px #D9D9D9;
     box-shadow:         2px 3px 2px #D9D9D9;
     color: black;
-    padding: auto;
+    padding: 1rem;
+    padding-bottom: 2rem;
     text-align: center;
     text-decoration: none;
     font-size: 1rem;
     height: 45px;
-    width: 200px;
-    margin-bottom: 15px;
+    width: 80%;
+    margin-bottom: .30rem;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
 }
 
@@ -194,11 +298,11 @@ span {
     text-decoration: none;
     font-size: 1rem;
     height: 45px;
-    width: 200px;
-    margin-bottom: 15px;
+    width: 80%;
+    margin-bottom: .30rem;
     cursor: pointer;
     transition-duration: 0.2s;
-    border-radius: 9px;
+    border-radius: 5px;
     outline: 0;
 }
 
@@ -209,6 +313,28 @@ span {
 .reportpage {
     text-align: left
 }
+
+.u-full-width {
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.smallfont {
+    font-size: .5rem;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.borderbottom {
+    border-bottom: 1px solid black;
+}
+
+.done {
+    margin-top: 0;
+}
+
 
   @media screen
   and (min-width: 450px) 
@@ -271,7 +397,4 @@ details[open] {
 details[open] summary {
     margin-bottom: .5em;
     outline: 0;
-}
-.registration_look {
-    text-align: left;
 }

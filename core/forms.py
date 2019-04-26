@@ -79,24 +79,17 @@ class NewTrackerInstanceForm(forms.Form):
 
 class NewResponseForm(forms.Form):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
-    def __init__(self, question, group, *args, **kwargs):
+    def __init__(self, question, *args, **kwargs):
     # def __init__(self, question, *args, **kwargs):
         super(NewResponseForm, self).__init__(*args, **kwargs)
         self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
-        self.fields['answered_for'] = forms.ModelChoiceField(User.objects.filter(groups=group))
 
 class CreateTrackerQuestionAnswerForm(forms.Form):
     tracker_name = forms.CharField(
         label='Enter a name for your tracker',
         max_length=512,
         widget=forms.TextInput(attrs={'placeholder': 'Type tracker name here'}),
-    )
-    tracker_available_to = forms.ModelMultipleChoiceField(
-        label='Select users to have access',
-        widget=forms.CheckboxSelectMultiple,
-        queryset=User.objects.all(),
-        initial=User.objects.all().first,
     )
     question_description = forms.CharField(
         label='Enter a question',
