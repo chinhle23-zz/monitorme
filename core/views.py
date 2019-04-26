@@ -92,7 +92,7 @@ def tracker_create(request):
                 question=question,
                 created_by=request.user,
             )
-            return HttpResponseRedirect(reverse('tracker-create'))
+            return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
         else:
             form = CreateTrackerQuestionAnswerForm()
     tracker = TrackerGroup.objects.filter(user=request.user).last
