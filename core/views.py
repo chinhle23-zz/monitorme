@@ -86,7 +86,7 @@ def tracker_create(request):
                 question=question,
                 created_by=request.user,
             )
-            return HttpResponseRedirect(reverse('tracker-create'))
+            return HttpResponseRedirect(reverse('tracker-detail', args=[str(tracker.id)]))
         else:
             form = CreateTrackerQuestionAnswerForm()
     tracker = TrackerGroup.objects.filter(user=request.user).last
@@ -212,29 +212,23 @@ class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
 
 def new_response(request, question_pk):
-# def new_response(request, question_pk):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
     question = get_object_or_404(Question, id=question_pk)
     if request.method == 'POST':
-        # new_response_form = NewResponseForm(question_pk, request.POST)
         new_response_form = NewResponseForm(question_pk, request.POST)
         if new_response_form.is_valid():
             tracker = question.tracker
             tracker_instance = tracker.tracker_instances.last()
                 # need a better way to do this
-
             response = Response.objects.create(
                 question_id=question_pk,
                 tracker_id=tracker.id,
                 tracker_instance_id=tracker_instance.id,
                 user = request.user,
             )
-
             response.save()
-            
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
-        # new_response_form = NewResponseForm(question_pk)
         new_response_form = NewResponseForm(question_pk)
     
     context = {
