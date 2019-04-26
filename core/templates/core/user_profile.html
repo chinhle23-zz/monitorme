@@ -44,51 +44,6 @@
             {% endif %}
         </div>
 
-        <div class="userprofile-line">Group Admin: 
-            <span class="profiledata">{{ user.is_family_admin }}</span>
-        </div>
-
-        <div class="userprofile-line">Label: 
-            {% if user.label %}
-                <span class="profiledata">{{ user.label }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">City: 
-            {% if user.city%}
-                <span class="profiledata">{{ user.city }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">State: 
-            {% if user.state %}
-                <span class="profiledata">{{ user.state }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">Zip Code: 
-            {% if user.zipcode %}
-                <span class="profiledata">{{ user.zipcode }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">Phone Number: 
-            {% if user.phonenumber %}
-                <span class="profiledata">{{ user.phonenumber }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {%endif%}
-        </div>
-
-
         <a href="{% url 'edit-profile' user.pk %}">
             <button class="surveybutton" type='submit'>Edit Profile</button>
         </a>
