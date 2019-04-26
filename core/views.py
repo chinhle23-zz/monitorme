@@ -102,6 +102,8 @@ def tracker_create(request):
     }
     return render(request, 'core/trackergroup_create.html', context=context)
 
+
+
 def question_create(request, pk):
     form = CreateQuestionAnswerForm()
     tracker = TrackerGroup.objects.get(pk=pk)
@@ -141,6 +143,47 @@ def question_create(request, pk):
         'tracker': tracker,
     }
     return render(request, 'core/trackergroup_detail.html', context=context)
+
+
+def question_detail_create(request, pk):
+    form = CreateQuestionAnswerForm()
+    tracker = TrackerGroup.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CreateQuestionAnswerForm(request.POST)
+        answer_form = CreateAnswerForm(request.POST)
+        if form.is_valid:
+            question_description = request.POST.get('question_description', '')
+            question = Question.objects.create(
+                tracker_question=question_description,
+                tracker=tracker,
+                created_by=request.user,
+            )
+            answer_name1 = request.POST.get('answer_name1', '')
+            answer = Answer.objects.create(
+                question_answer=answer_name1,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name2 = request.POST.get('answer_name2', '')
+            answer = Answer.objects.create(
+                question_answer=answer_name2,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name3 = request.POST.get('answer_name3', '')
+            answer = Answer.objects.create(
+                question_answer=answer_name3,
+                question=question,
+                created_by=request.user,
+            )
+            return HttpResponseRedirect(reverse('tracker-all-detail', args=[tracker.id]))
+        else:
+            form = CreateQuestionAnswerForm()
+    context = {
+        'form': form,
+        'tracker': tracker,
+    }
+    return render(request, 'core/trackergroup_all_detail.html', context=context)
 
 # def answer_create(request, pk):
 #     form = CreateAnswerForm()

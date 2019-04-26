@@ -160,6 +160,10 @@ p.landingmessage {
     margin-bottom: 1rem;
 }
 
+.margintop {
+    margin-top: 0px;
+}
+
 .hello-message {
     margin-top: 10px;
     font-size: 1.5rem;
@@ -332,6 +336,10 @@ p.landingmessage {
 
 .smallfont {
     font-size: .5rem;
+}
+
+.medfont {
+    font-size: .85rem;
 }
 
 .bold {
