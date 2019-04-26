@@ -152,10 +152,6 @@ p.landingmessage {
     margin-bottom: .75rem;
 }
 
-.formlinetext::placeholder {
-    color: #E6E2E1;
-}
-
 .margin15 {
     margin-left: 15%;
 }
@@ -178,8 +174,12 @@ p.landingmessage {
     margin-bottom: 10px;
 }
 
-.addprofile {
+.helptext {
     color: #B4B3B3;
+}
+
+.medgray {
+    color: rgb(57, 93, 101);
 }
 
 
