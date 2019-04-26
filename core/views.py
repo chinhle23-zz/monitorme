@@ -309,6 +309,16 @@ def report(request):
 
     return render(request, 'core/report.html', context=context)
 
+def about_us(request):
+    template_name = '/about_us.html'
+    context = {
+
+    }
+    
+    return render(request, 'about_us', context=context)
+
+
+
 ### Unused Code ###
 # def landing_page(request, username):
 #     user = User.objects.get(username=username)
