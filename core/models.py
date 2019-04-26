@@ -88,7 +88,7 @@ class Response(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return f'Response for: {self.tracker_instance.id} {self.tracker.name} ({self.answered_for.name})'
+        return f'{self.tracker.name} {self.created_at} '
 
     def display_answers(self):
         """Create a string for the Answer(s). This is required to display answers in Admin."""
