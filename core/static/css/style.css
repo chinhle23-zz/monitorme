@@ -354,6 +354,14 @@ p.landingmessage {
     margin-top: 2px;
 }
 
+.trackername {
+    width: 40%;
+}
+
+.column {
+    width: 20%;
+}
+
 
   @media screen
   and (min-width: 450px) 

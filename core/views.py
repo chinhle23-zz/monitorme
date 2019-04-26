@@ -299,30 +299,6 @@ def response_detail(request, pk):
 
 def user_detail(request, pk):
     template_name = 'core/user_detail.html'
-    trackers = TrackerGroup.objects.all()
-    completed = TrackerGroupInstance.objects.all()
-
-    context = {
-        'trackers': trackers,
-        'completed': completed,
-    }
-    return render(request, 'core/user_detail.html', context)
-
-def discover_page(request):
-    users = User.objects.all()
-    groups = Group.objects.all()
-
-    context = {
-        'users': users,
-        'groups': groups,
-    }
-    return render(request, 'core/discover_page.html', context=context)
-
-
-def references(request):
-    return render(request, 'core/reference.html')
-      
-def report(request):
     user_info = User.objects.all()
     trackers = TrackerGroup.objects.all()
     questions = Question.objects.all()
@@ -339,6 +315,24 @@ def report(request):
         'instances': instances,
         'responses': responses,
     }
+
+    return render(request, 'core/report.html', context=context)
+
+def discover_page(request):
+    users = User.objects.all()
+    groups = Group.objects.all()
+
+    context = {
+        'users': users,
+        'groups': groups,
+    }
+    return render(request, 'core/discover_page.html', context=context)
+
+
+def references(request):
+    return render(request, 'core/reference.html')
+      
+def report(request):
 
     return render(request, 'core/report.html', context=context)
 
