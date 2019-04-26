@@ -2,37 +2,52 @@
 
 {% block content %}
 
-<h3>Create your tracker here:</h3>
+<h3 class="darkteal">Let's get started!</h3>
 
 <form method="post" action="">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button button2" type='Submit'>Save Tracker</button>
-</form>
 
+    <div class="login-row">
+        <span class="formline purple">{{ form.tracker_name.label_tag}}</span>
+        <span class="formlinetext">{{ form.tracker_name }}</span>
+    </div>
+    <div class="login-row">
+        <span class="formline purple">{{ form.question_description.label_tag}}</span>
+        <span>{{ form.question_description }}</span>
+    </div>
+    <div class="login-row">
+        <span class="formline purple">{{ form.answer_name1.label_tag}}</span>
+        <span>{{ form.answer_name1 }}</span>
+    </div>
+    <div class="login-row">
+        <span class="formline purple">{{ form.answer_name2.label_tag}}</span>
+        <span>{{ form.answer_name2 }}</span>
+    </div>
+    <div class="login-row">
+        <span class="formline purple">{{ form.answer_name3.label_tag}}</span>
+        <span>{{ form.answer_name3 }}</span>
+    </div>
+    <button class="button button2" type='Submit'>Next</button>
+</form>
+{% endblock %}
+
+{% comment %}
 <h3>Most recent tracker created:</h3> 
 <p><a href="{{tracker.get_absolute_url}}">{{ tracker.name }}</a></p>
-<P>Available To: {{tracker.display_available_to}}</p>
 {% for question in tracker.questions.all %}
     <div>
-        
         <p>
             Question {{question.order}})  
             <a href="{{question.get_absolute_url}}">{{question}}</a>
         </p>
     </div>
-
     {% for answer in question.answer_set.all %}
         <div style="margin-left: 25px;">
             {{answer}} 
         </div>
     {% endfor %}
-
 {% endfor %}
 
-{% endblock %}
-
-{% comment %}
     {{ tracker_form.as_p }}
     {{ question_form.as_p }}
     {{ answer_form.as_p }}

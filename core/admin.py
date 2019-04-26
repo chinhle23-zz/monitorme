@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
+from core.models import User, TrackerGroup, TrackerGroupInstance, Question, Answer, Response, TrackerGroupInstance
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -7,26 +7,15 @@ class UserAdmin(admin.ModelAdmin):
         'username',
         'name',
         'email',
-        'is_family_admin',
-        'label',
-        'created_at',
-        'updated_at',
-        'city',
-        'state',
-        'zipcode',
-        'active',
-        'phonenumber',
-        'password',
+        'slug',
     )
-    exclude= ('slug',)
 
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
+@admin.register(TrackerGroup)
+class TrackerGroup(admin.ModelAdmin):
     list_display = (
-        'description', 
-        'order', 
-        'tracker', 
-        'active',
+        'name', 
+        'user',
+        'created_at', 
         'id',
     )
 
@@ -34,48 +23,36 @@ class QuestionAdmin(admin.ModelAdmin):
 class TrackerGroupInstanceAdmin(admin.ModelAdmin):
     list_display = (
         'tracker', 
-        'start', 
-        'end', 
+        'started_at', 
         'created_by',
         'tracker_id',
     )
 
-@admin.register(Response)
-class ResponseAdmin(admin.ModelAdmin):
+@admin.register(Question)
+class Question(admin.ModelAdmin):
     list_display = (
-        'tracker', 
-        'tracker_id',
-        'tracker_instance', 
-        'tracker_instance_id',
-        'question', 
-        'display_answers',
-        'answered_for',
-        'created_at',
-        'updated_at',
-    )
-
-@admin.register(TrackerGroup)
-class TrackerGroup(admin.ModelAdmin):
-    list_display = (
-        'name', 
-        'display_available_to',
+        'tracker_question', 
+        'tracker',
         'created_at', 
-        'updated_at',
-        'active', 
         'created_by',
-        'id',
     )
 
 @admin.register(Answer)
 class Answer(admin.ModelAdmin):
     list_display = (
-        'name', 
+        'question_answer', 
         'question',
         'created_at', 
-        'updated_at',
-        'active', 
         'created_by',
     )
 
-
-
+@admin.register(Response)
+class Response(admin.ModelAdmin):
+    list_display = (
+        'tracker', 
+        'tracker_instance',
+        'question', 
+        'display_answers',
+        'user',
+        'created_at',
+    )

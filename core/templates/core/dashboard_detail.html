@@ -35,7 +35,7 @@
 <h3>Available Trackers</h3>
 <a href="{% url 'tracker-create' %}">
     <button class='add-member' type='submit'>
-        Add Tracker 
+        Monitor Me
     </button>
 </a>  
     {% if trackers %}
@@ -47,7 +47,7 @@
     {%endif%}
 <br>
 <h3>Pending Trackers</h3>
-<h4 class="smalltext">Tracker Name <span class="addprofile smalltext">(Start Date)</span></h4>
+<h4 class="smalltext purple">Tracker Name <span class="addprofile smalltext">(Start Date)</span></h4>
 {% if pending %}
         {% for tracker in pending%}
             <div>
@@ -57,7 +57,7 @@
     {%endif%}
 <br>
 <h3>Closed Trackers</h3>
-<h4 class="smalltext">Tracker Name <span class="addprofile smalltext">(Completed Date)</span></h4>
+<h4 class="smalltext purple">Tracker Name <span class="addprofile smalltext">(Completed Date)</span></h4>
 {% if completed  %}
         {% for tracker in completed %}
             <div>
