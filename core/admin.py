@@ -14,7 +14,7 @@ class UserAdmin(admin.ModelAdmin):
 class TrackerGroup(admin.ModelAdmin):
     list_display = (
         'name', 
-        'users',
+        'user',
         'created_at', 
         'id',
     )
@@ -52,7 +52,7 @@ class Response(admin.ModelAdmin):
         'tracker', 
         'tracker_instance',
         'question', 
-        'answers',
+        'display_answers',
         'user',
         'created_at',
     )
