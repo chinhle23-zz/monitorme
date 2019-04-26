@@ -27,15 +27,9 @@
                         </a>
                     </div>
                     <div class="needscenter box">
-                        {% if request.user.is_family_admin == True %}
-                            <a href="{% url 'dashboard_detail' %}">
-                                <i class="far fa-bars"></i>
-                            </a>
-                        {% else %}
-                            <a href="{% url 'dashboard_detail' %}">
-                                <i class="far fa-bars"></i>
-                            </a>
-                        {% endif %}
+                        <a href="{% url 'user-detail' request.user.pk %}">
+                            <i class="far fa-bars"></i>
+                        </a>
                     </div>
                     <div class="needscenter box">
                         <a href="{% url 'report' %}">

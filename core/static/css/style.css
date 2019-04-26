@@ -112,8 +112,6 @@ button:focus {
     margin: 10px;
 }
 
-
-
 .user_info {
     padding: 2rem;
     color: black;
@@ -135,6 +133,10 @@ button:focus {
     color: #002c30;
 }
 
+p.landingmessage {
+    padding: .75rem;
+}
+
 .formline {
     margin-bottom: .75rem;
 }
@@ -154,11 +156,7 @@ button:focus {
 .hello-message {
     margin-top: 10px;
     font-size: 1.5rem;
-}
-
-.hello-message {
-    margin-top: 10px;	    
-    margin-top: 10%;
+    margin-bottom: 0;
 }
 
 .login {
@@ -315,6 +313,24 @@ span {
 .reportpage {
     text-align: left
 }
+
+.u-full-width {
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.smallfont {
+    font-size: .5rem;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.borderbottom {
+    border-bottom: 1px solid black;
+}
+
 
   @media screen
   and (min-width: 450px) 

@@ -3,13 +3,29 @@
 
 {% block content %}
     <h3>Tracker Summaries</h3>
-    <div class="reportpage">
-        {% if user.trackergroup_set.all %}
-            {% for tracker in user.trackergroup_set.all %}
-            <div style="margin-left: 2.5rem;">{{tracker}}</div>
+    <div class="smallfont">
+        <table class="u-full-width">
+            <thead>
+                <tr class="bolder">
+                <th></th>
+                <th>MTD</th>
+                <th>Last 30 Days</th>
+                <th>Average</th>
+                </tr>
+            </thead>
+            {% if request.user.trackers %}
+            {% for tracker in trackers %}
+            <tbody>
+                <tr class="marginbottom needscenter">
+                    <td class="needsleft">{{tracker}}</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+            </tbody>
             {% endfor %}
-        {% endif %}
-
+            {% endif %}
+        </table>
     </div>
     
 

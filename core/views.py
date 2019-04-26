@@ -297,6 +297,7 @@ def report(request):
     instances = TrackerGroupInstance.objects.all()
     responses = Response.objects.all()
 
+
     context = {
         'user_info': user_info,
         'trackers': trackers, 
