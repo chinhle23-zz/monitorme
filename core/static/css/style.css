@@ -1,3 +1,4 @@
+
 html {
     background:
         linear-gradient(rgba(132, 153, 155, 0.50));
@@ -42,7 +43,6 @@ a {
     flex-flow: column;
     height: auto;
 }
-
 
 
 .user_info {
@@ -210,6 +210,19 @@ span {
     text-align: left
 }
 
+.questions {
+    text-align: left;
+    font-style: italic;
+    
+}
+
+.us {
+    text-align: left;
+    font-style: italic;
+    
+    
+}
+
   @media screen
   and (min-width: 450px) 
   and (max-width: 750px) {
@@ -275,3 +288,4 @@ details[open] summary {
 .registration_look {
     text-align: left;
 }
+

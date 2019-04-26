@@ -20,7 +20,7 @@ class User(AbstractUser):
     zipcode = models.CharField(max_length=10, null=True, blank=True)
     active = models.BooleanField(default=True)
     phonenumber = models.CharField(max_length=25, null=True, blank=True)
-    parent = models.ForeignKey('User', on_delete=models.CASCADE, default=1)
+    parent = models.ForeignKey('User', on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField()
 
     def set_slug(self):
