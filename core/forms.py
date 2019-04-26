@@ -81,7 +81,7 @@ class NewResponseForm(forms.Form):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
     def __init__(self, question, *args, **kwargs):
         super(NewResponseForm, self).__init__(*args, **kwargs)
-        self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
+        self.fields['answers'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield  
 
 class CreateResponseForm(forms.Form):

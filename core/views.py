@@ -197,7 +197,7 @@ def new_response(request, question_pk):
             tracker_instance = tracker.tracker_instances.last()
                 # need a better way to do this
             query_dict_copy = request.POST.copy()
-            answer_keys = query_dict_copy.pop('answer')
+            answer_keys = query_dict_copy.pop('answers')
             response = Response.objects.create(
                 question_id=question_pk,
                 tracker_id=tracker.id,
@@ -205,7 +205,8 @@ def new_response(request, question_pk):
                 user = request.user,
             )
             for key in answer_keys:
-                response.objects.add
+                response.answers.add(Answer.objects.get(pk=key))
+
             response.save()
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
