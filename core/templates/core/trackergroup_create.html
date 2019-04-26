@@ -27,16 +27,13 @@
         <span class="formline purple">{{ form.answer_name3.label_tag}}</span>
         <span>{{ form.answer_name3 }}</span>
     </div>
-    <button class="button button2" type='Submit'>Save Tracker</button>
+    <button class="button button2" type='Submit'>Next</button>
 </form>
-
-<h3>Most recent tracker created:</h3> 
-<p><a href="{{tracker.get_absolute_url}}">{{ tracker.name }}</a></p>
-
-
 {% endblock %}
 
 {% comment %}
+<h3>Most recent tracker created:</h3> 
+<p><a href="{{tracker.get_absolute_url}}">{{ tracker.name }}</a></p>
 {% for question in tracker.questions.all %}
     <div>
         <p>
