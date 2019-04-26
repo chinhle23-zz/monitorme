@@ -271,6 +271,8 @@ def new_response(request, question_pk):
             tracker = question.tracker
             tracker_instance = tracker.tracker_instances.last()
                 # need a better way to do this
+            query_dict_copy = request.POST.copy()
+            answer_keys = query_dict_copy.pop('answer')
 
             response = Response.objects.create(
                 question_id=question_pk,
@@ -278,6 +280,9 @@ def new_response(request, question_pk):
                 tracker_instance_id=tracker_instance.id,
                 user = request.user,
             )
+
+            for key in answer_keys:
+                response.answers.add(Answer.objects.get(pk=key))
 
             response.save()
             

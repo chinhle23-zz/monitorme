@@ -11,12 +11,14 @@
         {% for question in trackergroupinstance.tracker.questions.all %}
         <div>
             <div class="tracker"> 
-                {{question}} 
-                <span>
+                {{question}}
+                {% for answer in question.answer_set.all %}
+                    <div class="margin15">
                         <a href="{% url 'response_create' question_pk=question.pk %}">
-                                <button class="surveybutton">Add Response</button>
+                        {{answer}} 
                         </a>
-                </span>
+                    </div>
+                {% endfor %} 
             </div>
         </div>
         {% endfor %}
