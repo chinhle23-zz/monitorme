@@ -297,24 +297,14 @@ def response_detail(request, pk):
     }
     return render(request, 'response_detail', context=context)
 
-def dashboard_detail(request):
-    user_list = User.objects.all()
+def user_detail(request, pk):
+    template_name = 'core/user_detail.html'
     trackers = TrackerGroup.objects.all()
     completed = TrackerGroupInstance.objects.all()
 
     context = {
-        'user_list': user_list,
         'trackers': trackers,
         'completed': completed,
-    }
-
-    return render(request, 'core/dashboard_detail.html', context=context)
-
-def user_detail(request, pk):
-    template_name = 'core/user_detail.html'
-    trackers = TrackerGroup.objects.all()
-    context = {
-        'trackers': trackers,
     }
     return render(request, 'core/user_detail.html', context)
 
