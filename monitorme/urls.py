@@ -45,7 +45,7 @@ urlpatterns = [
     path('discover/', core_views.discover_page, name="discover_page"),
     path('references/', core_views.references, name="references"),
     path('report/', core_views.report, name="report"),
-    path('about_us', core_views.about_us, name="about_us"), 
+    path('about_us/', core_views.about_us, name="about_us"), 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
