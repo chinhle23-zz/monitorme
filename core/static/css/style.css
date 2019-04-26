@@ -9,6 +9,11 @@ h3 {
     margin-bottom: .75rem;
 }
 
+h4.smalltext {
+    font-size: .85rem;
+    margin-top: 0px;
+}
+
 a {
     text-decoration: none;
     color: #0A5E5F;
@@ -88,6 +93,10 @@ button:focus {
     color: rgb(77, 105, 138);
 }
 
+.darkpurple {
+    color: rgb(75, 45, 104);
+}
+
 
 .navbarcontainer {
     display: flex;
@@ -134,6 +143,14 @@ button:focus {
     color: #E6E2E1;
 }
 
+.margin15 {
+    margin-left: 15%;
+}
+
+.marginbottom {
+    margin-bottom: 1rem;
+}
+
 .hello-message {
     margin-top: 10px;
     font-size: 1.5rem;
@@ -156,10 +173,6 @@ button:focus {
     color: #B4B3B3;
 }
 
-h4.smalltext {
-    font-size: .85rem;
-    margin-top: 0px;
-}
 
 .purple {
     color: #8B4F77;
@@ -172,7 +185,6 @@ h4.smalltext {
 .needsleft {
     text-align: left;
 }
-
 
 .button, 
 .loginbutton {
@@ -365,7 +377,4 @@ details[open] {
 details[open] summary {
     margin-bottom: .5em;
     outline: 0;
-}
-.registration_look {
-    text-align: left;
 }

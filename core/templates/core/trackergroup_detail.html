@@ -5,18 +5,19 @@
     <h3 class="darkteal">{{tracker.name}} </h3>
 
     {% for question in tracker.questions.all %}
-    <div>
+    <div class="marginbottom">
         <a href="{{question.get_absolute_url}}">{{question}}</a> 
     </div>
+    <div class="marginbottom">
         {% for answer in question.answer_set.all %}
-            <div style="margin-left: 25px;">
+            <div class="margin15">
                 {{answer}} 
             </div>
         {% endfor %}
+    </div>
     {% endfor %}
 
     <div>
-        <h4 class="medteal">Need to add more Questions?</h4>
         <form method="post" action="">
             {% csrf_token %}
             <div class="login-row">
@@ -35,8 +36,17 @@
                     <span class="formline purple">{{ form.answer_name3.label_tag}}</span>
                     <span>{{ form.answer_name3 }}</span>
                 </div>
-            <button class="surveybutton" type="Submit">Save Question</button>
-        </form>
+            <div class="needscenter">
+                <button class="add-tracker" type="Submit">
+                    Save Question
+                </button>
+                <a href="{% url 'index' %}">
+                    <button class="tracker-button button2" type="Submit"> 
+                        Done
+                    </button>
+                </a>
+            </div>
+        </form>     
     </div>
 </div>
 
@@ -44,7 +54,7 @@
 
 {% comment %}
     - <a href="{% url 'answer-create' %}">
-        <button class="surveybutton">Add Answer</button>
+        <button class="add-tracker">Add Answer</button>
     </a>
     <form method="post" action="">
         {% csrf_token %}
