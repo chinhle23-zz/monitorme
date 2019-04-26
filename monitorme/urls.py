@@ -39,6 +39,7 @@ urlpatterns = [
     path('trackerinstance/create/<int:tracker_pk>', core_views.new_trackerinstance, name="trackerinstance_create"),
     path('trackerinstance/<int:pk>', core_views.TrackerInstanceDetailView.as_view(), name="trackergroupinstance_detail"),
     path('response/create/<int:question_pk>', core_views.new_response, name="response_create"),
+    path('response/create/', core_views.response_create, name="response_create"),
     path('response_detail/<int:pk>', core_views.response_detail, name= 'response_detail'),
     path('dashboard_detail/', core_views.dashboard_detail, name= 'dashboard_detail'),
     path('user_detail/<int:pk>', core_views.user_detail, name="user-detail"),

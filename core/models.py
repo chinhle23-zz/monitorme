@@ -68,7 +68,7 @@ class Question(models.Model):
 class Answer(models.Model):
     """This creates the answer model"""
     question_answer = models.CharField(max_length=100, null=False, blank=False)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    question = models.ForeignKey('Question', related_name='answers', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE)
 
