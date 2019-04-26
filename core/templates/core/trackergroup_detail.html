@@ -4,10 +4,8 @@
 
 <h3>Tracker Name: {{tracker.id}} - {{tracker.name}}
 
-<div>Available To: {{tracker.display_available_to}}</div>
-
 {% for question in tracker.questions.all %}
-<div>Question {{question.order}})  
+<div>Question:
     <a href="{{question.get_absolute_url}}">{{question}}</a> 
 </div>
     {% for answer in question.answer_set.all %}
