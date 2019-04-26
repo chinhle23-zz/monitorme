@@ -70,6 +70,7 @@ def tracker_create(request):
             tracker_name = request.POST.get('tracker_name', '')
             tracker = TrackerGroup.objects.create(
                 name=tracker_name,
+                created_by=request.user,
             )
             query_dict_copy = request.POST.copy()
             available_to_keys = query_dict_copy.pop('tracker_available_to')
@@ -154,9 +155,9 @@ def question_create(request, pk):
 
 def answer_questions(request):
     tracker = TrackerGroup.objects.get(pk=84)
-    questions = tracker.questions
-    QuestionResponseFormSet = formset_factory(QuestionResponseForm, extra=len(questions))
-    some_formset = FormSet(initial=[{'id': x.id} for x in some_objects])
+    questions = tracker.questions.all()
+    QuestionResponseFormSet = formset_factory(QuestionResponseForm, extra=len(questions.all()))
+    questions_formset = QuestionResponseFormSet(initial=[{'id': question.id} for question in questions])
     if request.method == 'POST':
         formset = QuestionResponseFormSet(request.POST, request.Files)
         if formset.is_valid():
@@ -177,12 +178,12 @@ def answer_questions(request):
             response.save()
             return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
-        formset = QuestionResponseFormSet()
+        questions_formset = QuestionResponseFormSet(initial=[{'id': question.id} for question in questions.all()])
 
     context = {
-        'formset': formset,
+        'questions_formset': questions_formset,
     }
-    return render(request, 'core/response_create.html', context=context)
+    return render(request, 'core/response_create.html', {'questions_formset': questions_formset})
     
 
 # def response_create(request, tracker_pk):

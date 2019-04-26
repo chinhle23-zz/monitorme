@@ -182,17 +182,35 @@ class CreateAnswerForm(forms.Form):
             return Answer.objects.create(**answer_properties)
         return None
 
-class QuestionResponseForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(QuestionResponseForm, self).__init__(*args, **kwargs)
-        self.fields['question'] = forms.CharField()
-        self.fields['answer'] = forms.ModelMultipleChoiceField(
-            Answer.objects.filter(question_id=1),
+class ResponseForm(forms.ModelForm):
+    answer = forms.ModelMultipleChoiceField(
+            Answer.objects.filter(question_id=id),
             label='Select answer(s)',
             widget=forms.CheckboxSelectMultiple,
             )
-        self.fields['answered_for'] = forms.ModelChoiceField(
-            User.objects.all(),
-            label='Who are you answering for',
-            widget=forms.RadioSelect,
-            )
+
+    class Meta:
+        model = Question
+
+    def save(self):
+        Response.objects.create(
+            question = Question.objects.get(id=id),
+            tracker = self.tracker,
+        )
+
+
+    # def __init__(self, *args, **kwargs):
+    #     super(QuestionResponseForm, self).__init__(*args, **kwargs)
+    #     self.fields['question'] = forms.CharField(
+    #         initial=Question.objects.filter(id=id).description,
+    #     )
+    #     self.fields['answer'] = forms.ModelMultipleChoiceField(
+    #         Answer.objects.filter(question_id=id),
+    #         label='Select answer(s)',
+    #         widget=forms.CheckboxSelectMultiple,
+    #         )
+    #     self.fields['answered_for'] = forms.ModelChoiceField(
+    #         User.objects.all(),
+    #         label='Who are you answering for',
+    #         widget=forms.RadioSelect,
+    #         )
