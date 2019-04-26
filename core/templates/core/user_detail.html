@@ -18,14 +18,13 @@
     <div>{{tracker}} - <span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
 {% endfor %}
 {% endif %}
-
 <br>
-<h3>Pending Trackers</h3>
 
-<br>
-<h3>Closed Trackers</h3>
-
-
-
+<details>
+<summary>
+<h3>Completed Trackers</h3>
+</summary>
+<p>We are putting a button here
+</details>
 
 {% endblock content %}
