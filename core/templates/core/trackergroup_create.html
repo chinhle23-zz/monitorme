@@ -8,23 +8,23 @@
     {% csrf_token %}
 
     <div class="login-row">
-        <span class="formline">{{ form.tracker_name.label_tag}}</span>
-        <span class="formlineplaceholder">{{ form.tracker_name }}</span>
+        <span class="formline purple">{{ form.tracker_name.label_tag}}</span>
+        <span class="formlinetext">{{ form.tracker_name }}</span>
     </div>
     <div class="login-row">
-        <span class="formline">{{ form.question_description.label_tag}}</span>
+        <span class="formline purple">{{ form.question_description.label_tag}}</span>
         <span>{{ form.question_description }}</span>
     </div>
     <div class="login-row">
-        <span class="formline">{{ form.answer_name1.label_tag}}</span>
+        <span class="formline purple">{{ form.answer_name1.label_tag}}</span>
         <span>{{ form.answer_name1 }}</span>
     </div>
     <div class="login-row">
-        <span class="formline">{{ form.answer_name2.label_tag}}</span>
+        <span class="formline purple">{{ form.answer_name2.label_tag}}</span>
         <span>{{ form.answer_name2 }}</span>
     </div>
     <div class="login-row">
-        <span class="formline">{{ form.answer_name3.label_tag}}</span>
+        <span class="formline purple">{{ form.answer_name3.label_tag}}</span>
         <span>{{ form.answer_name3 }}</span>
     </div>
     <button class="button button2" type='Submit'>Save Tracker</button>
