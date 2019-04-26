@@ -81,11 +81,14 @@ textarea:focus {
 }
 
 input#id_tracker_name, 
-input#id_question_description,
-input#answer_name1,
-input#answer_name2,
-input#answer_name3  {
+input#id_question_description {
     width: 100%;
+}
+
+input#id_answer_name1,
+input#id_answer_name2,
+input#id_answer_name3 {
+    width: 65%;
 }
 
 select:focus, 
