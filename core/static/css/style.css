@@ -122,6 +122,14 @@ button:focus {
     color: #002c30;
 }
 
+.formline {
+    margin-bottom: .75rem;
+}
+
+.formlinetext::placeholder {
+    color: #E6E2E1;
+}
+
 .hello-message {
     margin-top: 10px;
     font-size: 1.5rem;

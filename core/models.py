@@ -35,7 +35,7 @@ class TrackerGroup(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} ({self.id})'
+        return self.name
 
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])

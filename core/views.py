@@ -285,9 +285,6 @@ def discover_page(request):
     }
     return render(request, 'core/discover_page.html', context=context)
 
-def quick_links(request):
-
-    return render(request, 'core/quick_links.html', context=context)
 
 def references(request):
     return render(request, 'core/reference.html')
