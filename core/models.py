@@ -31,7 +31,7 @@ class User(AbstractUser):
 class TrackerGroup(models.Model):
     """This model handles the group of questions a user creates for the tracker."""
     name = models.CharField(max_length=100, null=False, blank=False)
-    users = models.ForeignKey('User', related_name='trackers', on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey('User', related_name='trackers', on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
@@ -39,6 +39,7 @@ class TrackerGroup(models.Model):
 
     def get_absolute_url(self):
         return reverse('tracker-detail', args=[str(self.id)])
+    
 
 
 class TrackerGroupInstance(models.Model):
@@ -82,8 +83,8 @@ class Response(models.Model):
     on_delete=models.CASCADE, null=False, blank=False)
     tracker_instance = models.ForeignKey('TrackerGroupInstance',  on_delete=models.CASCADE, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE, null=False, blank=False)
-    answer = models.ManyToManyField('Answer')
-    users = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)
+    answers = models.ManyToManyField('Answer')
+    user = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
