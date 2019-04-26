@@ -92,7 +92,7 @@ class Response(models.Model):
 
     def display_answers(self):
         """Create a string for the Answer(s). This is required to display answers in Admin."""
-        return ', '.join(answer.name for answer in self.answers.all()[:3])
+        return ', '.join(answer.question_answer for answer in self.answers.all()[:3])
 
 
 
