@@ -59,7 +59,7 @@ class Question(models.Model):
     created_by = models.ForeignKey('User', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.description   
+        return self.tracker_question  
 
     def get_absolute_url(self):
         return reverse('question-detail', args=[str(self.id)])
@@ -73,7 +73,7 @@ class Answer(models.Model):
     created_by = models.ForeignKey('User', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.question_answer
 
     def get_absolute_url(self):
         return reverse('answer-detail', args=[str(self.id)])
