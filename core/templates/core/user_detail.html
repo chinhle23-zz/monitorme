@@ -2,35 +2,42 @@
 {% load static %}
 
 {% block content %}
+<h3>MonitorMe Summaries</h3>
+
+<p class="needsleft">This page is for you to navigate to the details of the items in the list that you have created and have a quick snapshot of the responses.</p>
+
+<div>
+    <h3>Tracker </h3>
+    <div>
+        <table class="report-table">
+            <thead>
+                <tr class="bolder">
+                    <th class="trackername"></th>
+                    <th class="column">MTD</th>
+                    <th class="column">Last 30 Days</th>
+                    <th class="column">Average</th>
+                </tr>
+            </thead>
+            {% if request.user.trackers %}
+            {% for tracker in trackers %}
+            <tbody>
+                <tr class="marginbottom needscenter">
+                    <td class="needsleft trackername">
+                        <a href="{% url 'tracker-detail' tracker.pk %}">
+                        {{tracker}}
+                        </a>
+                    </td>
+                    <td class="column">#</td>
+                    <td class="column">#</td>
+                    <td class="column">#</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+    
 
 
-<p>Welcome {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %} to your personal dashboard!</p>
-
-
-<h3>Available Trackers</h3>
-    <a href="">
-     <a href="/tracker/create"><button class="add-tracker">Add Tracker</button></a>
-        </button>
-    </a>  
-
-{% if trackers %}
-{% for tracker in trackers %}
-    {% comment %}
-        <!-- <div><a href="{{tracker.get_absolute_url}}">{{tracker}}</a> - <span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div> -->
-        response_create
-    {% endcomment %}
-    <div><a href="{{tracker.get_absolute_url}}">{{tracker}}</a> - <span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
-{% endfor %}
-{% endif %}
-
-<br>
-<h3>Pending Trackers</h3>
-
-<br>
-<h3>Closed Trackers</h3>
-
-
-
-
-{% endblock content %}
-
+{% endblock %}

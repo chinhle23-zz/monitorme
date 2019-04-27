@@ -144,6 +144,7 @@ INTERNAL_IPS = [
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = '/'
 REGISTRATION_FORM = 'core.forms.CustomRegistrationForm'
     # https://django-registration-redux.readthedocs.io/en/latest/forms.html#multiple-form-inheritance
 

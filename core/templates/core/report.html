@@ -2,20 +2,42 @@
 {% load static %}
 
 {% block content %}
-    {% if user_info %}
-        <h2>Members</h2>
-        <div class="reportpage">
-        {% for user in user_info %}
-        <h3>{% if user.name %}{{user.name}}{%else%}{{user}}{% endif %}</h3>
-            {% if user.trackergroup_set.all %}
-                {% for tracker in user.trackergroup_set.all %}
-                <h3 style="margin-left: 1.5rem;">Trackers</h3>
-                <div style="margin-left: 2.5rem;">{{tracker}}</div>
-                {% endfor %}
+<h3>MonitorMe Summaries</h3>
+
+<p class="needsleft">This page is for you to navigate to the details of the items in the list that you have created and have a quick snapshot of the responses.</p>
+
+<div>
+    <h3>Tracker </h3>
+    <div>
+        <table class="report-table">
+            <thead>
+                <tr class="bolder">
+                    <th class="trackername"></th>
+                    <th class="column">MTD</th>
+                    <th class="column">Last 30 Days</th>
+                    <th class="column">Average</th>
+                </tr>
+            </thead>
+            {% if request.user.trackers %}
+            {% for tracker in trackers %}
+            <tbody>
+                <tr class="marginbottom needscenter">
+                    <td class="needsleft trackername">
+                        <a href="{% url 'tracker-detail' tracker.pk %}">
+                        {{tracker}}
+                        </a>
+                    </td>
+                    <td class="column">#</td>
+                    <td class="column">#</td>
+                    <td class="column">#</td>
+                </tr>
+            </tbody>
+            {% endfor %}
             {% endif %}
-        {% endfor %}
-        </div>
-    {% endif %}
+        </table>
+    </div>
+</div>
+    
 
 
 {% endblock %}

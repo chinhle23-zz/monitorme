@@ -1,28 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="needsleft">
+<h3 class="bold">{{trackergroupinstance.tracker.name}}</h3>
 
-<h3>{{trackergroupinstance.tracker.name}}</h3>
+<div>Started at: <span class="medgray">{{trackergroupinstance.started_at}}</span></div>
 
-<div>Created by: {{trackergroupinstance.created_by}}</div>
-
-<div>Started at: {{trackergroupinstance.started_at}}</div>
-
-<h3>Questions</h3>
+<h3 class="darkpurple">Questions</h3>
     {% if trackergroupinstance.tracker.questions.all %}
         {% for question in trackergroupinstance.tracker.questions.all %}
         <div>
             <div class="tracker"> 
-                {{question}} 
-                <span>
+                {{question}}
+                {% for answer in question.answer_set.all %}
+                    <div class="margin15">
                         <a href="{% url 'response_create' question_pk=question.pk %}">
-                                <button class="surveybutton">Add Response</button>
+                        {{answer}} 
                         </a>
-                </span>
+                    </div>
+                {% endfor %} 
             </div>
         </div>
         {% endfor %}
     {%endif%}
+
+</div>
     
 {% endblock %}
 

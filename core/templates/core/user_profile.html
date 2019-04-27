@@ -5,97 +5,50 @@
 
 
 {% block content %}
-<div class="welcome">
-    {% if user.is_authenticated %}
-        <p>Welcome to your profile page!</p>
-        
-</div>    
-    <div class="user_info">
+<div class="welcome needscenter">
+        {% if user.is_authenticated %}
+            <h3 class="darkteal">Settings Page</h3>
+            
+    </div>    
+        <div class="user_info needscenter">
+            <div class="user-detail">
+                <div class="userprofile-line">
+                    User Name: 
+                    <span class="purple">{{ user.username }}</span>
+                </div>
+    
+                <div class="userprofile-line">Name: 
+                    {% if user.name %}
+                    <span class="purple">{{ user.name }}</span>
+                    {% else %}
+                    <span class="addprofile"> Need to Add</span>
+                    {% endif %}
+                </div>
+    
+                <div class="userprofile-line">Email: 
+                    {% if user.email %}
+                        <span class="purple">{{ user.email }}</span>
+                    {% else %}
+                        <span class="addprofile"> Need to Add</span>
+                    {% endif %}
+                </div>
+    
+            </div>
+            <a href="{% url 'edit-profile' user.pk %}">
+                <button class="tracker-button" type="submit">Edit Profile</button>
 
-        <div class="userprofile-line">User Name: 
-            <span class="profiledata">{{ user.username }}</span>
-        </div>
-
-        <div class="userprofile-line">Name: 
-            {% if user.name %}
-            <span class="profiledata">{{ user.name }}</span>
-            {% else %}
-            <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">Group: 
-            {% if request.user.groups.count >= 1 %}
-                {% for group in request.user.groups.all %}
-                <span class="profiledata">{{ group.name }}</span>
-                {% endfor %}
-            {% else %}
-
-                <span class="addprofile"><a href="{% url 'group_form' %}">Create Group</a></span>
-
-            {%endif%}
-        </div>
-
-        <div class="userprofile-line">Email: 
-            {% if user.email %}
-                <span class="profiledata">{{ user.email }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">Group Admin: 
-            <span class="profiledata">{{ user.is_family_admin }}</span>
-        </div>
-
-        <div class="userprofile-line">Label: 
-            {% if user.label %}
-                <span class="profiledata">{{ user.label }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">City: 
-            {% if user.city%}
-                <span class="profiledata">{{ user.city }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">State: 
-            {% if user.state %}
-                <span class="profiledata">{{ user.state }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">Zip Code: 
-            {% if user.zipcode %}
-                <span class="profiledata">{{ user.zipcode }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {% endif %}
-        </div>
-
-        <div class="userprofile-line">Phone Number: 
-            {% if user.phonenumber %}
-                <span class="profiledata">{{ user.phonenumber }}</span>
-            {% else %}
-                <span class="addprofile"> Need to Add</span>
-            {%endif%}
-        </div>
-
-
-        <a href="{% url 'edit-profile' user.pk %}">
-            <button class="surveybutton" type='submit'>Edit Profile</button>
-        </a>
-
-
-        
-    </div>
-    {% endif %}
+            <a href="{% url 'tracker-create' %}">
+                <button class="add-tracker" type="submit">
+                    Monitor Me 
+                </button>
+            </a>  
+            <a href="{% url 'references'%}">
+                <button class="tracker-button" type="submit">
+                    References 
+                </button>    
+            </a>  
+        {% endif %}
+    {% endblock %}
 <script src="script.js"></script>
-{% endblock %}
+
+

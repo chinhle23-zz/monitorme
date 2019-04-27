@@ -7,32 +7,81 @@
 {% block content %}
 <form method="POST" class="loginsection">
     {% csrf_token %}
-    {% for field in form %}
-        <div class="registration_look">
-            <div class="{% if field.field.required %}b{% endif %}">{{ field.label_tag }}</div>
-            <div>{{ field }}</div>
-        
-        <br>
-    {% endfor %}
-     <div class="disclosure">
+    <div>
+            <div class="login-row">
+                <span>
+                    <i class="fas fa-user"></i> 
+                    {{ form.username.label_tag }}:
+                </span>
+                <span class="noborder">
+                    {{ form.username }}
+                </span>
+            </div>
+            <div class="login-row">
+                <span>
+                    <i class="fas fa-user"></i> 
+                    {{ form.name.label_tag }}:
+                </span>
+                <span class="noborder">
+                    {{ form.name}}
+                </span>
+            </div>
+            <div class="login-row">
+                <span>
+                    <i class="fas fa-user"></i> 
+                    {{ form.email.label_tag }}:
+                </span>
+                <span class="noborder">
+                    {{ form.email}}
+                </span>
+            </div>
+            <div class="login-row">
+                <span>
+                    <i class="fas fa-lock-alt"></i>
+                    {{ form.password1.label_tag }}:
+                </span>
+                <span class="noborder">
+                    {{ form.password1 }}
+                </span>
+            </div>
+            <div class="login-row">
+                <span>
+                    <i class="fas fa-lock-alt"></i>
+                    {{ form.password2.label_tag }}:
+                </span>
+                <span class="noborder">
+                    {{ form.password2 }}
+                </span>
+            </div>
+            <div class="login-row" style="border: none;">
+                {{ form.disclosure_accepted }}
+                <span>{{ form.disclosure_accepted.label_tag }}</span>
+            </div>
+
+        </div>
+     <div class="disclosure needsleft">
     <details>
     <summary>Please Click To Read The Disclosure</summary>
     <h3>By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions:</h3>
 
-<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Confidentiality Notice and any or all Agreements: "Client", "You", and "Your" refers to you, and anyone added to your "group" who is accessing this website and accepting Monitor-Me's terms and conditions. Group members will be considered accepting of terms and conditions under the umbrella of the group administrator when group is created. "Monitor-Me", "Ourselves", "We" and "Us" refers to the creators and operators of Monitor-Me. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same. 
+<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Confidentiality Notice and any or all Agreements: "Client", "You", and "Your" refers to you, and anyone added to your "group" who is accessing this website and accepting Monitor-Me's terms and conditions. Group members will be considered accepting of terms and conditions under the umbrella of the group administrator when group is created. "Monitor-Me", "Ourselves", "We" and "Us" refers to the creators and operators of Monitor-Me. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same. </p>
 
-<h3>Privacy Statement</h3>
-<p>We are committed to protecting your privacy. Authorized developers and maintainers of Monitor-Me will only access user data if and when it pertains to fixing user reported "bugs" or any other factors affecting optimal useability of the Monitor-Me site. We constantly review our systems and data to ensure the best possible service to our customers. Any unauthorized actions against our computer systems or data can and may result in legal action with a view towards prosecuting and/or civil proceedings to recover any damages caused by those responsible. The rights to all text, images, and other materials on this site are owned by Monitor-Me's creators and protected by Copyright as per license. 
+<h3 class="needscenter">Privacy Statement</h3>
+<p>We are committed to protecting your privacy. Authorized developers and maintainers of Monitor-Me will only access user data if and when it pertains to fixing user reported "bugs" or any other factors affecting optimal useability of the Monitor-Me site. We constantly review our systems and data to ensure the best possible service to our customers. Any unauthorized actions against our computer systems or data can and may result in legal action with a view towards prosecuting and/or civil proceedings to recover any damages caused by those responsible. The rights to all text, images, and other materials on this site are owned by Monitor-Me's creators and protected by Copyright as per license. </p>
 
-<h3>Confidentiality</h3>
-<p>We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by Monitor-Me will only be in connection with the agreed upon services.
+<h3 class="needscenter">Confidentiality</h3>
+<p>We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by Monitor-Me will only be in connection with the agreed upon services.</p>
 
 <p><b>Please check the box above to acknowledge you have read the disclosure including all terms and conditions.</b></p> 
 </details>
 </div>
+<div>
     <div>
-<button class="tracker-button" type="submit">Register</button>
-</div>
+        <button class="tracker-button" type="submit">
+            Register
+        </button>
+    </div>
+    <p>Didn't mean to Register? <a class="smalltext purple" href="{% url 'index' %}">Home</a></p>
 </div>
 </form>
 {% endblock %}

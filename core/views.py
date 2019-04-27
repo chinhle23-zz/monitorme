@@ -14,8 +14,14 @@ from django.forms import modelformset_factory
 from django import forms
 
 
+
 def index(request):
-    return render(request, 'index.html')
+    trackers = TrackerGroup.objects.all()
+
+    context = {
+        'trackers': trackers,
+    }
+    return render(request, 'index.html', context=context)
 
 def user_profile(request, username):
     user = User.objects.get(username=request.user)
@@ -93,6 +99,8 @@ def tracker_create(request):
     }
     return render(request, 'core/trackergroup_create.html', context=context)
 
+
+
 def question_create(request, pk):
     form = CreateQuestionAnswerForm()
     tracker = TrackerGroup.objects.get(pk=pk)
@@ -132,6 +140,67 @@ def question_create(request, pk):
         'tracker': tracker,
     }
     return render(request, 'core/trackergroup_detail.html', context=context)
+
+def question_detail_create(request, pk):
+    form = CreateQuestionAnswerForm()
+    tracker = TrackerGroup.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CreateQuestionAnswerForm(request.POST)
+        answer_form = CreateAnswerForm(request.POST)
+        if form.is_valid:
+            question_description = request.POST.get('question_description', '')
+            question = Question.objects.create(
+                tracker_question=question_description,
+                tracker=tracker,
+                created_by=request.user,
+            )
+            answer_name1 = request.POST.get('answer_name1', '')
+            answer = Answer.objects.create(
+                question_answer=answer_name1,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name2 = request.POST.get('answer_name2', '')
+            answer = Answer.objects.create(
+                question_answer=answer_name2,
+                question=question,
+                created_by=request.user,
+            )
+            answer_name3 = request.POST.get('answer_name3', '')
+            answer = Answer.objects.create(
+                question_answer=answer_name3,
+                question=question,
+                created_by=request.user,
+            )
+            return HttpResponseRedirect(reverse('tracker-all-detail', args=[tracker.id]))
+        else:
+            form = CreateQuestionAnswerForm()
+    context = {
+        'form': form,
+        'tracker': tracker,
+    }
+    return render(request, 'core/trackergroup_all_detail.html', context=context)
+
+# def answer_create(request, pk):
+#     form = CreateAnswerForm()
+#     question = question.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = CreateQuestionAnswerForm(request.POST)
+#         if form.is_valid:
+#             answer_name = request.POST.get('answer_name', '')
+#             answer = Answer.objects.create(
+#                 name=answer_name1,
+#                 question=question,
+#                 created_by=request.user,
+#             )
+#             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
+#         else:
+#             form = CreateQuestionAnswerForm()
+#     context = {
+#         'form': form,
+#         'tracker': tracker,
+#     }
+#     return render(request, 'core/trackergroup_detail.html', context=context)
 
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
@@ -197,13 +266,17 @@ def new_response(request, question_pk):
             tracker_instance = tracker.tracker_instances.last()
                 # need a better way to do this
             query_dict_copy = request.POST.copy()
-            answer_keys = query_dict_copy.pop('answers')
+            answer_keys = query_dict_copy.pop('answer')
+
             response = Response.objects.create(
                 question_id=question_pk,
                 tracker_id=tracker.id,
                 tracker_instance_id=tracker_instance.id,
                 user = request.user,
             )
+            for key in answer_keys:
+                response.answers.add(Answer.objects.get(pk=key))
+
             for key in answer_keys:
                 response.answers.add(Answer.objects.get(pk=key))
 
@@ -245,26 +318,26 @@ def response_detail(request, pk):
     }
     return render(request, 'response_detail', context=context)
 
-def dashboard_detail(request):
-    user_list = User.objects.all()
-    trackers = TrackerGroup.objects.all()
-    completed = TrackerGroupInstance.objects.all()
-
-    context = {
-        'user_list': user_list,
-        'trackers': trackers,
-        'completed': completed,
-    }
-
-    return render(request, 'core/dashboard_detail.html', context=context)
-
 def user_detail(request, pk):
     template_name = 'core/user_detail.html'
+    user_info = User.objects.all()
     trackers = TrackerGroup.objects.all()
+    questions = Question.objects.all()
+    answers = Answer.objects.all()
+    instances = TrackerGroupInstance.objects.all()
+    responses = Response.objects.all()
+
+
     context = {
-        'trackers': trackers,
+        'user_info': user_info,
+        'trackers': trackers, 
+        'questions': questions,
+        'answers': answers,
+        'instances': instances,
+        'responses': responses,
     }
-    return render(request, 'core/user_detail.html', context)
+
+    return render(request, 'core/report.html', context=context)
 
 def discover_page(request):
     users = User.objects.all()
@@ -276,34 +349,12 @@ def discover_page(request):
     }
     return render(request, 'core/discover_page.html', context=context)
 
-def quick_links(request):
-    groups = Group.objects.all()
-    trackers = TrackerGroup.objects.all()
-
-    context = {
-        'groups': groups,
-        'trackers': trackers,
-    }
-    return render(request, 'core/quick_links.html', context=context)
 
 def references(request):
+    context = {
+    }
     return render(request, 'core/reference.html')
       
 def report(request):
-    user_info = User.objects.all()
-    trackers = TrackerGroup.objects.all()
-    questions = Question.objects.all()
-    answers = Answer.objects.all()
-    instances = TrackerGroupInstance.objects.all()
-    responses = Response.objects.all()
-
-    context = {
-        'user_info': user_info,
-        'trackers': trackers, 
-        'questions': questions,
-        'answers': answers,
-        'instances': instances,
-        'responses': responses,
-    }
 
     return render(request, 'core/report.html', context=context)
