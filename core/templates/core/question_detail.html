@@ -2,15 +2,35 @@
 
 {% block content %}
 
-<h3>Associated Tracker: <a href="{{question.tracker.get_absolute_url}}">{{question.tracker}}</a></h3>
-<h3>Question: {{question.description}}</h3>
+<div class="needsleft">
 
-<h3>Answers:</h3>
+<h3 class="darkteal">{{question.tracker}}
+    <br>
+    <span class="medfont purple">Select answer to edit</span>
+</h3>
+<div class="formline">
+    {{question.current_question}}
+</div>
+
+
 {% for answer in question.answer_set.all %}
-<div><a href="{{answer.get_absolute_url}}">{{answer}}</a></div>
+    <div class="marginbottom margin15">
+        <a href="{{answer.get_absolute_url}}">Answer: {{answer}}</a>
+    </div>
 {% endfor %}
 
-<a href="{% url 'answer-create' %}"><button class="button button2">Create Answers</button></a>
-
+    <div class="needscenter">
+        <a href="">
+            <button class="add-tracker">Create Answers</button>
+        </a>
+    </div>
+    <div class="needscenter done">
+        <a href="{% url 'tracker-detail' question.tracker.pk %}">
+            <button class="tracker-button button2"> 
+                Done
+            </button>
+        </a>  
+    </div>
+</div>
 
 {% endblock %} 

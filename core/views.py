@@ -73,25 +73,25 @@ def tracker_create(request):
             )
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                tracker_question=question_description,
+                current_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                question_answer=answer_name1,
+                current_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                question_answer=answer_name2,
+                current_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                question_answer=answer_name3,
+                current_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -116,25 +116,25 @@ def question_create(request, pk):
         if form.is_valid:
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                tracker_question=question_description,
+                current_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                question_answer=answer_name1,
+                current_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                question_answer=answer_name2,
+                current_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                question_answer=answer_name3,
+                current_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -157,25 +157,25 @@ def question_detail_create(request, pk):
         if form.is_valid:
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                tracker_question=question_description,
+                current_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                question_answer=answer_name1,
+                current_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                question_answer=answer_name2,
+                current_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                question_answer=answer_name3,
+                current_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -237,10 +237,10 @@ class AnswerDetailView(generic.DetailView):
 
 class AnswerUpdate(UpdateView):
     model = Answer
-    template_name = 'answer_edit'
-    fields = ['question',
-    'answer',
-    'tracker']
+    template_name = 'core/answer_edit.html'
+    fields = [
+    'current_answer']
+
 
 def new_trackerinstance(request, tracker_pk):
     new_trackerinstance_form = NewTrackerInstanceForm()

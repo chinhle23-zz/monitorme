@@ -8,5 +8,12 @@
 
     <button class="button button2" type='Submit'>Submit Answers</button>
 </form>
+<div class="needscenter done">
+    <a href="{% url 'answer-detail' answer.pk %}">
+        <button class="cancel button2"> 
+            Cancel
+        </button>
+    </a>  
+</div>
 
 {% endblock %}

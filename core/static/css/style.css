@@ -130,12 +130,15 @@ button:focus {
 }
 
 .user_info {
-    padding: 2rem;
     color: black;
     font-size: 16px;
     margin-bottom: .5rem;
-    margin-top: .5rem;
 }
+
+.editprofile {
+    padding-top: 2rem;
+}
+
 
 .mediumteal,
 .fa-user,
@@ -168,6 +171,10 @@ p.landingmessage {
 
 .margintop {
     margin-top: 0px;
+}
+
+.margintop5 {
+    margin-top: 5px;
 }
 
 .hello-message {
