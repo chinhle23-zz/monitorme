@@ -398,3 +398,47 @@ details[open] summary {
     margin-bottom: .5em;
     outline: 0;
 }
+
+.aboutus {
+    text-align: left;
+    padding: 1rem;
+}
+
+.aaron {
+    width: 320;
+    height: 640;
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.chinh {
+    max-width: 320;
+    max-height: 640;
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+}
+
+.craig {
+    width: 320;
+    height: 640;
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.kasey {
+    width: 320;
+    height: 640;
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+    align-content: space-between;
+}
