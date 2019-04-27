@@ -13,9 +13,24 @@
         <div class="needscenter">
             {% if trackers %}
                 {% for tracker in trackers %}
+<<<<<<< HEAD
                 <a href="{% url 'trackerinstance_create' tracker.pk %}">           
                     <button class="tracker-button">{{tracker}}</button>
                 </a>
+=======
+                {%comment%}
+                    <!-- <a href="{% url 'trackerinstance_create' tracker.pk %}"> -->
+                    <!-- <a href="{% url 'response_create' %}">
+                        <button class="tracker-button">{{tracker}}</button>
+                    </a> -->
+                {%endcomment%}
+                <form action="{% url 'trackerinstance_create' tracker.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class="tracker-button">{{tracker}}</button>
+                </form>
+                
+                <br>
+>>>>>>> 0039fb5d3b181a9ac0eef115fccf80f042ed972d
                 {% endfor %}
             {% endif %}
         </div>
@@ -23,7 +38,11 @@
             <a href="/tracker/create">
                 <button class="add-tracker">Monitor Me</button>
             </a>
+<<<<<<< HEAD
         </div>
+=======
+    
+>>>>>>> 0039fb5d3b181a9ac0eef115fccf80f042ed972d
 </div> 
 {% else %}
 <div class="blurb">

@@ -12,28 +12,37 @@
         <div>
             <div class="tracker"> 
                 {{question}}
-                {% for answer in question.answer_set.all %}
-                    <div class="margin15">
-                        <a href="{% url 'response_create' question_pk=question.pk %}">
-                        {{answer}} 
-                        </a>
-                    </div>
-                {% endfor %} 
+                {% for answer in question.answers.all %}
+                    {% if answer.current_answer %}
+                        <div class="margin15">
+                            <form method="post" action="{% url 'response_create' question_pk=question.pk answer_pk=answer.pk %}">
+                                {% csrf_token %}
+                                <button class="button button2" type="Submit">{{answer}}</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
         {% endfor %}
-    {%endif%}
+    {% endif %}
 
 </div>
     
 {% endblock %}
 
-        <!-- {% for question in trackergroupinstance.tracker.questions.all %}
-            {% if trackergroupinstance.created_by.groups.all %}
-                {% for group in trackergroupinstance.created_by.groups.all %}
-                    <div>
-                        <div class="tracker">{{question}} for {{group}}<span><a href="{% url 'response_create' question_pk=question.pk group_pk=group.pk %}"><button class="surveybutton">Add Response</button></a></span></div>
-                    </div>
-                {% endfor %}
-            {%endif%}
-        {% endfor %} -->
+{% comment %}
+    <!-- <a href="{% url 'response_create' question_pk=question.pk %}">
+        {{answer}} 
+    </a> -->
+                            
+     
+    <!-- <div class="margin15">
+        <form method="post" action="{% url 'response_create' question_pk=question.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button button2" type='Submit'>Submit</button>
+        </form>
+    </div> -->
+
+{% endcomment %}
