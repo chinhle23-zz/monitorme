@@ -75,6 +75,9 @@ class Answer(models.Model):
     def __str__(self):
         return self.current_answer
 
+    class Meta:
+        ordering = ['current_answer']
+
     def get_absolute_url(self):
         return reverse('answer-detail', args=[str(self.id)])
 
@@ -88,7 +91,7 @@ class Response(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return f'{self.tracker.name} {self.created_at} '
+        return f'{self.tracker.name} {self.created_at}'
 
     def display_answers(self):
         """Create a string for the Answer(s). This is required to display answers in Admin."""

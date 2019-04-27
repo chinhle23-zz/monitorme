@@ -26,8 +26,19 @@
         </div>
     </div> 
 
-    <input type="submit">
+    <div class="needscenter">
+        <button class="tracker-button button2"> 
+            Submit
+        </button>
+    </div>
 
 </form>
+<div class="needscenter done">
+    <a href="{% url 'user_profile' user.username %}">
+        <button class="cancel button2"> 
+            Cancel
+        </button>
+    </a>  
+</div>
 
 {% endblock %}
