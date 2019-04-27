@@ -13,8 +13,6 @@ from django.http import HttpResponseRedirect
 from django.forms import modelformset_factory, formset_factory
 from django import forms
 
-
-
 def index(request):
     trackers = TrackerGroup.objects.all()
 
@@ -98,8 +96,6 @@ def tracker_create(request):
         'tracker': tracker,
     }
     return render(request, 'core/trackergroup_create.html', context=context)
-
-
 
 def question_create(request, pk):
     form = CreateQuestionAnswerForm()
@@ -256,55 +252,39 @@ def new_trackerinstance(request, tracker_pk):
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
 
-def new_response(request, tracker_pk, question_pk):
-    # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
-    new_response_form = NewResponseForm(tracker_pk, question_pk)
+def new_response(request, question_pk, answer_pk):
     question = get_object_or_404(Question, id=question_pk)
+    tracker = question.tracker
+    tracker_instance = tracker.tracker_instances.last()
     if request.method == 'POST':
-        new_response_form = NewResponseForm(tracker_pk, question_pk, request.POST)
-        if new_response_form.is_valid():
-            tracker = question.tracker
-            tracker_instance = tracker.tracker_instances.last()
-                # need a better way to do this
-            query_dict_copy = request.POST.copy()
-            answer_keys = query_dict_copy.pop('answer')
-
-            response = Response.objects.create(
-                question_id=question_pk,
-                tracker_id=tracker_pk,
-                tracker_instance_id=tracker_instance.id,
-                user = request.user,
-            )
-            for key in answer_keys:
-                response.answers.add(Answer.objects.get(pk=key))
-
-            for key in answer_keys:
-                response.answers.add(Answer.objects.get(pk=key))
-
-            response.save()
-            return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
-    else:
-        tracker_instance = TrackerGroupInstance.objects.create(
-            tracker_id=tracker_pk,
-            created_by=request.user,
+        response = Response.objects.create(
+            question_id=question_pk,
+            tracker_id=tracker.id,
+            tracker_instance_id=tracker_instance.id,
+            user = request.user,
         )
-        tracker_instance.save()
-        tracker = get_object_or_404(TrackerGroup, id=tracker_instance.tracker_id)
-        question = get_object_or_404(Question, id=question_pk)
+        response.answers.add(Answer.objects.get(pk=answer_pk))
+        response.save()
+        return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
+    else:
         new_response_form = NewResponseForm(question_pk)
     context = {
         'form': new_response_form,
     }
     return render(request, 'core/response_create.html', context=context)
 
+#### Chinh will come back to this later to implement formsets#####
 def response_create(request):
     ResponseFormSet = formset_factory(ResponseForm(12), extra=2)
         # https://docs.djangoproject.com/en/2.2/topics/forms/formsets/
     formset = ResponseFormSet()
-    for form in formset:
-        print(form.as_p())
+    # form = ResponseForm(12)
+    context = {
+        'formset': formset,
+        # 'form': form,
+    }
 
-    return render(request, 'core/response_create.html', )
+    return render(request, 'core/response_create.html', context)
 
     #### old response_create notes ####
         # credit: https://www.youtube.com/watch?v=FnZgy-y6hGA&feature=youtu.be
@@ -327,10 +307,8 @@ def response_create(request):
     # )
     # if request.method == 'POST':
     # form = ResponseForm(12)
-
-    # context = {
-    #     'form': form,
-    # }
+#### Chinh will come back to this later to implement formsets#####
+   
     
 def response_detail(request, pk):
     context = {

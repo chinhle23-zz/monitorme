@@ -13,10 +13,17 @@
 
             {% if trackers %}
                 {% for tracker in trackers %}
-                {%comment%}<!-- <a href="{% url 'trackerinstance_create' tracker.pk %}"> -->{%endcomment%}
-                <a href="{% url 'response_create' %}">
+                {%comment%}
+                    <!-- <a href="{% url 'trackerinstance_create' tracker.pk %}"> -->
+                    <!-- <a href="{% url 'response_create' %}">
+                        <button class="tracker-button">{{tracker}}</button>
+                    </a> -->
+                {%endcomment%}
+                <form action="{% url 'trackerinstance_create' tracker.pk %}" method="post">
+                    {% csrf_token %}
                     <button class="tracker-button">{{tracker}}</button>
-                </a>
+                </form>
+                
                 <br>
                 {% endfor %}
             {% endif %}
@@ -24,8 +31,7 @@
             <a href="/tracker/create">
                 <button class="add-tracker">Monitor Me</button>
             </a>
-            
-        
+    
 </div> 
 {% else %}
 <div class="blurb">
