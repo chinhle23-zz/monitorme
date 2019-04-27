@@ -13,8 +13,9 @@
 
             {% if trackers %}
                 {% for tracker in trackers %}
-            <a href="{% url 'trackerinstance_create' tracker.pk %}">                    
-            <button class="tracker-button">{{tracker}}</button>
+                {%comment%}<!-- <a href="{% url 'trackerinstance_create' tracker.pk %}"> -->{%endcomment%}
+                <a href="{% url 'response_create' %}">
+                    <button class="tracker-button">{{tracker}}</button>
                 </a>
                 <br>
                 {% endfor %}

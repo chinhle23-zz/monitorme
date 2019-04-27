@@ -84,25 +84,26 @@ class NewResponseForm(forms.Form):
         self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield  
 
-class CreateResponseForm(forms.Form):
-    def __init__(self, question, *args, **kwargs):
-        super(CreateResponseForm, self).__init__(*args, **kwargs)
-        self.fields['answer'] = forms.ModelMultipleChoiceField(
-            queryset=Answer.objects.filter(question_id=question.id),
-            label=f'{question.tracker_question}'
+class ResponseForm(forms.Form):
+    def __init__(self, question_id, *args, **kwargs):
+        super(ResponseForm, self).__init__(*args, **kwargs)
+        self.fields['answers'] = forms.ModelMultipleChoiceField(
+            # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
+            queryset=Answer.objects.filter(question_id=question_id),
+            label=f'{Answer.objects.filter(question_id=12)[0].question.tracker_question}'
         )
-            # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield 
+             
             
-class ResponseForm(forms.ModelForm):
-    # https://docs.djangoproject.com/en/2.2/topics/forms/modelforms/
-    # def __init__(self, *args, **kwargs):
-    #     super(ResponseForm, self).__init__(*args, **kwargs)
-    #     self.fields['answers'].empty_label = None
-    answers = forms.ModelMultipleChoiceField(
-        widget = forms.CheckboxSelectMultiple,
-        queryset = Answer.objects.filter(question_id=12),
-        label = f'{Answer.objects.filter(question_id=12)[0].question.tracker_question}'
-    )
+# class ResponseForm(forms.ModelForm):
+#     # https://docs.djangoproject.com/en/2.2/topics/forms/modelforms/
+#     # def __init__(self, *args, **kwargs):
+#     #     super(ResponseForm, self).__init__(*args, **kwargs)
+#     #     self.fields['answers'].empty_label = None
+#     answers = forms.ModelMultipleChoiceField(
+#         widget = forms.CheckboxSelectMultiple,
+#         queryset = Answer.objects.filter(question_id=12),
+#         label = f'{Answer.objects.filter(question_id=12)[0].question.tracker_question}'
+#     )
     
     class Meta:
         model = Response
