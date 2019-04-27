@@ -12,7 +12,7 @@
         <div>
             <div class="tracker"> 
                 {{question}}
-                {% for answer in question.answer_set.all %}
+                {% for answer in question.answers.all %}
                     <div class="margin15">
                         <a href="{% url 'response_create' question_pk=question.pk %}">
                         {{answer}} 
