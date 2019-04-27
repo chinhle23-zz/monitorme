@@ -41,25 +41,29 @@
 {% endblock %}
 
 {% comment %}
-<h3>Most recent tracker created:</h3> 
-<p><a href="{{tracker.get_absolute_url}}">{{ tracker.name }}</a></p>
-{% for question in tracker.questions.all %}
-    <div>
-        <p>
-            Question {{question.order}})  
-            <a href="{{question.get_absolute_url}}">{{question}}</a>
-        </p>
-    </div>
-    {% for answer in question.answer_set.all %}
-        <div style="margin-left: 25px;">
-            {{answer}} 
+    <!-- <h3>Most recent tracker created:</h3> 
+    <p><a href="{{tracker.get_absolute_url}}">{{ tracker.name }}</a></p>
+    <P>Available To: {{tracker.display_available_to}}</p>
+    {% for question in tracker.questions.all %}
+        <div>
+            
+            <p>
+                Question {{question.order}})  
+                <a href="{{question.get_absolute_url}}">{{question}}</a>
+            </p>
         </div>
+
+        {% for answer in question.answer_set.all %}
+            <div style="margin-left: 25px;">
+                {{answer}} 
+            </div>
+        {% endfor %}
+
     {% endfor %}
-{% endfor %}
 
     {{ tracker_form.as_p }}
     {{ question_form.as_p }}
     {{ answer_form.as_p }}
     <a href="{% url 'answer-create' %}"><button class="surveybutton">Add Answer</button></a>
-    <a href="{% url 'question-create' %}"><button class="surveybutton">Add Question</button></a></p>
+    <a href="{% url 'question-create' %}"><button class="surveybutton">Add Question</button></a></p> -->
 {% endcomment %}

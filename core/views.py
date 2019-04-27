@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm, CreateAnswerForm
+from core.forms import NewGroupForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm, CreateAnswerForm, ResponseForm
 from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
@@ -10,8 +10,8 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.http import HttpResponseRedirect
-
-
+from django.forms import modelformset_factory, formset_factory
+from django import forms
 
 def index(request):
     trackers = TrackerGroup.objects.all()
@@ -52,11 +52,6 @@ def new_group(request):
         new_group_form = NewGroupForm()
 
     return render(request, 'core/create_group.html', {"form": new_group_form})
-
-# class TrackerCreate(CreateView):
-#     model = TrackerGroup
-#     fields = '__all__'
-#     template_name='core/trackergroup_create.html'
 
 def tracker_create(request):
     form = CreateTrackerQuestionAnswerForm()
@@ -102,8 +97,6 @@ def tracker_create(request):
     }
     return render(request, 'core/trackergroup_create.html', context=context)
 
-
-
 def question_create(request, pk):
     form = CreateQuestionAnswerForm()
     tracker = TrackerGroup.objects.get(pk=pk)
@@ -143,7 +136,6 @@ def question_create(request, pk):
         'tracker': tracker,
     }
     return render(request, 'core/trackergroup_detail.html', context=context)
-
 
 def question_detail_create(request, pk):
     form = CreateQuestionAnswerForm()
@@ -260,43 +252,64 @@ def new_trackerinstance(request, tracker_pk):
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
 
-def new_response(request, question_pk):
-# def new_response(request, question_pk):
-    # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
+def new_response(request, question_pk, answer_pk):
     question = get_object_or_404(Question, id=question_pk)
+    tracker = question.tracker
+    tracker_instance = tracker.tracker_instances.last()
     if request.method == 'POST':
-        # new_response_form = NewResponseForm(question_pk, request.POST)
-        new_response_form = NewResponseForm(question_pk, request.POST)
-        if new_response_form.is_valid():
-            tracker = question.tracker
-            tracker_instance = tracker.tracker_instances.last()
-                # need a better way to do this
-            query_dict_copy = request.POST.copy()
-            answer_keys = query_dict_copy.pop('answer')
-
-            response = Response.objects.create(
-                question_id=question_pk,
-                tracker_id=tracker.id,
-                tracker_instance_id=tracker_instance.id,
-                user = request.user,
-            )
-
-            for key in answer_keys:
-                response.answers.add(Answer.objects.get(pk=key))
-
-            response.save()
-            
-            return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
+        response = Response.objects.create(
+            question_id=question_pk,
+            tracker_id=tracker.id,
+            tracker_instance_id=tracker_instance.id,
+            user = request.user,
+        )
+        response.answers.add(Answer.objects.get(pk=answer_pk))
+        response.save()
+        return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
-        # new_response_form = NewResponseForm(question_pk)
         new_response_form = NewResponseForm(question_pk)
-    
     context = {
         'form': new_response_form,
     }
-
     return render(request, 'core/response_create.html', context=context)
 
+#### Chinh will come back to this later to implement formsets#####
+def response_create(request):
+    ResponseFormSet = formset_factory(ResponseForm(12), extra=2)
+        # https://docs.djangoproject.com/en/2.2/topics/forms/formsets/
+    formset = ResponseFormSet()
+    # form = ResponseForm(12)
+    context = {
+        'formset': formset,
+        # 'form': form,
+    }
+
+    return render(request, 'core/response_create.html', context)
+
+    #### old response_create notes ####
+        # credit: https://www.youtube.com/watch?v=FnZgy-y6hGA&feature=youtu.be
+    # instance = TrackerGroupInstance.objects.create(
+    #     tracker_id=tracker_id,
+    #     created_by=request.user,
+    # )
+    # tracker = TrackerGroup.objects.get(id=12)
+    # questions = tracker.questions.all()
+    # # ResponsesFormSet = modelformset_factory(Response, fields=('question', 'answers'), extra=len(questions))
+    # # ResponsesFormSet = modelformset_factory(ResponseForm, fields=('answers',), extra=len(questions))
+    # ResponseFormSet = modelformset_factory(Response,
+    #     form=ResponseForm, 
+    # )
+    # form = ResponseFormSet(
+
+    # )
+    # form = ResponseFormSet(
+    #     # initial=[{'question': question} for question in questions],
+    # )
+    # if request.method == 'POST':
+    # form = ResponseForm(12)
+#### Chinh will come back to this later to implement formsets#####
+   
+    
 def response_detail(request, pk):
     context = {
     }
@@ -342,13 +355,3 @@ def references(request):
 def report(request):
 
     return render(request, 'core/report.html', context=context)
-
-### Unused Code ###
-# def landing_page(request, username):
-#     user = User.objects.get(username=username)
-#     return render(request, 'core/landing_page.html', {"user":user})
-
-# def create_group(request):
-#     context = {
-#     }
-#     return render(request, 'core/create_group.html', context=context)

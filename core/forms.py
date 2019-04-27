@@ -1,5 +1,5 @@
 from django import forms
-from core.models import User, TrackerGroup, Answer, Question
+from core.models import User, TrackerGroup, Answer, Question, Response
 from registration.forms import RegistrationForm
 from django.contrib.auth import get_user_model, authenticate, password_validation
 from django.contrib.auth.models import Group
@@ -80,10 +80,24 @@ class NewTrackerInstanceForm(forms.Form):
 class NewResponseForm(forms.Form):
     # credit: https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform
     def __init__(self, question, *args, **kwargs):
-    # def __init__(self, question, *args, **kwargs):
         super(NewResponseForm, self).__init__(*args, **kwargs)
         self.fields['answer'] = forms.ModelMultipleChoiceField(Answer.objects.filter(question_id=question))
+            # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield  
+
+#### Chinh will come back to this later to implement formsets#####
+class ResponseForm(forms.ModelForm):
+    class Meta:
+        model = Response
+        fields = ['answers',]
+    def __init__(self, question_id, *args, **kwargs):
+        super(ResponseForm, self).__init__(*args, **kwargs)
+        self.fields['answers'] = forms.ModelMultipleChoiceField(
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
+            queryset=Answer.objects.filter(question_id=question_id),
+            label=f'{Answer.objects.filter(question_id=question_id)[0].question.tracker_question}'
+        )
+#### Chinh will come back to this later to implement formsets#####
+                    
 
 class CreateTrackerQuestionAnswerForm(forms.Form):
     tracker_name = forms.CharField(
