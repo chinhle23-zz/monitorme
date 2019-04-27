@@ -35,7 +35,6 @@ urlpatterns = [
     path('question/create/', core_views.QuestionCreate.as_view(), name="question-create"),
     path('question/<int:pk>/', core_views.QuestionDetailView.as_view(), name='question-detail'),
     path('answer/create/', core_views.AnswerCreate.as_view(), name="answer-create"),
-        # path('answer_edit/', core_views.AnswerEdit.as_view(), name="answer_edit"),
     path('answer/<int:pk>', core_views.AnswerDetailView.as_view(), name="answer-detail"),
     path('answer/<int:pk>/update/', core_views.AnswerUpdate.as_view(), name="edit-answer"),
     path('trackerinstance/create/<int:tracker_pk>', core_views.new_trackerinstance, name="trackerinstance_create"),

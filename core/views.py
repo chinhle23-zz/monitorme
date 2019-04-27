@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.forms import NewGroupForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm, CreateAnswerForm
+from core.forms import NewGroupForm, NewTrackerInstanceForm, NewResponseForm, CreateTrackerQuestionAnswerForm, CreateQuestionAnswerForm
 from core.models import User, TrackerGroup, Question, Answer, Response, TrackerGroupInstance
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
@@ -230,7 +230,7 @@ class QuestionUpdate(UpdateView):
 class AnswerCreate(CreateView):
     model = Answer
     fields = '__all__'
-    template_name='core/answer_create.html'
+    template_name = 'core/answer_create.html'
 
 class AnswerDetailView(generic.DetailView):
     model = Answer
@@ -306,7 +306,7 @@ def response_detail(request, pk):
     return render(request, 'response_detail', context=context)
 
 def user_detail(request, pk):
-    template_name = 'core/user_detail.html'
+    template_name = 'core/report.html'
     user_info = User.objects.filter(pk=request.user.pk)
     trackers = TrackerGroup.objects.filter(user=request.user)
     today = date.today()
