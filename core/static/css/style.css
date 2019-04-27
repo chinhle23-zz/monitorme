@@ -83,12 +83,21 @@ textarea:focus {
 input#id_tracker_name, 
 input#id_question_description {
     width: 100%;
+    font-size: .95rem;
 }
 
 input#id_answer_name1,
 input#id_answer_name2,
 input#id_answer_name3 {
-    width: 65%;
+    width: 60%;
+    font-size: .95rem;
+}
+
+input#id_name,
+input#id_email {
+    width: 70%;
+    font-size: .95rem;
+    color: #8B4F77;
 }
 
 input#id_username,
