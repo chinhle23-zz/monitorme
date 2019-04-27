@@ -41,8 +41,7 @@ urlpatterns = [
     path('trackerinstance/<int:pk>', core_views.TrackerInstanceDetailView.as_view(), name="trackergroupinstance_detail"),
     path('response/create/<int:question_pk>', core_views.new_response, name="response_create"),
     path('response_detail/<int:pk>', core_views.response_detail, name= 'response_detail'),
-    path('user_detail/<int:pk>', core_views.user_detail, name="user-detail"),
-    path('discover/', core_views.discover_page, name="discover_page"),
+    path('user_detail/<int:pk>', core_views.report_detail, name="user-detail"),
     path('references/', core_views.references, name="references"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

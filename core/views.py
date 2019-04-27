@@ -56,11 +56,6 @@ def new_group(request):
 
     return render(request, 'core/create_group.html', {"form": new_group_form})
 
-# class TrackerCreate(CreateView):
-#     model = TrackerGroup
-#     fields = '__all__'
-#     template_name='core/trackergroup_create.html'
-
 def tracker_create(request):
     form = CreateTrackerQuestionAnswerForm()
     if request.method == 'POST':
@@ -188,27 +183,6 @@ def question_detail_create(request, pk):
     }
     return render(request, 'core/trackergroup_all_detail.html', context=context)
 
-# def answer_create(request, pk):
-#     form = CreateAnswerForm()
-#     question = question.objects.get(pk=pk)
-#     if request.method == 'POST':
-#         form = CreateQuestionAnswerForm(request.POST)
-#         if form.is_valid:
-#             answer_name = request.POST.get('answer_name', '')
-#             answer = Answer.objects.create(
-#                 name=answer_name1,
-#                 question=question,
-#                 created_by=request.user,
-#             )
-#             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
-#         else:
-#             form = CreateQuestionAnswerForm()
-#     context = {
-#         'form': form,
-#         'tracker': tracker,
-#     }
-#     return render(request, 'core/trackergroup_detail.html', context=context)
-
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
 
@@ -305,40 +279,61 @@ def response_detail(request, pk):
     }
     return render(request, 'response_detail', context=context)
 
-def user_detail(request, pk):
+def report_detail(request, pk):
     template_name = 'core/report.html'
-    user_info = User.objects.filter(pk=request.user.pk)
-    trackers = TrackerGroup.objects.filter(user=request.user)
-    today = date.today()
-    instances = TrackerGroupInstance.objects.filter(started_at__month=today.month, created_by=request.user.pk).count()
-    responses = Response.objects.all()
 
-    last_month = datetime.today() + relativedelta(days=-30)
-    currentmonth_instances = TrackerGroupInstance.objects.filter(started_at__date__gte=last_month, created_by=request.user.pk).count()
-    
-    print(currentmonth_instances)
+    #This is to filter user informatian only
+    user_info = User.objects.filter(pk=request.user.pk)
+
+    #This is to filter only users trackers
+    trackers = TrackerGroup.objects.filter(user=request.user)
+
+    #This is to filter all instances by user
+    instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+
+    #Responses from user only
+    responses = Response.objects.filter(user=request.user)
+
     context = {
         'user_info': user_info,
         'trackers': trackers, 
         'instances': instances,
         'responses': responses,
-        'currentmonth_instances': currentmonth_instances,
     }
 
     return render(request, 'core/report.html', context=context)
-
-def discover_page(request):
-    users = User.objects.all()
-    groups = Group.objects.all()
-
-    context = {
-        'users': users,
-        'groups': groups,
-    }
-    return render(request, 'core/discover_page.html', context=context)
 
 def references(request):
     context = {
     }
     return render(request, 'core/reference.html')
       
+
+
+# UNUSED CODE, SAVING FOR LATER REFACTORING
+# def answer_create(request, pk):
+#     form = CreateAnswerForm()
+#     question = question.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = CreateQuestionAnswerForm(request.POST)
+#         if form.is_valid:
+#             answer_name = request.POST.get('answer_name', '')
+#             answer = Answer.objects.create(
+#                 name=answer_name1,
+#                 question=question,
+#                 created_by=request.user,
+#             )
+#             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
+#         else:
+#             form = CreateQuestionAnswerForm()
+#     context = {
+#         'form': form,
+#         'tracker': tracker,
+#     }
+#     return render(request, 'core/trackergroup_detail.html', context=context)
+
+
+# class TrackerCreate(CreateView):
+#     model = TrackerGroup
+#     fields = '__all__'
+#     template_name='core/trackergroup_create.html'
