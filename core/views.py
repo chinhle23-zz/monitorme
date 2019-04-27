@@ -10,6 +10,9 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.http import HttpResponseRedirect
+from django.db.models import Avg, Count
+from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 
 
 
@@ -304,21 +307,22 @@ def response_detail(request, pk):
 
 def user_detail(request, pk):
     template_name = 'core/user_detail.html'
-    user_info = User.objects.all()
-    trackers = TrackerGroup.objects.all()
-    questions = Question.objects.all()
-    answers = Answer.objects.all()
-    instances = TrackerGroupInstance.objects.all()
+    user_info = User.objects.filter(pk=request.user.pk)
+    trackers = TrackerGroup.objects.filter(user=request.user)
+    today = date.today()
+    instances = TrackerGroupInstance.objects.filter(started_at__month=today.month, created_by=request.user.pk).count()
     responses = Response.objects.all()
 
-
+    last_month = datetime.today() + relativedelta(days=-30)
+    currentmonth_instances = TrackerGroupInstance.objects.filter(started_at__date__gte=last_month, created_by=request.user.pk).count()
+    
+    print(currentmonth_instances)
     context = {
         'user_info': user_info,
         'trackers': trackers, 
-        'questions': questions,
-        'answers': answers,
         'instances': instances,
         'responses': responses,
+        'currentmonth_instances': currentmonth_instances,
     }
 
     return render(request, 'core/report.html', context=context)
@@ -333,22 +337,8 @@ def discover_page(request):
     }
     return render(request, 'core/discover_page.html', context=context)
 
-
 def references(request):
     context = {
     }
     return render(request, 'core/reference.html')
       
-def report(request):
-
-    return render(request, 'core/report.html', context=context)
-
-### Unused Code ###
-# def landing_page(request, username):
-#     user = User.objects.get(username=username)
-#     return render(request, 'core/landing_page.html', {"user":user})
-
-# def create_group(request):
-#     context = {
-#     }
-#     return render(request, 'core/create_group.html', context=context)
