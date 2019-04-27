@@ -398,3 +398,12 @@ details[open] summary {
     margin-bottom: .5em;
     outline: 0;
 }
+
+.chinh {
+    
+    background: url("Chinh.jpeg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+    position: relative;
+}
