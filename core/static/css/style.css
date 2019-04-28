@@ -57,7 +57,6 @@ span {
 
 .needscenter {
     text-align: center;
-    margin-top: 30px;
 }
 
 .login-row {
@@ -163,7 +162,7 @@ button:focus {
 }
 
 p.landingmessage {
-    padding: .75rem;
+    padding: .5rem;
 }
 
 .formline {
@@ -184,6 +183,14 @@ p.landingmessage {
 
 .margintop5 {
     margin-top: 5px;
+}
+
+.margintop10 {
+    margin-top: 10px;
+}
+
+.margintoprem {
+    margin-top: 1rem;
 }
 
 .hello-message {
@@ -418,9 +425,19 @@ p.landingmessage {
     margin-top: 2rem;
     
 }
+@media screen
+  and (min-width: 320px) 
+  and (max-width: 370px) {
+
+    .blurb {
+        padding: 1rem;
+    }
+}
+
+
 
   @media screen
-  and (min-width: 400px) 
+  and (min-width: 371px) 
   and (max-width: 549px) {
 
     .base-header {
@@ -434,6 +451,10 @@ p.landingmessage {
             linear-gradient(rgba(39, 152, 172, 0.885),rgba(39, 152, 172, 0.57));
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    .blurb {
+        padding: 1.5rem;
     }
 }
 
@@ -471,11 +492,25 @@ and (max-width: 850px) {
       background-size: cover;
       background-repeat: no-repeat;
   }
+
+  .navbarcontainer {
+    display: flex;
+    flex-direction: row wrap;
+    padding: 1rem;
+    }
+
+    .box {
+        width: 20%;
+        font-size: 1.5rem;
+        vertical-align: middle;
+        margin: 1rem;
+    }
+
 }
 
 @media screen
 and (min-width: 851px) 
-and (max-width: 1100px) {
+and (max-width: 1023px) {
 
   .base-header {
     display: flex;
@@ -489,10 +524,23 @@ and (max-width: 1100px) {
     background-size: cover;
     background-repeat: no-repeat;
     }
+
+    .navbarcontainer {
+        display: flex;
+        flex-direction: row wrap;
+        padding: 1.5rem;
+        }
+    
+    .box {
+        width: 20%;
+        font-size: 1.75rem;
+        vertical-align: middle;
+        margin: 1rem;
+    }
 }
 
 @media screen
-and (min-width: 1101px) 
+and (min-width: 1024px) 
 and (max-width: 1400px) {
 
   .base-header {
@@ -506,6 +554,19 @@ and (max-width: 1400px) {
         linear-gradient(rgba(39, 152, 172, 0.885),rgba(39, 152, 172, 0.57));
     background-size: cover;
     background-repeat: no-repeat;
+    }
+
+    .navbarcontainer {
+        display: flex;
+        flex-direction: row wrap;
+        padding: 1.5rem;
+        }
+    
+    .box {
+        width: 20%;
+        font-size: 1.75rem;
+        vertical-align: middle;
+        margin: 1rem;
     }
 }
 
