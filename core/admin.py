@@ -5,6 +5,7 @@ from core.models import User, TrackerGroup, TrackerGroupInstance, Question, Answ
 class UserAdmin(admin.ModelAdmin):
     list_display = (
         'username',
+        'id',
         'name',
         'email',
         'slug',

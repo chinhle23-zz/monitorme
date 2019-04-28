@@ -281,31 +281,45 @@ class TrackerInstanceDetailView(generic.DetailView):
 def new_response(request, question_pk, answer_pk):
     question = get_object_or_404(Question, id=question_pk)
     tracker = question.tracker
-    tracker_instance = tracker.tracker_instances.last()
-    response, created = Response.objects.get_or_create(
+    tracker_instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+    tracker_instance = tracker_instances.last()
+    responses = Response.objects.filter(
         question_id=question_pk,
         tracker_id=tracker.id,
         tracker_instance_id=tracker_instance.id,
         user = request.user,
     )
-    if created:
-        response = response
-    else:
-        response = Response.objects.filter(
-            user = request.user,
-        ).last()
+    response = responses.last()
+    # response, created = Response.objects.get_or_create(
+    #     question_id=question_pk,
+    #     tracker_id=tracker.id,
+    #     tracker_instance_id=tracker_instance.id,
+    #     user = request.user,
+    # )
+    # if created:
+    #     response = response
+    # else:
+    #     responses = Response.objects.filter(user=request.user)
+    #     response = responses.last
 
     if request.method == 'POST':
+        response = Response.objects.create(
+            question_id=question_pk,
+            tracker_id=tracker.id,
+            tracker_instance_id=tracker_instance.id,
+            user = request.user,
+        )
         response.answers.add(Answer.objects.get(pk=answer_pk))
         response.save()
         return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
     else:
         new_response_form = NewResponseForm(question_pk)
+
     context = {
         'form': new_response_form,
         'response': response,
     }
-    return render(request, 'core/response_create.html', context=context)
+    return render(request, 'core/trackergroupinstance_detail.html', context=context)
 
 
 #### Chinh will come back to this later to implement formsets#####

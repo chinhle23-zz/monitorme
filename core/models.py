@@ -87,7 +87,7 @@ class Answer(models.Model):
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', 
     on_delete=models.CASCADE, null=False, blank=False)
-    tracker_instance = models.ForeignKey('TrackerGroupInstance',  on_delete=models.CASCADE, null=False, blank=False)
+    tracker_instance = models.ForeignKey('TrackerGroupInstance', related_name='responses', on_delete=models.CASCADE, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE, null=False, blank=False)
     answers = models.ManyToManyField('Answer')
     user = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)

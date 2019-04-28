@@ -15,12 +15,16 @@
                 <div class="marginbottom">
                     {{question}} 
                     <span class="medgray">
-                        {% if response.answers %}
-                            {% for answer in response.answers.all %}
-                                Current answer: {{answer}}
+                        {% if trackergroupinstance.responses.all %}
+                            {% for response in trackergroupinstance.responses.all %}
+                                {% if response.question == question %}
+                                    {% for answer in response.answers.all %}
+                                        (Answered: {{answer.current_answer}})
+                                    {% endfor %}
+                                {% endif %}
                             {% endfor %}
                         {% else %}
-                            This question has not been answered
+                            (Not Answered: )
                         {% endif %}
                     </span>
                 </div>
