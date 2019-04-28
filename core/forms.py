@@ -94,7 +94,7 @@ class ResponseForm(forms.ModelForm):
         self.fields['answers'] = forms.ModelMultipleChoiceField(
             # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#modelmultiplechoicefield
             queryset=Answer.objects.filter(question_id=question_id),
-            label=f'{Answer.objects.filter(question_id=question_id)[0].question.tracker_question}'
+            label=f'{Answer.objects.filter(question_id=question_id)[0].question.current_question}'
         )
 #### Chinh will come back to this later to implement formsets#####
                     

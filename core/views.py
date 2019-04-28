@@ -10,6 +10,9 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.http import HttpResponseRedirect
+from django.db.models import Avg, Count
+from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 from django.forms import modelformset_factory, formset_factory
 from django import forms
 
@@ -65,25 +68,25 @@ def tracker_create(request):
             )
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                tracker_question=question_description,
+                current_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                question_answer=answer_name1,
+                current_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                question_answer=answer_name2,
+                current_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                question_answer=answer_name3,
+                current_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -106,25 +109,25 @@ def question_create(request, pk):
         if form.is_valid:
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                tracker_question=question_description,
+                current_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                question_answer=answer_name1,
+                current_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                question_answer=answer_name2,
+                current_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                question_answer=answer_name3,
+                current_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -146,25 +149,25 @@ def question_detail_create(request, pk):
         if form.is_valid:
             question_description = request.POST.get('question_description', '')
             question = Question.objects.create(
-                tracker_question=question_description,
+                current_question=question_description,
                 tracker=tracker,
                 created_by=request.user,
             )
             answer_name1 = request.POST.get('answer_name1', '')
             answer = Answer.objects.create(
-                question_answer=answer_name1,
+                current_answer=answer_name1,
                 question=question,
                 created_by=request.user,
             )
             answer_name2 = request.POST.get('answer_name2', '')
             answer = Answer.objects.create(
-                question_answer=answer_name2,
+                current_answer=answer_name2,
                 question=question,
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
             answer = Answer.objects.create(
-                question_answer=answer_name3,
+                current_answer=answer_name3,
                 question=question,
                 created_by=request.user,
             )
@@ -176,27 +179,6 @@ def question_detail_create(request, pk):
         'tracker': tracker,
     }
     return render(request, 'core/trackergroup_all_detail.html', context=context)
-
-# def answer_create(request, pk):
-#     form = CreateAnswerForm()
-#     question = question.objects.get(pk=pk)
-#     if request.method == 'POST':
-#         form = CreateQuestionAnswerForm(request.POST)
-#         if form.is_valid:
-#             answer_name = request.POST.get('answer_name', '')
-#             answer = Answer.objects.create(
-#                 name=answer_name1,
-#                 question=question,
-#                 created_by=request.user,
-#             )
-#             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
-#         else:
-#             form = CreateQuestionAnswerForm()
-#     context = {
-#         'form': form,
-#         'tracker': tracker,
-#     }
-#     return render(request, 'core/trackergroup_detail.html', context=context)
 
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
@@ -219,17 +201,17 @@ class QuestionUpdate(UpdateView):
 class AnswerCreate(CreateView):
     model = Answer
     fields = '__all__'
-    template_name='core/answer_create.html'
+    template_name = 'core/answer_create.html'
 
 class AnswerDetailView(generic.DetailView):
     model = Answer
 
 class AnswerUpdate(UpdateView):
     model = Answer
-    template_name = 'answer_edit'
-    fields = ['question',
-    'answer',
-    'tracker']
+    template_name = 'core/answer_edit.html'
+    fields = [
+    'current_answer']
+
 
 def new_trackerinstance(request, tracker_pk):
     new_trackerinstance_form = NewTrackerInstanceForm()
@@ -315,43 +297,64 @@ def response_detail(request, pk):
     }
     return render(request, 'response_detail', context=context)
 
-def user_detail(request, pk):
-    template_name = 'core/user_detail.html'
-    user_info = User.objects.all()
-    trackers = TrackerGroup.objects.all()
-    questions = Question.objects.all()
-    answers = Answer.objects.all()
-    instances = TrackerGroupInstance.objects.all()
-    responses = Response.objects.all()
+def report_detail(request, pk):
+    template_name = 'core/report.html'
 
+    #This is to filter user informatian only
+    user_info = User.objects.filter(pk=request.user.pk)
+
+    #This is to filter only users trackers
+    trackers = TrackerGroup.objects.filter(user=request.user)
+
+    #This is to filter all instances by user
+    instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+
+    #Responses from user only
+    responses = Response.objects.filter(user=request.user)
 
     context = {
         'user_info': user_info,
         'trackers': trackers, 
-        'questions': questions,
-        'answers': answers,
         'instances': instances,
         'responses': responses,
     }
 
     return render(request, 'core/report.html', context=context)
 
-def discover_page(request):
-    users = User.objects.all()
-    groups = Group.objects.all()
-
-    context = {
-        'users': users,
-        'groups': groups,
-    }
-    return render(request, 'core/discover_page.html', context=context)
-
-
 def references(request):
     context = {
     }
     return render(request, 'core/reference.html')
       
+
+
+# UNUSED CODE, SAVING FOR LATER REFACTORING
+# def answer_create(request, pk):
+#     form = CreateAnswerForm()
+#     question = question.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = CreateQuestionAnswerForm(request.POST)
+#         if form.is_valid:
+#             answer_name = request.POST.get('answer_name', '')
+#             answer = Answer.objects.create(
+#                 name=answer_name1,
+#                 question=question,
+#                 created_by=request.user,
+#             )
+#             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
+#         else:
+#             form = CreateQuestionAnswerForm()
+#     context = {
+#         'form': form,
+#         'tracker': tracker,
+#     }
+#     return render(request, 'core/trackergroup_detail.html', context=context)
+
+
+# class TrackerCreate(CreateView):
+#     model = TrackerGroup
+#     fields = '__all__'
+#     template_name='core/trackergroup_create.html'
 def report(request):
 
     return render(request, 'core/report.html', context=context)

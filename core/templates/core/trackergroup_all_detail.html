@@ -6,7 +6,7 @@
 <div class="needsleft">
     <h3 class="darkteal">{{tracker.name}}
         <br>
-        <spa><a href="{% url 'tracker-detail' tracker.pk%}" class="medfont purple">See less</a></spa>
+        <a href="{% url 'tracker-detail' tracker.pk%}" class="medfont purple">See less</a>
     </h3>
     
     {% for question in tracker.questions.all %}
@@ -14,9 +14,9 @@
         <a href="{{question.get_absolute_url}}">{{question}}</a> 
     </div>
     <div class="marginbottom">
-        {% for answer in question.answer_set.all %}
+        {% for answer in question.answers.all %}
             <div class="margin15">
-                {{answer}} 
+                {{answer}}  
             </div>
         {% endfor %}
     </div>
