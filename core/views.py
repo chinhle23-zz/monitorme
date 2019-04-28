@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
-    # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
+# https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.http import HttpResponseRedirect
 from django.db.models import Avg, Count
 from datetime import datetime, date
@@ -409,3 +409,12 @@ def references(request):
 def report(request):
 
     return render(request, 'core/report.html', context=context)
+
+def about_us(request):
+    template_name = 'core/about_us.html'
+    context = {
+
+    }	 
+
+    return render(request, 'core/about_us.html', context=context)    
+    

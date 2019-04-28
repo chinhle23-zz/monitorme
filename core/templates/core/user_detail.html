@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<p>Welcome {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %} to your personal dashboard!</p>
+
+
+<h3>Available Trackers</h3>
+    <a href="">
+     <a href="/tracker/create">
+        <button class="add-tracker">Monitor Me</button>
+    </a>
+
+
+{% if trackers %}
+{% for tracker in trackers %}
+    <div><a href="{{tracker.get_absolute_url}}">{{tracker}}</a> - <span><a href="{% url 'trackerinstance_create' tracker.pk %}"><button class="surveybutton">Start</button></a></span></div>
+{% endfor %}
+{% endif %}
+<br>
+
+<details>
+<summary>
+<h3>Completed Trackers</h3>
+</summary>
+<p>We are putting a button here
+</details>
+
+{% endblock content %}

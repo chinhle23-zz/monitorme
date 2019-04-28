@@ -551,3 +551,55 @@ details[open] summary {
     margin-bottom: .5em;
     outline: 0;
 }
+
+.aboutus {
+    text-align: left;
+    padding: 1rem;
+}
+
+.aaron {
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+}
+
+.chinh {
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+}
+.chinh_picture {
+    width: 70%;
+    height: auto;
+    padding: 1rem;
+}
+
+.craig {
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+}
+.craig_picture {
+    width: 70%;
+    height: auto;
+    padding: 1rem;
+}
+
+.kasey {
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
+}
+.kasey_picture {
+    width: 70%;
+    height: auto;
+    padding: 1rem;
+}
+
+.summary {
+    text-align: center;
+}
