@@ -15,6 +15,7 @@ pillow = "*"
 django-heroku = "*"
 gunicorn = "*"
 django-debug-toolbar = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.7"

@@ -28,13 +28,13 @@
             </div>
         </div> 
         <div class="needscenter">
-        <input class="loginbutton" type="submit" value="{% trans 'Log in' %}" />
+        <button class="tracker-button" type="submit" value="{% trans 'Log in' %}">Login</button>
         </div>  
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
-    <div class="needscenter">
+<div class="needscenter">
     <p>{% trans "Forgot password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>
     <p>{% trans "Not a member?" %} <a href="/accounts/register/">{% trans "Register" %}</a>.</p>
-    </div>
+</div>
     
 {% endblock %}

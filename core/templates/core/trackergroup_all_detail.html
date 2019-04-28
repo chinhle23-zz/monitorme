@@ -6,12 +6,19 @@
 <div class="needsleft">
     <h3 class="darkteal">{{tracker.name}}
         <br>
-        <span><a href="{% url 'tracker-all-detail' tracker.pk%}" class="medfont purple">See more</a></span>
+        <a href="{% url 'tracker-detail' tracker.pk%}" class="medfont purple">See less</a>
     </h3>
     
     {% for question in tracker.questions.all %}
     <div class="marginbottom">
         <a href="{{question.get_absolute_url}}">{{question}}</a> 
+    </div>
+    <div class="marginbottom">
+        {% for answer in question.answers.all %}
+            <div class="margin15">
+                {{answer}}  
+            </div>
+        {% endfor %}
     </div>
 
     {% endfor %}

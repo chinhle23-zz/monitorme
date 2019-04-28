@@ -28,12 +28,12 @@
                     </div>
                     <div class="needscenter box">
                         <a href="{% url 'user-detail' request.user.pk %}">
-                            <i class="far fa-bars"></i>
+                            <i class="far fa-file-chart-line"></i>
                         </a>
                     </div>
                     <div class="needscenter box">
-                        <a href="{% url 'report' %}">
-                            <i class="far fa-file-chart-line"></i>
+                        <a href="{% url 'references' %}">
+                            <i class="fal fa-glasses"></i>
                         </a>
                     </div>
                     <div class="needscenter box">
@@ -55,6 +55,7 @@
         {% block content %}
         {% endblock %}
 </div>
+
 </body>
 
 </html>

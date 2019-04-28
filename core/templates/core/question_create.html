@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+{% if request.user.is_authenticated %}
 <form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="button button2" type='Submit'>Submit</button>
+    <button class="button button2" type="Submit">Submit</button>
 </form>
+{% else %}
+
+<p class="needsleft">It appears you are not logged in. Please go to the <a class="purple" href="{% url 'index' %}">home</a> page to log in. </p>
+
+{% endif %}
 
 {% endblock %}

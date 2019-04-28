@@ -3,14 +3,42 @@
 
 {% block content %}
 
-Testing site
-
 <form method="POST" action="">
     {% csrf_token %}
-    {{ form.as_p}}
+    <div>
+        <div class="login-row">
+            <span>
+                <i class="far fa-id-badge"></i> 
+                {{ form.name.label_tag }}
+            </span>
+            <span class="noborder">
+                {{ form.name }}
+            </span>
+        </div>
+        <div class="login-row">
+            <span>
+                <i class="fal fa-envelope"></i> 
+                {{ form.email.label_tag }}
+            </span>
+            <span class="noborder">
+                {{ form.email }}
+            </span>
+        </div>
+    </div> 
 
-    <input type="submit">
+    <div class="needscenter">
+        <button class="tracker-button button2"> 
+            Submit
+        </button>
+    </div>
 
 </form>
+<div class="needscenter done">
+    <a href="{% url 'user_profile' user.username %}">
+        <button class="cancel button2"> 
+            Cancel
+        </button>
+    </a>  
+</div>
 
 {% endblock %}

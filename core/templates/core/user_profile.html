@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
-<div class="welcome needscenter">
+    <div class="welcome needscenter">
         {% if user.is_authenticated %}
-            <h3 class="darkteal">Settings Page</h3>
-            
+        <h3 class="darkteal">Settings Page</h3>  
     </div>    
         <div class="user_info needscenter">
-            <div class="user-detail">
+            <div class="user-detail needsleft">
                 <div class="userprofile-line">
                     User Name: 
                     <span class="purple">{{ user.username }}</span>
@@ -34,14 +30,24 @@
                 </div>
     
             </div>
+            <div class="editprofile">
             <a href="{% url 'edit-profile' user.pk %}">
                 <button class="tracker-button" type="submit">Edit Profile</button>
+            </a>
+            <a href="{% url 'auth_password_reset' %}">
+                <button class="tracker-button" type="submit">Change Password</button>
+            </a>
+            
 
             <a href="{% url 'tracker-create' %}">
                 <button class="add-tracker" type="submit">
                     Monitor Me 
                 </button>
-            </a>  
+            </a>
+            </div> 
+
+                
+        </div>
         {% endif %}
     {% endblock %}
 <script src="script.js"></script>
