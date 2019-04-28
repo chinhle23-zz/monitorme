@@ -50,8 +50,10 @@ class Answer(admin.ModelAdmin):
 class Response(admin.ModelAdmin):
     list_display = (
         'tracker', 
-        'tracker_instance',
+        'tracker_id',
+        'tracker_instance_id',
         'question', 
+        'question_id',
         'display_answers',
         'user',
         'created_at',

@@ -13,7 +13,16 @@
         <div>
             <div class="tracker"> 
                 <div class="marginbottom">
-                {{question}}
+                    {{question}} 
+                    <span class="medgray">
+                        {% if response.answers %}
+                            {% for answer in response.answers.all %}
+                                Current answer: {{answer}}
+                            {% endfor %}
+                        {% else %}
+                            This question has not been answered
+                        {% endif %}
+                    </span>
                 </div>
                 {% for answer in question.answers.all %}
                     {% if answer.current_answer %}

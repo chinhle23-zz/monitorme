@@ -282,13 +282,20 @@ def new_response(request, question_pk, answer_pk):
     question = get_object_or_404(Question, id=question_pk)
     tracker = question.tracker
     tracker_instance = tracker.tracker_instances.last()
-    if request.method == 'POST':
-        response = Response.objects.create(
-            question_id=question_pk,
-            tracker_id=tracker.id,
-            tracker_instance_id=tracker_instance.id,
+    response, created = Response.objects.get_or_create(
+        question_id=question_pk,
+        tracker_id=tracker.id,
+        tracker_instance_id=tracker_instance.id,
+        user = request.user,
+    )
+    if created:
+        response = response
+    else:
+        response = Response.objects.filter(
             user = request.user,
-        )
+        ).last()
+
+    if request.method == 'POST':
         response.answers.add(Answer.objects.get(pk=answer_pk))
         response.save()
         return HttpResponseRedirect(reverse('trackergroupinstance_detail', args=[str(tracker_instance.id)]))
@@ -296,6 +303,7 @@ def new_response(request, question_pk, answer_pk):
         new_response_form = NewResponseForm(question_pk)
     context = {
         'form': new_response_form,
+        'response': response,
     }
     return render(request, 'core/response_create.html', context=context)
 
