@@ -31,7 +31,7 @@ def averageOfDays(pk, user):
 
     all_per_month = TrackerGroupInstance.objects.filter(started_at__date__gte=last_month, created_by=user).count()
 
-    average_of_instances = round(float(float(count_of_instances)/float(all_per_month)* 100.00), 2)
+    average_of_instances = round(float(float(count_of_instances)/float(all_per_month)* 100.00), 1)
 
     return average_of_instances
 
