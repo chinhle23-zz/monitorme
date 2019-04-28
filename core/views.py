@@ -17,8 +17,7 @@ from django.forms import modelformset_factory, formset_factory
 from django import forms
 
 def index(request):
-    # trackers = TrackerGroup.objects.all()
-    trackers = TrackerGroup.objects.filter(user=request.user)
+    trackers = TrackerGroup.objects.all()
 
     context = {
         'trackers': trackers,
@@ -140,6 +139,26 @@ def question_create(request, pk):
         'tracker': tracker,
     }
     return render(request, 'core/trackergroup_detail.html', context=context)
+
+def answer_create(request, pk):
+    form = CreateAnswerForm()
+    question = Question.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CreateAnswerForm(request.POST)
+        if form.is_valid:
+            answer_name = request.POST.get('answer_name', '')
+            answer = Answer.objects.create(
+                current_answer=answer_name,
+                question=question,
+                created_by=request.user,
+            )
+            return HttpResponseRedirect(reverse('tracker-detail', args=[question.id]))
+        else:
+            form = CreateAnswerForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'core/question_detail.html', context=context)
 
 def question_detail_create(request, pk):
     form = CreateQuestionAnswerForm()
