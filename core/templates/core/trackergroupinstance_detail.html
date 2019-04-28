@@ -11,7 +11,9 @@
         {% for question in trackergroupinstance.tracker.questions.all %}
         <div>
             <div class="tracker"> 
+                <div class="marginbottom">
                 {{question}}
+                </div>
                 {% for answer in question.answers.all %}
                     {% if answer.current_answer %}
                         <div class="margin15">
@@ -26,6 +28,21 @@
         </div>
         {% endfor %}
     {% endif %}
+
+    <div class="needscenter done">
+        <a href="{% url 'index' %}">
+            <button class="add-tracker"> 
+                Done
+            </button>
+        </a>  
+    </div>
+    <div class="needscenter done">
+        <a href="{% url 'index' %}">
+            <button class="cancel button2"> 
+                Cancel
+            </button>
+        </a>  
+    </div>
 
 </div>
     

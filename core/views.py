@@ -330,6 +330,7 @@ def report_detail(request, pk):
 
     #This is to filter all instances by user
     instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+    paginate_by = 10
 
     #Responses from user only
     responses = Response.objects.filter(user=request.user)
