@@ -599,3 +599,7 @@ details[open] summary {
     height: auto;
     padding: 1rem;
 }
+
+.summary {
+    text-align: center;
+}
