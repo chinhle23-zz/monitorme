@@ -16,6 +16,7 @@ from dateutil.relativedelta import relativedelta
 from django.forms import modelformset_factory, formset_factory
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 def index(request):
     trackers = TrackerGroup.objects.all()
@@ -330,7 +331,10 @@ def report_detail(request, pk):
 
     #This is to filter all instances by user
     instances = TrackerGroupInstance.objects.filter(created_by=request.user)
-    paginate_by = 10
+    paginator = Paginator(instances, 5)
+    
+    page = request.GET.get('page')
+    tracker_instances = paginator.get_page(page)
 
     #Responses from user only
     responses = Response.objects.filter(user=request.user)
@@ -340,8 +344,9 @@ def report_detail(request, pk):
         'trackers': trackers, 
         'instances': instances,
         'responses': responses,
+        'tracker_instances': tracker_instances,
     }
-
+    
     return render(request, 'core/report.html', context=context)
 
 def references(request):
