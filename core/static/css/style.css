@@ -488,40 +488,43 @@ details[open] summary {
 }
 
 .aaron {
-    width: 320;
-    height: 640;
-    display: flexbox;
-    object-fit: contain;
-    align-self: flex-start;
-    flex-direction: column;
-    align-content: space-between;
+
 }
 
 .chinh {
-    max-width: 320;
-    max-height: 640;
-    display: flexbox;
+    /* display: flexbox;
     object-fit: contain;
     align-self: flex-start;
-    flex-direction: column;
+    flex-direction: column; */
+}
+.chinh_picture {
+    width: 70%;
+    height: auto;
+    padding: 1rem;
 }
 
 .craig {
-    width: 320;
-    height: 640;
-    display: flexbox;
+    /* display: flexbox;
     object-fit: contain;
     align-self: flex-start;
     flex-direction: column;
-    align-content: space-between;
+    align-content: space-between; */
+}
+.craig_picture {
+    width: 70%;
+    height: auto;
+    padding: 1rem;
 }
 
 .kasey {
-    width: 320;
-    height: 640;
-    display: flexbox;
+    /* display: flexbox;
     object-fit: contain;
     align-self: flex-start;
     flex-direction: column;
-    align-content: space-between;
+    align-content: space-between; */
+}
+.kasey_picture {
+    width: 70%;
+    height: auto;
+    padding: 1rem;
 }
