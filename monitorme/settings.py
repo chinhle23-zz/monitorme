@@ -152,6 +152,10 @@ REGISTRATION_FORM = 'core.forms.CustomRegistrationForm'
 AUTH_USER_MODEL = 'core.User'
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST ='smtp.sendgrid.net'                                   
+EMAIL_PORT = 587                                                             
+EMAIL_HOST_USER = 'aaronsellek'                              
+EMAIL_HOST_PASSWORD = 'Passw0rds' #This is not your gmail password.
+EMAIL_USE_TLS = True
 django_heroku.settings(locals())
