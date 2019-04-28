@@ -17,7 +17,8 @@ from django.forms import modelformset_factory, formset_factory
 from django import forms
 
 def index(request):
-    trackers = TrackerGroup.objects.all()
+    # trackers = TrackerGroup.objects.all()
+    trackers = TrackerGroup.objects.filter(user=request.user)
 
     context = {
         'trackers': trackers,
