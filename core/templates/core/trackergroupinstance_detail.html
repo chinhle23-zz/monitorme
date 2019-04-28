@@ -9,10 +9,12 @@
     <h3 class="darkpurple">Questions</h3>
 
     {% if trackergroupinstance.tracker.questions.all %}
-    <div>
-        <div class="tracker">
-            {% for question in trackergroupinstance.tracker.questions.all %}
+        {% for question in trackergroupinstance.tracker.questions.all %}
+        <div>
+            <div class="tracker"> 
+                <div class="marginbottom">
                 {{question}}
+                </div>
                 {% for answer in question.answers.all %}
                     {% if answer.current_answer %}
                         <div class="margin15">
@@ -24,22 +26,37 @@
                     {% endif %}
                 {% endfor %}
             {% endfor %}
-            <div class="needscenter done">
-                <a href="{% url 'index' %}">
-                    <button class="add-tracker"> 
-                        Done
-                    </button>
-                </a>  
-            </div>
         </div>
     </div>
     {% endif %}
-    
+
+    <div class="needscenter done">
+        <a href="{% url 'index' %}">
+            <button class="add-tracker"> 
+                Done
+            </button>
+        </a>  
+    </div>
+    <div class="needscenter done">
+        <a href="{% url 'index' %}">
+            <button class="cancel button2"> 
+                Cancel
+            </button>
+        </a>  
+    </div>
+
 </div>
     
 {% endblock %}
 
 {% comment %}
+    <!-- <div class="needscenter done">
+        <a href="{% url 'index' %}">
+            <button class="add-tracker"> 
+                Done
+            </button>
+        </a>  
+    </div> -->
     <!-- <a href="{% url 'response_create' question_pk=question.pk %}">
         {{answer}} 
     </a> -->

@@ -50,6 +50,9 @@ class TrackerGroupInstance(models.Model):
     def __str__(self):
         return self.tracker.name
 
+    class Meta:
+        ordering = ['started_at']
+
 
 class Question(models.Model):
     """This creates the questionaire"""

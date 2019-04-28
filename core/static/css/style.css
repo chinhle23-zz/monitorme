@@ -221,6 +221,10 @@ p.landingmessage {
     text-align: left;
 }
 
+.paginated {
+    margin-left: .2rem;
+}
+
 .button, 
 .loginbutton {
     background-color: rgb(176, 219, 232);
@@ -367,6 +371,30 @@ p.landingmessage {
 
 .column {
     width: 20%;
+}
+
+.instance {
+    width: 40%;
+}
+
+.date_instance {
+    width: 60%;
+    font-size: 90%;
+}
+
+.history {
+    padding-top: 0;
+    padding-bottom: .25rem;
+    width: 100%;
+}
+
+.left {
+    margin-left: .2rem;
+}
+
+.margin10 {
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .answer {

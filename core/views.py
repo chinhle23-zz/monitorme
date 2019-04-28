@@ -15,6 +15,8 @@ from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from django.forms import modelformset_factory, formset_factory
 from django import forms
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 def index(request):
     trackers = TrackerGroup.objects.all()
@@ -24,9 +26,16 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+def references(request):
+    context = {
+    }
+    return render(request, 'core/reference.html')
+
+
 def user_profile(request, username):
     user = User.objects.get(username=request.user)
     return render(request, 'core/user_profile.html', {"user":user})
+
 
 class UserUpdate(UpdateView):
     model = User
@@ -36,6 +45,7 @@ class UserUpdate(UpdateView):
         'email',
     )
     success_url = ('/profile/{{user.username}}')
+
 
 def new_group(request):
     new_group_form = NewGroupForm()
@@ -55,6 +65,7 @@ def new_group(request):
         new_group_form = NewGroupForm()
 
     return render(request, 'core/create_group.html', {"form": new_group_form})
+
 
 def tracker_create(request):
     form = CreateTrackerQuestionAnswerForm()
@@ -100,6 +111,7 @@ def tracker_create(request):
     }
     return render(request, 'core/trackergroup_create.html', context=context)
 
+@login_required
 def question_create(request, pk):
     form = CreateQuestionAnswerForm()
     tracker = TrackerGroup.objects.get(pk=pk)
@@ -140,6 +152,7 @@ def question_create(request, pk):
     }
     return render(request, 'core/trackergroup_detail.html', context=context)
 
+@login_required
 def answer_create(request, pk):
     form = CreateAnswerForm()
     question = Question.objects.get(pk=pk)
@@ -161,6 +174,7 @@ def answer_create(request, pk):
     }
     return render(request, 'core/question_detail.html', context=context)
 
+@login_required
 def question_detail_create(request, pk):
     form = CreateQuestionAnswerForm()
     tracker = TrackerGroup.objects.get(pk=pk)
@@ -204,13 +218,16 @@ def question_detail_create(request, pk):
 class TrackerDetailView(generic.DetailView):
     model = TrackerGroup
 
+
 class QuestionCreate(CreateView):
     model = Question
     fields = '__all__'
     template_name='core/question_create.html'
 
+
 class QuestionDetailView(generic.DetailView):
     model = Question
+
 
 class QuestionUpdate(UpdateView):
     model = Question
@@ -219,13 +236,16 @@ class QuestionUpdate(UpdateView):
     'active',
     'question']
 
+
 class AnswerCreate(CreateView):
     model = Answer
     fields = '__all__'
     template_name = 'core/answer_create.html'
 
+
 class AnswerDetailView(generic.DetailView):
     model = Answer
+
 
 class AnswerUpdate(UpdateView):
     model = Answer
@@ -234,6 +254,7 @@ class AnswerUpdate(UpdateView):
     'current_answer']
 
 
+@login_required
 def new_trackerinstance(request, tracker_pk):
     new_trackerinstance_form = NewTrackerInstanceForm()
     if request.method == 'POST':
@@ -252,8 +273,10 @@ def new_trackerinstance(request, tracker_pk):
         new_trackerinstance_form = NewTrackerInstanceForm()
     return render(request, 'core/trackergroupinstance_create.html', {"form": new_trackerinstance_form})
 
+
 class TrackerInstanceDetailView(generic.DetailView):
     model = TrackerGroupInstance
+
 
 def new_response(request, question_pk, answer_pk):
     question = get_object_or_404(Question, id=question_pk)
@@ -275,6 +298,7 @@ def new_response(request, question_pk, answer_pk):
         'form': new_response_form,
     }
     return render(request, 'core/response_create.html', context=context)
+
 
 #### Chinh will come back to this later to implement formsets#####
 def response_create(request):
@@ -312,7 +336,7 @@ def response_create(request):
     # form = ResponseForm(12)
 #### Chinh will come back to this later to implement formsets#####
    
-    
+  
 def response_detail(request, pk):
     context = {
     }
@@ -329,6 +353,10 @@ def report_detail(request, pk):
 
     #This is to filter all instances by user
     instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+    paginator = Paginator(instances, 5)
+    
+    page = request.GET.get('page')
+    tracker_instances = paginator.get_page(page)
 
     #Responses from user only
     responses = Response.objects.filter(user=request.user)
@@ -338,14 +366,16 @@ def report_detail(request, pk):
         'trackers': trackers, 
         'instances': instances,
         'responses': responses,
+        'tracker_instances': tracker_instances,
     }
-
+    
     return render(request, 'core/report.html', context=context)
 
 def references(request):
     context = {
     }
     return render(request, 'core/reference.html')
+
       
 
 
