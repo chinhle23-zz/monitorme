@@ -14,7 +14,7 @@
         <a href="{{question.get_absolute_url}}">{{question}}</a> 
     </div>
     <div class="marginbottom">
-        {% for answer in question.answer_set.all %}
+        {% for answer in question.answers.all %}
             <div class="margin15">
                 {{answer}}  
             </div>

@@ -13,9 +13,9 @@
 </div>
 
 
-{% for answer in question.answer_set.all %}
+{% for answer in question.answers.all %}
     <div class="marginbottom margin15">
-        <a href="{{answer.get_absolute_url}}">Answer: {{answer}}</a>
+        <a href="{{answer.get_absolute_url}}"><span class="black">Answer: </span>{{answer}}</a>
     </div>
 {% endfor %}
 

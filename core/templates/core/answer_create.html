@@ -6,7 +6,7 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button class="button button2" type='Submit'>Submit Answers</button>
+    <button class="button button2" type="Submit">Submit Answers</button>
 </form>
 <div class="needscenter done">
     <a href="{% url 'answer-detail' answer.pk %}">
@@ -17,3 +17,4 @@
 </div>
 
 {% endblock %}
+

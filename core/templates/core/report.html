@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load core_tags %}
 
 {% block content %}
 <h3 class="darkpurple">Summary</h3>
@@ -25,13 +26,13 @@
                             </a>
                         </td>
                         <td class="column">
-                            
+                            {% currentMonthCount tracker.pk request.user %}
                         </td>
                         <td class="column">
-                            #
+                            {% thirtyDayCount tracker.pk request.user %}
                         </td>
-                        <td class="column">
-                            ##
+                        <td class="column purple">
+                            {% averageOfDays tracker.pk request.user %}%
                         </td>
                     </tr>
                 </tbody>
