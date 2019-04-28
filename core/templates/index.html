@@ -13,10 +13,12 @@
         <div class="needscenter">
             {% if trackers %}
                 {% for tracker in trackers %}
+                {% if tracker.user == request.user %}
                 <form action="{% url 'trackerinstance_create' tracker.pk %}" method="post">
                     {% csrf_token %}
                     <button class="tracker-button">{{tracker}}</button>
                 </form>
+                {% endif %}
                 {% endfor %}
             {% endif %}
         </div>

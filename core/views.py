@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 def index(request):
-    trackers = TrackerGroup.objects.filter(user=request.user)
+    trackers = TrackerGroup.objects.all()
 
     context = {
         'trackers': trackers,
