@@ -488,14 +488,17 @@ details[open] summary {
 }
 
 .aaron {
-
+    display: flexbox;
+    object-fit: contain;
+    align-self: flex-start;
+    flex-direction: column;
 }
 
 .chinh {
-    /* display: flexbox;
+    display: flexbox;
     object-fit: contain;
     align-self: flex-start;
-    flex-direction: column; */
+    flex-direction: column;
 }
 .chinh_picture {
     width: 70%;
@@ -504,11 +507,10 @@ details[open] summary {
 }
 
 .craig {
-    /* display: flexbox;
+    display: flexbox;
     object-fit: contain;
     align-self: flex-start;
     flex-direction: column;
-    align-content: space-between; */
 }
 .craig_picture {
     width: 70%;
@@ -517,11 +519,10 @@ details[open] summary {
 }
 
 .kasey {
-    /* display: flexbox;
+    display: flexbox;
     object-fit: contain;
     align-self: flex-start;
     flex-direction: column;
-    align-content: space-between; */
 }
 .kasey_picture {
     width: 70%;

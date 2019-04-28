@@ -389,7 +389,7 @@ def report(request):
     return render(request, 'core/report.html', context=context)
 
 def about_us(request):
-    template_name = '/about_us.html'
+    template_name = 'core/about_us.html'
     context = {
 
     }	 
