@@ -5,7 +5,6 @@
 
 {% if request.user.is_authenticated %}
 <div class="landing needscenter">
-
         <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
         <div class="landing-description">
             <p class="needsleft landingmessage">These are your available trackers. To start just select one and enter your information.</p> 
@@ -13,12 +12,12 @@
         <div class="needscenter">
             {% if trackers %}
                 {% for tracker in trackers %}
-                {% if tracker.user == request.user %}
-                <form action="{% url 'trackerinstance_create' tracker.pk %}" method="post">
-                    {% csrf_token %}
-                    <button class="tracker-button">{{tracker}}</button>
-                </form>
-                {% endif %}
+                    {% if tracker.user == request.user %}
+                    <form action="{% url 'trackerinstance_create' tracker.pk %}" method="post">
+                        {% csrf_token %}
+                        <button class="tracker-button">{{tracker}}</button>
+                    </form>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         </div>
@@ -27,7 +26,6 @@
                 <button class="add-tracker">Monitor Me</button>
             </a>
         </div>
-    
 </div> 
 {% else %}
 <div class="blurb">

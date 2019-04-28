@@ -153,6 +153,28 @@ def question_create(request, pk):
     return render(request, 'core/trackergroup_detail.html', context=context)
 
 @login_required
+def answer_create(request, pk):
+    form = CreateAnswerForm()
+    question = Question.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CreateAnswerForm(request.POST)
+        if form.is_valid:
+            answer_name = request.POST.get('answer_name', '')
+            answer = Answer.objects.create(
+                current_answer=answer_name,
+                question=question,
+                created_by=request.user,
+            )
+            return HttpResponseRedirect(reverse('question-detail', args=[question.id]))
+        else:
+            form = CreateAnswerForm()
+    context = {
+        'form': form,
+        'question': question,
+    }
+    return render(request, 'core/question_detail.html', context=context)
+
+@login_required
 def question_detail_create(request, pk):
     form = CreateQuestionAnswerForm()
     tracker = TrackerGroup.objects.get(pk=pk)
