@@ -7,14 +7,14 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.models import Group
-    # https://docs.djangoproject.com/en/2.2/topics/auth/default/#groups
 from django.http import HttpResponseRedirect
 from django.db.models import Avg, Count
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from django.forms import modelformset_factory, formset_factory
 from django import forms
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 def index(request):
     trackers = TrackerGroup.objects.all()
@@ -320,6 +320,40 @@ def report_detail(request, pk):
     }
 
     return render(request, 'core/report.html', context=context)
+
+def email_report(request, pk):
+    subject = "Your MonitorMe Summary"
+    receiver = [request.user.email]
+    from_email = 'MonitorMe2019@gmail.com'
+    template_name = 'core/report_email.html'
+
+    #This is to filter user informatian only
+    user_info = User.objects.filter(pk=request.user.pk)
+
+    #This is to filter only users trackers
+    trackers = TrackerGroup.objects.filter(user=request.user)
+
+    #This is to filter all instances by user
+    instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+
+    #Responses from user only
+    responses = Response.objects.filter(user=request.user)
+
+    ctx = {
+        'user_info': user_info,
+        'trackers': trackers, 
+        'instances': instances,
+        'responses': responses,
+    }
+
+    message = get_template('core/report_email.html').render(ctx)
+    msg = EmailMessage(subject, message, to=receiver, from_email=from_email)
+    msg.content_subtype = 'html'
+    msg.send()
+
+    print(receiver)
+
+    return redirect('index')
 
 def references(request):
     context = {

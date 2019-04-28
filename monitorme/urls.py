@@ -43,6 +43,7 @@ urlpatterns = [
     path('response/create/', core_views.response_create, name="response_create"),
     path('response_detail/<int:pk>', core_views.response_detail, name= 'response_detail'),
     path('user_detail/<int:pk>', core_views.report_detail, name="user-detail"),
+    path('sendemail/<int:pk>', core_views.email_report, name='send-email'),
     path('references/', core_views.references, name="references"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
