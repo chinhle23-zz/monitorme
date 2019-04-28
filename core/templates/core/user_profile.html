@@ -31,19 +31,20 @@
     
             </div>
             <div class="editprofile">
-            <a href="{% url 'edit-profile' user.pk %}">
-                <button class="tracker-button" type="submit">Edit Profile</button>
-            </a>
-            <a href="{% url 'auth_password_reset' %}">
-                <button class="tracker-button" type="submit">Change Password</button>
-            </a>
-            
-
             <a href="{% url 'tracker-create' %}">
                 <button class="add-tracker" type="submit">
                     Monitor Me 
                 </button>
             </a>
+            <a href="{% url 'edit-profile' user.pk %}">
+                <button class="tracker-button" type="submit">Edit Profile</button>
+            </a>
+            <a href="{% url 'auth_password_reset' %}">
+                <button class="tracker-button cancel" type="submit">Change Password</button>
+            </a>
+            
+
+            
             </div> 
 
                 
