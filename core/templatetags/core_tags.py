@@ -33,8 +33,5 @@ def averageOfDays(pk, user):
 
     average_of_instances = round(float(float(count_of_instances)/float(all_per_month)* 100.00), 2)
 
-    print(count_of_instances)
-    print(all_per_month)
-
     return average_of_instances
 
