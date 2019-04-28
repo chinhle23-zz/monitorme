@@ -4,25 +4,34 @@
 
 <div class="needsleft">
 
-<h3 class="darkteal">{{question.tracker}}
-    <br>
-    <span class="medfont purple">Select answer to edit</span>
-</h3>
-<div class="formline">
-    {{question.current_question}}
-</div>
-
-
-{% for answer in question.answers.all %}
-    <div class="marginbottom margin15">
-        <a href="{{answer.get_absolute_url}}"><span class="black">Answer: </span>{{answer}}</a>
+    <h3 class="darkteal">{{question.tracker}}
+        <br>
+        <span class="medfont purple">Select answer to edit</span>
+    </h3>
+    <div class="formline">
+        {{question.current_question}}
     </div>
-{% endfor %}
+
+
+    {% for answer in question.answers.all %}
+        <div class="marginbottom margin15">
+            <a href="{{answer.get_absolute_url}}"><span class="black">Answer: </span>{{answer}}</a>
+        </div>
+    {% endfor %}
 
     <div class="needscenter">
-        <a href="">
-            <button class="add-tracker">Add Answer</button>
-        </a>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="login-row">
+                <span class="formline purple">{{ form.answer_name.label_tag}}</span>
+                <span>{{ form.answer_name }}</span>
+            </div>
+            <div class="needscenter">
+                <button class="add-tracker" type="Submit">
+                    Save Answer
+                </button>
+            </div>
+        </form>
     </div>
     <div class="needscenter done">
         <a href="{% url 'tracker-detail' question.tracker.pk %}">
@@ -34,3 +43,10 @@
 </div>
 
 {% endblock %} 
+
+{% comment %}
+    <a href="">
+        <button class="add-tracker">Create Answers</button>
+    </a>
+{% endcomment %}
+

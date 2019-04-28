@@ -152,15 +152,15 @@ class CreateQuestionAnswerForm(forms.Form):
 
 class CreateAnswerForm(forms.Form):
     answer_name = forms.CharField(
-        label='',
+        label='Enter answer',
         max_length=512,
         widget=forms.TextInput(attrs={'placeholder': '+ another answer'}),
     )
-    def save(self, **kwargs):
-        if self.is_valid():
-            answer_properties = {
-                "name": self.cleaned_data['answer_name'],
-            }
-            answer_properties.update(kwargs)
-            return Answer.objects.create(**answer_properties)
-        return None
+    # def save(self, **kwargs):
+    #     if self.is_valid():
+    #         answer_properties = {
+    #             "name": self.cleaned_data['answer_name'],
+    #         }
+    #         answer_properties.update(kwargs)
+    #         return Answer.objects.create(**answer_properties)
+    #     return None

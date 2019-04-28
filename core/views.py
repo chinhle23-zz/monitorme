@@ -152,11 +152,12 @@ def answer_create(request, pk):
                 question=question,
                 created_by=request.user,
             )
-            return HttpResponseRedirect(reverse('tracker-detail', args=[question.id]))
+            return HttpResponseRedirect(reverse('question-detail', args=[question.id]))
         else:
             form = CreateAnswerForm()
     context = {
         'form': form,
+        'question': question,
     }
     return render(request, 'core/question_detail.html', context=context)
 
