@@ -392,6 +392,11 @@ p.landingmessage {
     margin-left: .2rem;
 }
 
+.margin10 {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .answer {
     text-align: left;
 
