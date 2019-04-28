@@ -83,12 +83,27 @@ textarea:focus {
 input#id_tracker_name, 
 input#id_question_description {
     width: 100%;
+    font-size: .95rem;
 }
 
 input#id_answer_name1,
 input#id_answer_name2,
 input#id_answer_name3 {
-    width: 65%;
+    width: 60%;
+    font-size: .95rem;
+}
+
+input#id_name,
+input#id_email {
+    width: 70%;
+    font-size: .95rem;
+    color: #8B4F77;
+}
+
+input#id_username,
+input#id_password {
+    width: 56%;
+    font-size: .95rem;
 }
 
 select:focus, 
@@ -124,12 +139,15 @@ button:focus {
 }
 
 .user_info {
-    padding: 2rem;
     color: black;
     font-size: 16px;
     margin-bottom: .5rem;
-    margin-top: .5rem;
 }
+
+.editprofile {
+    padding-top: 2rem;
+}
+
 
 .mediumteal,
 .fa-user,
@@ -162,6 +180,10 @@ p.landingmessage {
 
 .margintop {
     margin-top: 0px;
+}
+
+.margintop5 {
+    margin-top: 5px;
 }
 
 .hello-message {
@@ -223,8 +245,7 @@ p.landingmessage {
 .button2:hover, 
 .loginbutton:hover, 
 .surveybutton:hover, 
-.tracker-button:hover,
-.add-tracker:hover {
+.tracker-button:hover, {
     box-shadow: 
         0 8px 10px 0 rgba(0,0,0,0.24),
         0 10px 25px 0 rgba(0,0,0,0.19);
@@ -256,24 +277,6 @@ p.landingmessage {
     outline: 0;
     font-family: 'Raleway';
 
-}
-
-.add-member {
-    background-color: rgb(204, 238, 195);
-    font-size: .75rem;
-    -moz-box-shadow:    2px 3px 2px #D9D9D9;
-    -webkit-box-shadow: 2px 3px 2px #D9D9D9;
-    box-shadow:         2px 3px 2px #D9D9D9;
-    color: black;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    border-radius: 5px;
-    outline: 0;
-    margin-bottom: 1rem;
 }
 
 .tracker-button,
@@ -344,6 +347,10 @@ p.landingmessage {
 
 .bold {
     font-weight: bold;
+}
+
+.black {
+    color: black;
 }
 
 .borderbottom {

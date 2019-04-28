@@ -6,7 +6,7 @@
 <div class="needsleft">
     <h3 class="darkteal">{{tracker.name}}
         <br>
-        <spa><a href="{% url 'tracker-all-detail' tracker.pk%}" class="medfont purple">See more</a></spa>
+        <span><a href="{% url 'tracker-all-detail' tracker.pk%}" class="medfont purple">See more</a></span>
     </h3>
     
     {% for question in tracker.questions.all %}

@@ -31,7 +31,7 @@ class TrackerGroupInstanceAdmin(admin.ModelAdmin):
 @admin.register(Question)
 class Question(admin.ModelAdmin):
     list_display = (
-        'tracker_question', 
+        'current_question', 
         'tracker',
         'created_at', 
         'created_by',
@@ -40,7 +40,7 @@ class Question(admin.ModelAdmin):
 @admin.register(Answer)
 class Answer(admin.ModelAdmin):
     list_display = (
-        'question_answer', 
+        'current_answer', 
         'question',
         'created_at', 
         'created_by',

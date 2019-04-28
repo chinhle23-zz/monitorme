@@ -53,13 +53,13 @@ class TrackerGroupInstance(models.Model):
 
 class Question(models.Model):
     """This creates the questionaire"""
-    tracker_question = models.TextField(max_length=1000, null=False, blank=False) 
+    current_question = models.TextField(max_length=1000, null=False, blank=False) 
     tracker = models.ForeignKey('TrackerGroup', related_name='questions', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.tracker_question  
+        return self.current_question  
 
     def get_absolute_url(self):
         return reverse('question-detail', args=[str(self.id)])
@@ -67,16 +67,19 @@ class Question(models.Model):
 
 class Answer(models.Model):
     """This creates the answer model"""
-    question_answer = models.CharField(max_length=100, null=False, blank=False)
+    current_answer = models.CharField(max_length=100, null=False, blank=False)
     question = models.ForeignKey('Question', related_name='answers', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     created_by = models.ForeignKey('User', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.question_answer
+    class Meta:
+        ordering = ['current_answer']
 
     def get_absolute_url(self):
         return reverse('answer-detail', args=[str(self.id)])
+
+    def __str__(self):
+        return self.current_answer
 
 class Response(models.Model):
     tracker = models.ForeignKey('TrackerGroup', 
@@ -88,11 +91,11 @@ class Response(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return f'{self.tracker.name} {self.created_at} '
+        return f'{self.tracker.name} {self.created_at}'
 
     def display_answers(self):
         """Create a string for the Answer(s). This is required to display answers in Admin."""
-        return ', '.join(answer.question_answer for answer in self.answers.all()[:3])
+        return ', '.join(answer.current_answer for answer in self.answers.all()[:3])
 
 
 

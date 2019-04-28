@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load core_tags %}
 
 {% block content %}
-<h3>MonitorMe Summaries</h3>
-
-<p class="needsleft">This page is for you to navigate to the details of the items in the list that you have created and have a quick snapshot of the responses.</p>
+<h3 class="darkpurple">Summary</h3>
 
 <div>
-    <h3>Tracker </h3>
     <div>
         <table class="report-table">
             <thead>
@@ -19,23 +17,34 @@
                 </tr>
             </thead>
             {% if request.user.trackers %}
-            {% for tracker in trackers %}
-            <tbody>
-                <tr class="marginbottom needscenter">
-                    <td class="needsleft trackername">
-                        <a href="{% url 'tracker-detail' tracker.pk %}">
-                        {{tracker}}
-                        </a>
-                    </td>
-                    <td class="column">#</td>
-                    <td class="column">#</td>
-                    <td class="column">#</td>
-                </tr>
-            </tbody>
-            {% endfor %}
+                {% for tracker in trackers %}
+                <tbody>
+                    <tr class="marginbottom needscenter">
+                        <td class="needsleft trackername">
+                            <a href="{% url 'tracker-detail' tracker.pk %}">
+                            {{tracker}}
+                            </a>
+                        </td>
+                        <td class="column">
+                            {% currentMonthCount tracker.pk request.user %}
+                        </td>
+                        <td class="column">
+                            {% thirtyDayCount tracker.pk request.user %}
+                        </td>
+                        <td class="column purple">
+                            {% averageOfDays tracker.pk request.user %}%
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
             {% endif %}
         </table>
     </div>
+</div>
+
+<div>
+    <h3 class="darkpurple">History</h3>
+
 </div>
     
 

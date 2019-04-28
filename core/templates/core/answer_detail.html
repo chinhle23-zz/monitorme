@@ -1,9 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h3>Associated Tracker: <a href="{{answer.question.tracker.get_absolute_url}}">{{answer.question.tracker}}</a></h3>
-<h3>Associated Queston: <a href="{{answer.question.get_absolute_url}}">{{answer.question.description}}</a></h3>
-<h3>Answer: {{answer.name}}</h3>
+<div class="needsleft">
+    <h3 class="darkteal"><a href="{{answer.question.tracker.get_absolute_url}}">{{answer.question.tracker}}</a></h3>
+    <div class="formline purple">
+        <a href="{{answer.question.get_absolute_url}}">{{answer.question.current_question}}
+        </a>
+    </div>
+    <div class="marginbottom">Current Answer: {{answer.current_answer}}</div>
+    <div class="needscenter done margintop5">
+        <a href="{% url 'edit-answer' answer.pk %}">
+            <button class="add-tracker">
+                Update
+            </button>
+        </a>
+    </div>
+    <div class="needscenter done">
+        <a href="{% url 'question-detail' answer.question.pk %}">
+            <button class="tracker-button button2"> 
+                Done
+            </button>
+        </a>  
+    </div>
+</div>
 
 {% endblock %}
