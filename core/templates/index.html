@@ -28,20 +28,23 @@
         </div>
 </div> 
 {% else %}
+
 <div class="blurb">
+<div>
     <p> Have you ever had to fill out one of these less than specific charts when trying to keep up with a health issue?</p>
 
     <img class="painchart" src="static/css/Children's_pain_scale.JPG" alt="pain_chart">
    
     <p>You're not alone, which is why <a class="purple">MonitorMe</a> is here for you.</p>
 </div> 
-<div class="needscenter">
+<div class="needscenter margintop">
 <a href="{% url 'auth_login' %}">
     <button class="tracker-button">Login</button>
 </a> 
 <a href="/accounts/register/">
     <button class="add-tracker">Register</button>
 </a>
+</div>
 </div>
 
 {% endif %}

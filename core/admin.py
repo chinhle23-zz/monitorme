@@ -52,7 +52,6 @@ class Response(admin.ModelAdmin):
         'tracker', 
         'tracker_instance',
         'question', 
-        'display_answers',
         'user',
         'created_at',
     )
