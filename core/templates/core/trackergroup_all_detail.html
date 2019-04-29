@@ -11,12 +11,12 @@
     
     {% for question in tracker.questions.all %}
     <div class="marginbottom">
-        <a href="{{question.get_absolute_url}}">{{question}}</a> 
+        <a href="{% url 'edit-question' question.pk %}">{{question}}</a> 
     </div>
     <div class="marginbottom">
         {% for answer in question.answers.all %}
             <div class="margin15">
-                {{answer}}  
+                <a href="{% url 'edit-answer' answer.pk %}">{{answer}}</a>
             </div>
         {% endfor %}
     </div>

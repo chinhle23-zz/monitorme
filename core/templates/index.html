@@ -7,7 +7,7 @@
 <div class="landing needscenter">
         <div class="hello-message">Hello {% if request.user.name %}{{request.user.name}}{% else %}{{request.user.username}}{% endif %}!</div>
         <div class="landing-description">
-            <p class="needsleft landingmessage">These are your available trackers. To start just select one and enter your information.</p> 
+            <p class="needsleft landingmessage"> To create a new tracker, simply click the MonitorMe button. Once trackers are created they will appear on this page above the MonitorMe button. To start a tracker that has already been created simply click it to start Monitoring!</p> 
         </div>
         <div class="needscenter">
             {% if trackers %}

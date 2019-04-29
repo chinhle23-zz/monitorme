@@ -38,6 +38,7 @@ urlpatterns = [
     path('answer/create/', core_views.AnswerCreate.as_view(), name="answer-create"),
     path('answer/<int:pk>', core_views.AnswerDetailView.as_view(), name="answer-detail"),
     path('answer/<int:pk>/update/', core_views.AnswerUpdate.as_view(), name="edit-answer"),
+    path('question/<int:pk>/update/', core_views.QuestionUpdate.as_view(), name="edit-question"),
     path('trackerinstance/create/<int:tracker_pk>', core_views.new_trackerinstance, name="trackerinstance_create"),
     path('trackerinstance/<int:pk>', core_views.TrackerInstanceDetailView.as_view(), name="trackergroupinstance_detail"),
     path('response/create/<int:question_pk>/<int:answer_pk>', core_views.new_response, name="response_create"),
