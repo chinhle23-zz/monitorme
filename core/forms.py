@@ -14,7 +14,7 @@ class CustomRegistrationForm(RegistrationForm):
 
     email = forms.EmailField(
         label='E-mail', 
-        widget=forms.TextInput(attrs={'class': ''}),
+        widget=forms.TextInput(attrs={'class': '', 'placeholder': 'Please enter a valid email'}),
     )
 
     password1 = forms.CharField(
@@ -36,7 +36,7 @@ class CustomRegistrationForm(RegistrationForm):
     name = forms.CharField(
         label= 'Name',
         max_length=100,
-        widget=forms.TextInput(attrs={'required': True})
+        widget=forms.TextInput(attrs={'required': True, 'placeholder': 'Please enter full name'}),
     )
 
     disclosure_accepted = forms.BooleanField(required=True, label="By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions: ")
