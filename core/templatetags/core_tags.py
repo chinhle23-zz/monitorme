@@ -36,12 +36,14 @@ def averageOfDays(pk, user):
     return average_of_instances
 
 
-@register.filter(answer='has_answer')
-def has_answer(answer, pk):
-    answer_list = Response.objects.filter(answers__id=answer).filter(tracker_instance=pk)
+# @register.filter(answer='has_answer')
+# def has_answer(answer, pk):
+#     answer_list = Response.objects.filter(answers__id=answer).filter(tracker_instance=pk)
 
-    if answer in answer_list:
-        return True
-    else:
-        return False
+#     if answer in answer_list:
+#         return True
+#     else:
+#         return False
+
+    
 
