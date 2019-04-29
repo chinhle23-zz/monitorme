@@ -53,6 +53,12 @@
                     {{ form.password2 }}
                 </span>
             </div>
+            <div class="needsleft">
+            <details>
+            <summary>Password not working? Click here</summary>
+            Your password might be too short. It must contain at least 8 characters. Another issue could be your password is too common. It is also possible you did not enter the same password twice. 
+            </details>
+            </div>
             <div class="login-row" style="border: none;">
                 {{ form.disclosure_accepted }}
                 <span>{{ form.disclosure_accepted.label_tag }}</span>
@@ -60,10 +66,6 @@
 
         </div>
      <div class="disclosure needsleft">
-     <details>
-     <summary>Password not working? Click here</summary>
-     
-     </details>
     <details>
     <summary>Please Click To Read The Disclosure</summary>
     <h3>By registering for and using the Monitor-Me website and/or mobile application, you are deemed to have read and agreed to the following terms and conditions:</h3>
