@@ -103,13 +103,6 @@ input#id_username,
 input#id_password {
     width: 56%;
     font-size: .95rem;
-    color: #8B4F77;
-}
-
-input#id_password2 {
-  width: 100%;
-  font-size: .95rem;
-  color: #8B4F77;
 }
 
 select:focus, 
