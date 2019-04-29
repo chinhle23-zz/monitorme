@@ -16,7 +16,12 @@
             {% if response.answers.all %}
                 {% for answer in response.answers.all %}
                 <div class="margintop5">
-                    <span class="medteal">Response: </span>{{answer.current_answer}}
+                    <span class="medteal">Response: </span>{{answer.current_answer}} 
+                    <span class="trash purple">
+                        <a href="{% url 'response_detail_delete' response.pk %}">
+                        <i class="far fa-trash-alt"></i>
+                        </a>
+                    </span>
                 </div>
                 {% endfor %}
             {% endif %}
