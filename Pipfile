@@ -16,6 +16,7 @@ django-heroku = "*"
 gunicorn = "*"
 django-debug-toolbar = "*"
 python-dateutil = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.7"

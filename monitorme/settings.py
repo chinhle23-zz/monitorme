@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -155,7 +156,7 @@ AUTH_USER_MODEL = 'core.User'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST ='smtp.sendgrid.net'                                   
 EMAIL_PORT = 587                                                             
-EMAIL_HOST_USER = 'aaronsellek'                              
-EMAIL_HOST_PASSWORD = 'Passw0rds' #This is not your gmail password.
+EMAIL_HOST_USER = config('SENDGRID_USER')
+EMAIL_HOST_PASSWORD = config('SENDGRID_PASSWORD')
 EMAIL_USE_TLS = True
 django_heroku.settings(locals())
