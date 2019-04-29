@@ -52,7 +52,11 @@
         {% for instance in tracker_instances %}
         <tbody>
             <tr class="marginbottom needscenter">
-                <td class="instance needsleft">{{instance}}</td>
+                <td class="instance needsleft">
+                    <a href="{% url 'trackergroupinstance_detail' instance.pk %}">
+                    {{instance}}
+                    </a>
+                </td>
                 <td class="date_instance helptext needscenter">{{instance.started_at}}</td>
             </tr>
         </tbody>
