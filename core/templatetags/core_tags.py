@@ -15,7 +15,11 @@ register = template.Library()
 def currentMonthCount(pk, user):
     today = date.today()
     current_instances = TrackerGroupInstance.objects.filter(started_at__month=today.month, tracker_id=pk, created_by=user).count()
-    return current_instances
+
+    if current_instances == '':
+        return current_instances
+    else:   
+        return int(0)
 
 @register.simple_tag
 def thirtyDayCount(pk, user):
@@ -31,9 +35,11 @@ def averageOfDays(pk, user):
 
     all_per_month = TrackerGroupInstance.objects.filter(started_at__date__gte=last_month, created_by=user).count()
 
-    average_of_instances = round(float(float(count_of_instances)/float(all_per_month)* 100.00), 1)
-
-    return average_of_instances
+    try:
+        average_of_instances = round(float(float(count_of_instances)/float(all_per_month)* 100.00), 1)
+        return average_of_instances
+    except:
+        return int(0)
 
 
 # @register.filter(answer='has_answer')
