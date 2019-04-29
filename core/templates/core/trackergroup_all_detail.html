@@ -19,8 +19,10 @@
                 <a href="{% url 'edit-answer' answer.pk %}">{{answer}}</a>
             </div>
         {% endfor %}
+        <div class="margin15">
+            <a href="{{question.get_absolute_url}}">+ Answer</a>  
+        </div>
     </div>
-
     {% endfor %}
 
     <div>
