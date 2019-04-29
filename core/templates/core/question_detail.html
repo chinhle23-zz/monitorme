@@ -9,7 +9,7 @@
         <span class="medfont purple">Select answer to edit</span>
     </h3>
     <div class="formline">
-        {{question.current_question}}
+       <a href="{% url 'edit-question' question.pk %}">{{question.current_question}} </a>
     </div>
 
 

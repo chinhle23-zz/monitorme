@@ -231,10 +231,9 @@ class QuestionDetailView(generic.DetailView):
 
 class QuestionUpdate(UpdateView):
     model = Question
-    template_name = 'question_edit'
-    fields = ['tracker',
-    'active',
-    'question']
+    template_name = 'core/question_edit.html'
+    fields = ['current_question']
+
 
 
 class AnswerCreate(CreateView):

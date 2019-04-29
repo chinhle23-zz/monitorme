@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="needsleft">
+    <h3 class="darkteal"><a href="{{question.tracker.get_absolute_url}}">{{question.tracker}}</a></h3>
+    <form method="POST" action="">
+    {% csrf_token %}
+    <div>
+            <div class="login-row question">
+                <div class="needsleft">
+                    {{ form.current_question.label_tag }}
+                </div>
+                <div>
+                    {{ form.current_question }}
+                </div>
+            </div>
+        </div> 
+<div class="needscenter">
+    <button class="tracker-button button2"> 
+        Submit
+    </button>
+</div>
+</form>
+    <div class="needscenter done">
+    <a href="{% url 'question-detail' question.pk %}">
+        <button class="cancel button2"> 
+            Cancel
+        </button>
+    </a>  
+</div>
+</div>
+
+{% endblock %}

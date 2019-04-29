@@ -59,13 +59,20 @@ span {
     text-align: center;
 }
 
-.login-row {
+.login-row,
+.question {
     margin: 22px;
     border-bottom: 2px solid rgb(154, 154, 154);
     padding-bottom: 2px;
     font-size: 1rem;
     text-align:left;
 }
+
+.question {
+    border: none;
+}
+
+
 
 input {
     border: none;
@@ -110,6 +117,9 @@ input#id_password {
     color: #8B4F77;
 }
 
+textarea#id_current_question {
+    border: 2px solid lightgrey;
+}
  input#id_password2 {
   width: 100%;
   font-size: .95rem;
