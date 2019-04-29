@@ -10,10 +10,9 @@
     </h3>
     
     {% for question in tracker.questions.all %}
-    <div class="marginbottom">
-        <a href="{{question.get_absolute_url}}">{{question}}</a> 
-    </div>
-
+        <div class="marginbottom">
+            <a href="{{question.get_absolute_url}}">{{question}}</a> 
+        </div>
     {% endfor %}
 
     <div>

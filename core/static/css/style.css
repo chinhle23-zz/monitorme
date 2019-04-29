@@ -80,7 +80,8 @@ textarea:focus {
 }
 
 input#id_tracker_name, 
-input#id_question_description {
+input#id_question_description,
+input#id_answer_name {
     width: 100%;
     font-size: .95rem;
 }
