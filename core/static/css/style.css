@@ -232,6 +232,11 @@ p.landingmessage {
     margin-left: .2rem;
 }
 
+.trash {
+    font-size: .75rem;
+    margin-left: .50rem;
+}
+
 .button, 
 .loginbutton {
     background-color: rgb(176, 219, 232);

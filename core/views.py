@@ -416,5 +416,9 @@ def about_us(request):
 
     }	 
 
-    return render(request, 'core/about_us.html', context=context)    
+    return render(request, 'core/about_us.html', context=context)
+
+class ResponseDelete(DeleteView):
+    model = Response
+    success_url = reverse_lazy('index')
     

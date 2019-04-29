@@ -43,6 +43,7 @@ urlpatterns = [
     path('response/create/<int:question_pk>/<int:answer_pk>', core_views.new_response, name="response_create"),
     path('response/create/', core_views.response_create, name="response_create"),
     path('response_detail/<int:pk>', core_views.response_detail, name= 'response_detail'),
+    path('response_detail/<int:pk>/delete/', core_views.ResponseDelete.as_view(), name='response_detail_delete'),
     path('user_detail/<int:pk>', core_views.report_detail, name="user-detail"),
     path('references/', core_views.references, name="references"),
     path('about_us/', core_views.about_us, name="about-us"), 
