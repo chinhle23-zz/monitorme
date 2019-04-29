@@ -53,6 +53,12 @@
                     {{ form.password2 }}
                 </span>
             </div>
+            <div class="needsleft">
+            <details>
+            <summary>Password not working? Click here</summary>
+            Your password might be too short. It must contain at least 8 characters. Another issue could be your password is too common. It is also possible you did not enter the same password twice. 
+            </details>
+            </div>
             <div class="login-row" style="border: none;">
                 {{ form.disclosure_accepted }}
                 <span>{{ form.disclosure_accepted.label_tag }}</span>
