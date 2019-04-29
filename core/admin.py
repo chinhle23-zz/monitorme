@@ -51,6 +51,7 @@ class Response(admin.ModelAdmin):
     list_display = (
         'tracker', 
         'tracker_instance',
+        'display_answers',
         'question', 
         'user',
         'created_at',
