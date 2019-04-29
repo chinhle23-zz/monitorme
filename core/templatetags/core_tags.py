@@ -52,4 +52,7 @@ def averageOfDays(pk, user):
 #         return False
 
     
-
+@register.simple_tag
+def UserCount(user):
+    user_count = TrackerGroup.objects.filter(user=user).count()
+    return user_count
