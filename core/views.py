@@ -418,24 +418,24 @@ def about_us(request):
 
 class ResponseDelete(DeleteView):
     model = Response
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('delete-successful')
 
 
 class QuestionDelete(DeleteView):
     model = Question
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('delete-successful')
 
 class AnswerDelete(DeleteView):
     model = Answer
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('delete-successful')
 
 class TrackerGroupInstanceDelete(DeleteView):
     model = TrackerGroupInstance
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('delete-successful')
 
 class TrackerGroupDelete(DeleteView):
     model = TrackerGroup
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('delete-successful')
 
 def response_detail2(request, pk):
     instances = TrackerGroupInstance.objects.filter(pk=pk)
@@ -448,4 +448,7 @@ def response_detail2(request, pk):
     }
 
     return render(request, 'core/response_detail2.html', context=context)
+
+def delete_message(request):
+    return render(request, 'core/delete_confirmation.html')
     

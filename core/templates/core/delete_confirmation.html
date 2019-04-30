@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="darkteal">Delete Successful!!</h2>
+
+<p class="needsleft largefont">Return back to <span><a class="medteal" href="{% url 'index' %}"><i class="far fa-home-lg-alt"></i></a></span> to start another list or repsonse or back to <span><a class="medteal" href="{% url 'user-detail' request.user.pk %}"><i class="far fa-file-chart-line"></i></a></span> for your details and history.</p>
+
+{% endblock %}
