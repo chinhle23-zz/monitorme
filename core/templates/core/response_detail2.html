@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="darkteal">Response Details</h2>
+
+{% for instance in instances %}
+
+<div class="needsleft">
+<h3>{{instance.tracker.name}}</h3>
+<div>{{instance.started_at}}</div>
+
+<div class="margintoprem2">
+    {% for response in instance.response_set.all %}
+        <div class="needsleft marginbottom">
+        {{response.question}}
+        </div>
+            {% if response.answers.all %}
+                {% for answer in response.answers.all %}
+                    <div class="margintop5 margin10 needsleft marginbottom">
+                        <span class="medteal">Response: </span>{{answer.current_answer}}
+                        <span class="trash purple">
+                            <a href="{% url 'response_detail_delete' response.pk %}">
+                            <i class="far fa-trash-alt"></i>
+                            </a>
+                        </span>
+                        <div class="helptext">{{answer.created_at}}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+    {% endfor %}
+    <div class="needscenter done">
+        <a href="{% url 'trackergroupinstance_delete' instance.pk %}">
+            <button class="delete button2"> 
+                Delete Full Response
+            </button>
+        </a>  
+    </div>
+    <div class="needscenter done">
+        <a href="{% url 'user-detail' request.user.pk %}">
+            <button class="cancel button2"> 
+                Cancel
+            </button>
+        </a>  
+    </div>
+</div>
+
+</div>
+{% endfor %}
+
+{% endblock %}

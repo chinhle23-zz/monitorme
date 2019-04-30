@@ -351,7 +351,7 @@ def report_detail(request, pk):
     trackers = TrackerGroup.objects.filter(user=request.user)
 
     #This is to filter all instances by user
-    instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+    instances = TrackerGroupInstance.objects.filter(created_by=request.user).order_by('-started_at')
     paginator = Paginator(instances, 5)
     
     page = request.GET.get('page')
@@ -412,7 +412,6 @@ def report(request):
 def about_us(request):
     template_name = 'core/about_us.html'
     context = {
-
     }	 
 
     return render(request, 'core/about_us.html', context=context)
@@ -420,4 +419,33 @@ def about_us(request):
 class ResponseDelete(DeleteView):
     model = Response
     success_url = reverse_lazy('index')
+
+
+class QuestionDelete(DeleteView):
+    model = Question
+    success_url = reverse_lazy('index')
+
+class AnswerDelete(DeleteView):
+    model = Answer
+    success_url = reverse_lazy('index')
+
+class TrackerGroupInstanceDelete(DeleteView):
+    model = TrackerGroupInstance
+    success_url = reverse_lazy('index')
+
+class TrackerGroupDelete(DeleteView):
+    model = TrackerGroup
+    success_url = reverse_lazy('index')
+
+def response_detail2(request, pk):
+    instances = TrackerGroupInstance.objects.filter(pk=pk)
+
+    responses = Response.objects.filter(user=request.user, tracker_instance=pk)
+
+    context = {
+        'instances': instances,
+        'responses': responses,
+    }
+
+    return render(request, 'core/response_detail2.html', context=context)
     

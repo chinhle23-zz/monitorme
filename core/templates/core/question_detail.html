@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<h2 class="darkteal">Question Details</h2>
 <div class="needsleft">
 
     <h3 class="darkteal">{{question.tracker}}
         <br>
-        <span class="medfont purple">Select answer to edit</span>
+        <span class="medfont helptext">Select answer to edit</span>
     </h3>
-    <div class="formline">
-       <a href="{% url 'edit-question' question.pk %}">{{question.current_question}} </a>
+    <div class="formline darkteal">
+       {{question.current_question}}
     </div>
 
 
@@ -34,9 +34,16 @@
         </form>
     </div>
     <div class="needscenter done">
-        <a href="{% url 'tracker-all-detail' question.tracker.pk %}">
+        <a href="{% url 'edit-question' question.pk %}">
             <button class="tracker-button button2"> 
-                Done
+                Edit Question
+            </button>
+        </a>  
+    </div>
+    <div class="needscenter done">
+        <a href="{% url 'tracker-all-detail' question.tracker.pk %}">
+            <button class="cancel button2"> 
+                Cancel
             </button>
         </a>  
     </div>

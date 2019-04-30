@@ -3,6 +3,8 @@
 {% block content %}
 <div class="needsleft">
     <h3 class="darkteal"><a href="{{question.tracker.get_absolute_url}}">{{question.tracker}}</a></h3>
+
+    
     <form method="POST" action="">
     {% csrf_token %}
     <div>
@@ -21,6 +23,13 @@
     </button>
 </div>
 </form>
+    <div class="needscenter done">
+        <a href="{% url 'delete-question' question.pk %}">
+            <button class="delete button2"> 
+                Delete Question
+            </button>
+        </a>  
+    </div>
     <div class="needscenter done">
     <a href="{% url 'question-detail' question.pk %}">
         <button class="cancel button2"> 
