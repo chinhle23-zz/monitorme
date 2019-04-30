@@ -35,6 +35,7 @@
     <h3 class="darkpurple">Questions</h3>
 
     {% if trackergroupinstance.tracker.questions.all %}
+
         {% for question in trackergroupinstance.tracker.questions.all %}
         <div>
             <div class="tracker margintop10"> 
@@ -43,10 +44,15 @@
                 </div>
                 {% for answer in question.answers.all %}
                     {% if answer.current_answer %}
+                    
                         <div class="margin15">
                             <form method="post" action="{% url 'response_create' question_pk=question.pk answer_pk=answer.pk %}">
                                 {% csrf_token %}
+                                {% if answer|been_clicked:trackergroupinstance.pk %}
+                                <button class="add-tracker button2" type="Submit">{{answer}}</button>
+                                {% else %}
                                 <button class="button button2" type="Submit">{{answer}}</button>
+                                {% endif %}
                             </form>
                         </div>
                     {% endif %}

@@ -38,16 +38,15 @@ def averageOfDays(pk, user):
         return int(0)
 
 
-@register.filter(answer='has_answer')
-def has_answer(answer, pk):
+@register.filter(answer='been_clicked')
+def been_clicked(answer, trackergroupinstance):
+
     try:
-        answer_list = Response.objects.filter(answers__id=answer).filter(tracker_instance=pk).exists()
-        return True
+        responses = Response.objects.filter(tracker_instance=trackergroupinstance).filter(answers__current_answer=answer).exists()
+       
+        if responses:
+            status = True
+            return status
     except:
         return False
 
-    
-@register.simple_tag
-def UserCount(user):
-    user_count = TrackerGroup.objects.filter(user=user).count()
-    return user_count
