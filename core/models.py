@@ -89,7 +89,7 @@ class Response(models.Model):
     on_delete=models.CASCADE, null=False, blank=False)
     tracker_instance = models.ForeignKey('TrackerGroupInstance',  on_delete=models.CASCADE, null=False, blank=False)
     question = models.ForeignKey('Question', on_delete=models.CASCADE, null=False, blank=False)
-    answers = models.ManyToManyField('Answer')
+    answers = models.ManyToManyField('Answer', related_name="response_answers")
     user = models.ForeignKey('User', on_delete=models.CASCADE, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
