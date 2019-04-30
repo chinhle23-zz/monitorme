@@ -15,11 +15,7 @@ register = template.Library()
 def currentMonthCount(pk, user):
     today = date.today()
     current_instances = TrackerGroupInstance.objects.filter(started_at__month=today.month, tracker_id=pk, created_by=user).count()
-
-    if current_instances == '':
-        return current_instances
-    else:   
-        return int(0)
+    return current_instances
 
 @register.simple_tag
 def thirtyDayCount(pk, user):

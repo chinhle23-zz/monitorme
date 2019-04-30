@@ -11,10 +11,6 @@
             {% if trackers %}
             <div class="landing-description">
             <p class="needsleft landingmessage">These are your available trackers. To start just select one and enter your information.</p> 
-            <details>
-            <summary>If you are a first time user, click here</summary>
-            Click the green MonitorMe button to create your first tracker. This will allow you to name a tracker, and create questions and answers customized to your needs.
-            </details>
             </div>
                 {% for tracker in trackers %}
                     {% if tracker.user == request.user %}
@@ -25,15 +21,17 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}    
-    
-        
-      
-
         </div>
         <div class="needscenter margintop">
             <a href="{% url 'tracker-create' %}">
                 <button class="add-tracker">Monitor Me</button>
             </a>
+        </div>
+        <div class="margintop10">
+            <details class="needsleft">
+            <summary class="needscenter">If you are a first time user, click here</summary>
+            Click the green MonitorMe button to create your first tracker. This will allow you to name a tracker, and create questions and answers customized to your needs.
+            </details>
         </div>
 </div> 
 {% else %}
