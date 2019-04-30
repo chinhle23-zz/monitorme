@@ -53,6 +53,7 @@ urlpatterns = [
     path('user_detail/<int:pk>', core_views.report_detail, name="user-detail"),
     path('references/', core_views.references, name="references"),
     path('about_us/', core_views.about_us, name="about-us"), 
+    path('delete_successful/', core_views.delete_message, name="delete-successful"), 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
