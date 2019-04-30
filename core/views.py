@@ -96,11 +96,12 @@ def tracker_create(request):
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
-            answer = Answer.objects.create(
-                current_answer=answer_name3,
-                question=question,
-                created_by=request.user,
-            )
+            if (answer_name3 != ""):
+                answer = Answer.objects.create(
+                    current_answer=answer_name3,
+                    question=question,
+                    created_by=request.user,
+                )
             return HttpResponseRedirect(reverse('tracker-all-detail', args=[tracker.id]))
         else:
             form = CreateTrackerQuestionAnswerForm()
@@ -138,11 +139,12 @@ def question_create(request, pk):
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
-            answer = Answer.objects.create(
-                current_answer=answer_name3,
-                question=question,
-                created_by=request.user,
-            )
+            if (answer_name3 != ""):
+                answer = Answer.objects.create(
+                    current_answer=answer_name3,
+                    question=question,
+                    created_by=request.user,
+                )
             return HttpResponseRedirect(reverse('tracker-detail', args=[tracker.id]))
         else:
             form = CreateQuestionAnswerForm()
@@ -201,11 +203,12 @@ def question_detail_create(request, pk):
                 created_by=request.user,
             )
             answer_name3 = request.POST.get('answer_name3', '')
-            answer = Answer.objects.create(
-                current_answer=answer_name3,
-                question=question,
-                created_by=request.user,
-            )
+            if (answer_name3 != ""):
+                answer = Answer.objects.create(
+                    current_answer=answer_name3,
+                    question=question,
+                    created_by=request.user,
+                )
             return HttpResponseRedirect(reverse('tracker-all-detail', args=[tracker.id]))
         else:
             form = CreateQuestionAnswerForm()
