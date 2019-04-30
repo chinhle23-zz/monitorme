@@ -382,6 +382,14 @@ p.landingmessage {
     font-size: .85rem;
 }
 
+.largefont {
+    font-size: 1.25rem;
+}
+
+.summary {
+    text-indent: 2em;
+}
+
 .bold {
     font-weight: bold;
 }
@@ -481,6 +489,11 @@ p.landingmessage {
 
     .blurb {
         padding: 1.5rem;
+    }
+
+    .loginbody {
+        padding: 1.5rem;
+        padding-top: 2rem;
     }
 }
 
