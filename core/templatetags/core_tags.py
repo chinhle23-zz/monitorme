@@ -42,7 +42,7 @@ def averageOfDays(pk, user):
 def been_clicked(answer, trackergroupinstance):
 
     try:
-        responses = Response.objects.filter(tracker_instance=trackergroupinstance).filter(answers__current_answer=answer).exists()
+        responses = Response.objects.filter(tracker_instance=trackergroupinstance).filter(answers__id=answer.pk).exists()
        
         if responses:
             status = True
