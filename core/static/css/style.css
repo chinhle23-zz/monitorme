@@ -372,6 +372,10 @@ p.landingmessage {
     background-color: #EDEAe5;
 }
 
+.clicked {
+    background-color: rgb(169, 168, 167);
+}
+
 .delete {
     background-color: rgb(205, 180, 205);
 }

@@ -51,7 +51,7 @@
                                 {% if answer|been_clicked:trackergroupinstance.pk %}
                                 <button class="add-tracker button2" type="Submit">{{answer}}</button>
                                 {% else %}
-                                <button class="button button2" type="Submit">{{answer}}</button>
+                                <button class="cancel button2" type="Submit">{{answer}}</button>
                                 {% endif %}
                             </form>
                         </div>
@@ -64,15 +64,8 @@
 
     <div class="needscenter done">
         <a href="{% url 'index' %}">
-            <button class="add-tracker"> 
+            <button class="button button2"> 
                 Done
-            </button>
-        </a>  
-    </div>
-    <div class="needscenter done">
-        <a href="{% url 'index' %}">
-            <button class="cancel button2"> 
-                Cancel
             </button>
         </a>  
     </div>
