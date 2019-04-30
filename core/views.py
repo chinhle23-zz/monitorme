@@ -436,4 +436,16 @@ class TrackerGroupInstanceDelete(DeleteView):
 class TrackerGroupDelete(DeleteView):
     model = TrackerGroup
     success_url = reverse_lazy('index')
+
+def response_detail2(request, pk):
+    instances = TrackerGroupInstance.objects.filter(pk=pk)
+
+    responses = Response.objects.filter(user=request.user, tracker_instance=pk)
+
+    context = {
+        'instances': instances,
+        'responses': responses,
+    }
+
+    return render(request, 'core/response_detail2.html', context=context)
     
