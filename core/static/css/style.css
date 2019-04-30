@@ -95,7 +95,8 @@ input#id_answer_name {
 
 input#id_answer_name1,
 input#id_answer_name2,
-input#id_answer_name3 {
+input#id_answer_name3,
+input#id_current_answer {
     width: 60%;
     font-size: .95rem;
 }
@@ -119,6 +120,8 @@ input#id_password {
 
 textarea#id_current_question {
     border: 2px solid lightgrey;
+    font-size: .95rem;
+    color: #8B4F77;
 }
  input#id_password2 {
   width: 100%;
@@ -229,7 +232,7 @@ p.landingmessage {
 }
 
 .helptext {
-    color: #B4B3B3;
+    color: rgb(159, 159, 159);
 }
 
 .medgray {
@@ -256,6 +259,10 @@ p.landingmessage {
 .trash {
     font-size: .75rem;
     margin-left: .50rem;
+}
+
+.question {
+    font-size: 1rem;
 }
 
 .button, 
@@ -361,6 +368,10 @@ p.landingmessage {
     background-color: #EDEAe5;
 }
 
+.delete {
+    background-color: rgb(205, 180, 205);
+}
+
 .tracker, .member {
     margin-bottom: 5px;
 }
@@ -408,10 +419,15 @@ p.landingmessage {
 
 .trackername {
     width: 40%;
+    text-align: left;
 }
 
 .column {
     width: 20%;
+}
+
+.tableheader {
+    font-size: .85rem;
 }
 
 .instance {

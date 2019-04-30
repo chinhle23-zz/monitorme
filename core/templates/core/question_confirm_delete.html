@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="needsleft">
+<h3>Delete Question</h3>
+
+<p class="needsleft">Are you sure you want to delete this question "<span class="purple">{{question}}"</span> on your MonitorMe list called <span class="darkpurple">{{question.tracker}}?</span></p>
+
+<form action="" method="POST" style="font-family: 'Quicksand'">
+    {% csrf_token %}
+    <div class="needscenter">
+        <button type="submit" class="tracker-button button2"> 
+            Submit
+        </button>
+    </div>
+</form>
+<div class="needscenter done">
+    <a href="{% url 'question-detail' question.pk %}">
+        <button class="cancel button2"> 
+            Cancel
+        </button>
+    </a>  
+</div>
+</div>
+
+{% endblock %}

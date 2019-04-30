@@ -12,10 +12,10 @@
     <table class="report-table">
         <thead>
             <tr class="bolder">
-                <th class="trackername"></th>
-                <th class="column">MTD</th>
-                <th class="column">Last 30 Days</th>
-                <th class="column">Most Used</th>
+                <th class="trackername tableheader">Details</th>
+                <th class="column tableheader">MTD</th>
+                <th class="column tableheader">Last 30 Days</th>
+                <th class="column tableheader">Most Used</th>
             </tr>
         </thead>
         {% if trackers %}
@@ -52,6 +52,8 @@
     <table class="history">
         <thead>
             <tr class="bolder">
+                <th class="trackername tableheader">Response</th>
+                <th class="column tableheader">Date</th>
             </tr>
         </thead>
         {% if tracker_instances %}

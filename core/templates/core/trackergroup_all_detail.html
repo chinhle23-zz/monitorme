@@ -2,30 +2,33 @@
 
 {% block content %}
 
-
+<h2 class="darkteal">MonitorMe Details</h2>
 <div class="needsleft">
     <h3 class="darkteal">{{tracker.name}}
         <br>
         <a href="{% url 'tracker-detail' tracker.pk%}" class="medfont purple">See less</a>
+        <br>
+        <span class="medfont helptext">Select question or answer to edit</span>
     </h3>
     
     {% for question in tracker.questions.all %}
     <div class="marginbottom">
-        <a href="{% url 'edit-question' question.pk %}">{{question}}</a> 
+        <a class="darkteal" href="{% url 'question-detail' question.pk %}">{{question}}</a> 
     </div>
     <div class="marginbottom">
         {% for answer in question.answers.all %}
             <div class="margin15">
-                <a href="{% url 'edit-answer' answer.pk %}">{{answer}}</a>
+                <a href="{% url 'answer-detail' answer.pk %}">
+                {{answer}}</a>
             </div>
         {% endfor %}
         <div class="margin15">
-            <a href="{{question.get_absolute_url}}">+ Answer</a>  
+            <a class="purple" href="{{question.get_absolute_url}}">+ Answer</a>  
         </div>
     </div>
     {% endfor %}
 
-    <div>
+    <div class="addquestion">
         <form method="post" action="">
             {% csrf_token %}
             <div class="login-row">
@@ -50,13 +53,13 @@
                 </button>
             </div>
         </form>  
-    <div class="needscenter done">
-        <a href="{% url 'index' %}">
-            <button class="tracker-button button2"> 
-                Done
-            </button>
-        </a>  
-    </div>
+        <div class="needscenter done">
+            <a href="{% url 'index' %}">
+                <button class="tracker-button button2"> 
+                    Done
+                </button>
+            </a>  
+        </div>
     </div>
 </div>
 

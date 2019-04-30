@@ -2,21 +2,23 @@
 
 {% block content %}
 
-
+<h2 class="darkteal">MonitorMe Details</h2>
 <div class="needsleft">
     <h3 class="darkteal">{{tracker.name}}
         <br>
         <span><a href="{% url 'tracker-all-detail' tracker.pk%}" class="medfont purple">See more</a></span>
+        <br>
+        <span class="medfont helptext">Select question to edit</span>
     </h3>
     
     {% for question in tracker.questions.all %}
     <div class="marginbottom">
-        <a href="{% url 'edit-question' question.pk %}">{{question}}</a> 
+        <a class="darkteal" href="{% url 'question-detail' question.pk %}">{{question}}</a> 
     </div>
 
     {% endfor %}
 
-    <div>
+    <div class="addquestion">
         <form method="post" action="">
             {% csrf_token %}
             <div class="login-row">
@@ -45,6 +47,13 @@
             <a href="{% url 'index' %}">
                 <button class="tracker-button button2"> 
                     Done
+                </button>
+            </a>  
+        </div>
+        <div class="needscenter done">
+            <a href="{% url 'tracker-delete' tracker.pk %}">
+                <button class="delete button2"> 
+                    Delete List
                 </button>
             </a>  
         </div>

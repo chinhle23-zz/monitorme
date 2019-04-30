@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="needsleft">
+<h3 class="needscenter darkteal">Delete Answer</h3>
+
+<p class="needsleft">Are you sure you want to delete the answer <span class="purple">"{{answer}}"</span> on your question <span class="medteal">"{{answer.question}}"</span> from <span class="darkpurple">{{answer.question.tracker}}?</span></p>
+
+<form action="" method="POST" style="font-family: 'Quicksand'">
+    {% csrf_token %}
+    <div class="needscenter">
+        <button type="submit" class="tracker-button button2"> 
+            Submit
+        </button>
+    </div>
+</form>
+<div class="needscenter done">
+    <a href="{% url 'answer-detail' answer.pk %}">
+        <button class="cancel button2"> 
+            Cancel
+        </button>
+    </a>  
+</div>
+</div>
+
+{% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h2 class="darkteal">Answer Details</h2>
 <div class="needsleft">
     <h3 class="darkteal"><a href="{{answer.question.tracker.get_absolute_url}}">{{answer.question.tracker}}</a></h3>
     <div class="formline purple">
-        <a href="{{answer.question.get_absolute_url}}">{{answer.question.current_question}}
-        </a>
+        {{answer.question.current_question}}
     </div>
     <div class="marginbottom">Current Answer: {{answer.current_answer}}</div>
     <div class="needscenter done margintop5">
@@ -17,8 +17,8 @@
     </div>
     <div class="needscenter done">
         <a href="{% url 'question-detail' answer.question.pk %}">
-            <button class="tracker-button button2"> 
-                Done
+            <button class="cancel button2"> 
+                Cancel
             </button>
         </a>  
     </div>

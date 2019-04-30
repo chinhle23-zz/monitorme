@@ -412,12 +412,27 @@ def report(request):
 def about_us(request):
     template_name = 'core/about_us.html'
     context = {
-
     }	 
 
     return render(request, 'core/about_us.html', context=context)
 
 class ResponseDelete(DeleteView):
     model = Response
+    success_url = reverse_lazy('index')
+
+class QuestionDelete(DeleteView):
+    model = Question
+    success_url = reverse_lazy('index')
+
+class AnswerDelete(DeleteView):
+    model = Answer
+    success_url = reverse_lazy('index')
+
+class TrackerGroupInstanceDelete(DeleteView):
+    model = TrackerGroupInstance
+    success_url = reverse_lazy('index')
+
+class TrackerGroupDelete(DeleteView):
+    model = TrackerGroup
     success_url = reverse_lazy('index')
     
