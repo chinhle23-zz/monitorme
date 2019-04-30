@@ -351,7 +351,7 @@ def report_detail(request, pk):
     trackers = TrackerGroup.objects.filter(user=request.user)
 
     #This is to filter all instances by user
-    instances = TrackerGroupInstance.objects.filter(created_by=request.user)
+    instances = TrackerGroupInstance.objects.filter(created_by=request.user).order_by('-started_at')
     paginator = Paginator(instances, 5)
     
     page = request.GET.get('page')
@@ -419,6 +419,7 @@ def about_us(request):
 class ResponseDelete(DeleteView):
     model = Response
     success_url = reverse_lazy('index')
+
 
 class QuestionDelete(DeleteView):
     model = Question

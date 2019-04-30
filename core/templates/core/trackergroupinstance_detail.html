@@ -2,6 +2,7 @@
 {% load core_tags %}
 
 {% block content %}
+{% if trackergroupinstance.created_by == request.user %}
 <div class="needsleft">
     <h3 class="bold">{{trackergroupinstance.tracker.name}}</h3>
 
@@ -15,7 +16,7 @@
         <div class="marginbottom">
             {% if response.answers.all %}
                 {% for answer in response.answers.all %}
-                <div class="margintop5">
+                <div class="margintop5 margin15">
                     <span class="medteal">Response: </span>{{answer.current_answer}} 
                     <span class="trash purple">
                         <a href="{% url 'response_detail_delete' response.pk %}">
@@ -71,6 +72,7 @@
     </div>
 
 </div>
+{% endif %}
     
 {% endblock %}
 
