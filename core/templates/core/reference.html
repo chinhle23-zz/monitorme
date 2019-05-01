@@ -3,58 +3,33 @@
 
 {% block content %}
 
-<div class="us"><p><br>MonitorMe is a customizable health diary app that was created for a quicker, neater way to keep track of loved ones, or your own health issues.</p></div> 
+<div class="us"><p><br> MonitorMe is a customizable health diary app that was created for a quicker, neater way to keep track of loved ones, or your own health issues.</p></div> 
 
 <div class="question darkteal"><p class="needsleft"><b> Some common questions about the app are:</b></p></div>
  
 <div class="left"><details>
-<summary>What was your inspiration behind this application?</summary>
+<summary> What was your inspiration behind this application?</summary>
 <div class="answer"><p>It was designed around a case study of a parent with a child that suffers from chronic migraines due to photophobia. The two were struggling with being able to keep up with a headache diary due to obstacles of everyday life. This application is meant to be a solution to that problem.</p></div>
 </details>
-<details>
-<summary>What are the icons in the menu bar?</summary>
-<div class="answer"><p>Each button leads you to a specific place in the application. The list is as follows: 
-<br>
-<br>
-<span><i class="far fa-home-lg-alt"></i> Home page</span>
-<br>
-<br>
-<span><i class="far fa-file-chart-line"></i> Summary & History page</span>
-<br>
-<br>
-<span><i class="fal fa-glasses"></i> References page</span>
-<br>
-<br>
-<span><i class="far fa-user-cog"></i> Settings page</span>
-<br>
-<br>
-<span><i class="far fa-sign-out"></i> Sign Out</span>
-</p></div>
-</details>  
+<details> 
+<summary>How do you edit questions and answers in a tracker thats already been created?</summary>
+<div class="answer"><p> Click on the <span class="medteal"><i class="far fa-file-chart-line"></i></span> button, once there click the tracker name under summary. Click on the question listed near the top of the page and from there you are able to edit the questions in the tracker!
+</details>
 <details>
 <summary>How do I create a list of questions to monitor me?</summary>
-<div class="answer">Select the <span class="medteal">MonitorMe</span> button on any page to get started. From here you can add the name, question and all answers. See example in the next section.</div>
+<div class="answer">Select the <span class="medteal">MonitorMe</span> button on any page to get started. Then enter your first question and the answers you want available to the question. We provide 3 places for answers to start, but you can add more answers by selecting the question on the next page.</div>
 </details> 
 <details>
-<summary>An example of a MonitorMe tracker!</summary>
-<div class="answer"><img src ="/static/css/headachescreenshot.png" alt="Example of MonitorMe tracker" width="80%" height="auto">
-<p>First you need to name your list of questions, and then add your questions with the answers you want available to that question. It shows you three to start, but don't worry you can add more if necessary after saving the first three.</p></div>
-</details>
-<details> 
-<summary>How do you edit questions and answers in a MonitorMe list that's already been created?</summary>
-<div class="answer"><p> Click on the <span class="medteal"><i class="far fa-file-chart-line"></i></span> button, and on that page under summary click the tracker name in the first column. Then select the question or answer to go to the edit page. From there you can make changes!</p></div> 
-</details>
-
-<details>
 <summary>How do I add more questions to a tracker that has already been created?</summary>
-<div class="answer"><p> Simply click the <span class="medteal"><i class="far fa-file-chart-line"></i></span> icon in the menu bar at the top. You will then see a chart under the summary section. Select the title for the particular list in the first column that you want to add to and from there you have the option to add more questions and answers! See the next section to add more answers to a particular question.</p></div>
+<div class="answer"><p> Simply click the <span class="medteal"><i class="far fa-file-chart-line"></i></span> icon in the menu bar at the top. You will then see a chart with each tracker. Select the title for the particular tracker you want to add to and from there you have the option to add more questions and answers!</p></div>
 </details>  
 <details>
-<summary>How do I add more answers to question?</summary>
-<div class="answer"><p>Click the <span class="medteal"><i class="far fa-file-chart-line"></i></span> icon in the menu bar and open the specific MonitorMe list to see the detail page. From there you have the current list of questions and answers. Underneath each set of answers, you have a link to add more answers to the specific question.</p></div>
+<summary> How do I add more answers to question?</summary>
+<div class="answer"><p>When initially creating a list of questions, simply click on the question and you will be redirected to a page to add more answers!</p></div>
 </details>
 <br>
-<a href="{% url 'about-us' %}">Click here to learn our story and meet the team!<a>
+<div><a href="{% url 'about-us' %}">Click here to learn our story and meet the team!<a></div>
+<br>
 
 
 
